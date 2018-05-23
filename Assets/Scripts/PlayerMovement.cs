@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public float speed = 7f;
     public float jumpForce= 10f;
-    public float gravity = 20f;
+    public float gravity = 30f;
     private Vector3 moveDir = Vector3.zero;
     CharacterController controller;
 
@@ -16,6 +16,17 @@ public class PlayerMovement : MonoBehaviour {
     }
 	
 	void Update ()
+    {
+        Movement();
+        checkPlatCollision();
+
+        if (transform.position.y < -10)
+        {
+
+        }
+	}
+
+    public void Movement()
     {
         if (controller.isGrounded)
         {
@@ -28,8 +39,29 @@ public class PlayerMovement : MonoBehaviour {
                 moveDir.y = jumpForce;
             }
         }
+        else
+        {
+            moveDir = new Vector3(Input.GetAxis("Horizontal"), moveDir.y, Input.GetAxis("Vertical"));
+            moveDir = transform.TransformDirection(moveDir);
+            moveDir.x *= speed;
+            moveDir.z *= speed;
+        }
+
         moveDir.y -= gravity * Time.deltaTime;
 
         controller.Move(moveDir * Time.deltaTime);
-	}
+    }
+
+    public void checkPlatCollision()
+    {
+        //move the player to another layer to pass through the platforms
+        if(moveDir.y > 0)
+        {
+            gameObject.layer = 9;
+        }
+        else
+        {
+            gameObject.layer = 0;
+        }
+    }
 }
