@@ -40,4 +40,9 @@ public class GroundScript : MonoBehaviour {
             collider.gameObject.SetActive(false);
         }
     }
+
+    public void addSpeed(float s)
+    {
+        speed += s;
+    }
 }

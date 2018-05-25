@@ -13,19 +13,24 @@ public class GameManager : MonoBehaviour {
     public Text currentHeightText;
 
     public GameObject ground;
+    private GroundScript groundScript;
     public GameObject[] poolers;
 
     private bool startClimb = false;
+    public float heightAchievs;
     //public bool instantiatePlatforms = false;
 
 	// Use this for initialization
 	void Awake ()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        heightAchievs = 50f;
+        groundScript = ground.GetComponent<GroundScript>();
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+
+    // Update is called once per frame
+    void Update ()
     {
         if (player.position.y > maxHeightAchieved)
         {
@@ -38,7 +43,7 @@ public class GameManager : MonoBehaviour {
 
         if (maxHeightAchieved > 15f)
         {
-            ground.GetComponent<GroundScript>().enabled = true;
+            groundScript.enabled = true;
             //instantiatePlatforms = true;
 
             //first index is platform pooler
@@ -48,6 +53,19 @@ public class GameManager : MonoBehaviour {
                 platform.SetActive(true);
             }
             
+        }
+        if((player.position.y - ground.transform.position.y) > 150)
+        {
+            poolers[0].GetComponent<ObjectPoolerScript>().willGrow = true;
+        }
+        else
+        {
+            poolers[0].GetComponent<ObjectPoolerScript>().willGrow = false;
+        }
+        if(maxHeightAchieved > heightAchievs && groundScript.speed < 8)
+        {
+            ground.GetComponent<GroundScript>().addSpeed(1);
+            heightAchievs += 150f;
         }
         /*
         if (instantiatePlatforms)

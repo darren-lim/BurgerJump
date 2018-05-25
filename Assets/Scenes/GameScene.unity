@@ -670,16 +670,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114700189280275052, guid: 1efccb8f23fd1fb4a8290b2af7038206,
-        type: 2}
-      propertyPath: jumpForce
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 114700189280275052, guid: 1efccb8f23fd1fb4a8290b2af7038206,
-        type: 2}
-      propertyPath: gravity
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1efccb8f23fd1fb4a8290b2af7038206, type: 2}
   m_IsPrefabParent: 0
@@ -721,16 +711,6 @@ Prefab:
     - target: {fileID: 4636843447601930, guid: 9a681e2104eefc54da4f89473427b049, type: 2}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114138469762875602, guid: 9a681e2104eefc54da4f89473427b049,
-        type: 2}
-      propertyPath: pooledAmount
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 114138469762875602, guid: 9a681e2104eefc54da4f89473427b049,
-        type: 2}
-      propertyPath: willGrow
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a681e2104eefc54da4f89473427b049, type: 2}
@@ -2610,6 +2590,7 @@ MonoBehaviour:
   ground: {fileID: 1973424438}
   poolers:
   - {fileID: 1098238827}
+  heightAchievs: 0
 --- !u!4 &1663491691
 Transform:
   m_ObjectHideFlags: 0
@@ -3041,7 +3022,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1806411659
 Transform:
   m_ObjectHideFlags: 0
@@ -3570,14 +3551,10 @@ Prefab:
       propertyPath: gamemanager
       value: 
       objectReference: {fileID: 1663491689}
-    - target: {fileID: 1497506739672022, guid: ea1dde5ba5345364aaa3f2636584e629, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114714436607460410, guid: ea1dde5ba5345364aaa3f2636584e629,
         type: 2}
       propertyPath: speed
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea1dde5ba5345364aaa3f2636584e629, type: 2}
