@@ -174,11 +174,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 2
-  minVert: -85
-  maxVert: 85
+  minVert: -90
+  maxVert: 90
   sensHorizontal: 5
   sensVertical: 5
   rotationX: 0
+  paused: 0
 --- !u!114 &114272946153512970
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -191,11 +192,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 1
-  minVert: -85
-  maxVert: 85
+  minVert: -90
+  maxVert: 90
   sensHorizontal: 5
   sensVertical: 5
   rotationX: 0
+  paused: 0
 --- !u!114 &114700189280275052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,8 +210,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  jumpForce: 10
-  gravity: 10
+  jumpForce: 16
+  gravity: 22
 --- !u!136 &136877271247426474
 CapsuleCollider:
   m_ObjectHideFlags: 1

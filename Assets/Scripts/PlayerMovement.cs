@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
     public float speed = 7f;
-    public float jumpForce= 10f;
-    public float gravity = 30f;
+    public float jumpForce= 15f;
+    public float gravity = 20f;
     private Vector3 moveDir = Vector3.zero;
     CharacterController controller;
 

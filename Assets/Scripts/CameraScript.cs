@@ -20,24 +20,33 @@ public class CameraScript : MonoBehaviour {
 
     public float rotationX = 0;
 
+    public bool paused;
+
     private void Start()
     {
+        paused = false;
         //hides cursor and locks it to the center
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update ()
     {
-		if(axes == RotationAxis.MouseX)
-            transform.Rotate(0, Input.GetAxis("Mouse X") * sensHorizontal, 0);
-        else if(axes == RotationAxis.MouseY)
+        if (paused)
+            return;
+        else
         {
-            rotationX -= Input.GetAxis("Mouse Y") * sensVertical;
-            rotationX = Mathf.Clamp(rotationX, minVert, maxVert); //clamps vertical angle within max and min limits (45 degrees)
+            if (axes == RotationAxis.MouseX)
+                transform.Rotate(0, Input.GetAxis("Mouse X") * sensHorizontal, 0);
+            else if (axes == RotationAxis.MouseY)
+            {
+                rotationX -= Input.GetAxis("Mouse Y") * sensVertical;
+                rotationX = Mathf.Clamp(rotationX, minVert, maxVert); //clamps vertical angle within max and min limits (45 degrees)
 
-            float rotationY = transform.localEulerAngles.y;
-            transform.localEulerAngles = new Vector3(rotationX, rotationY, 0);
+                float rotationY = transform.localEulerAngles.y;
+                transform.localEulerAngles = new Vector3(rotationX, rotationY, 0);
+            }
         }
 	}
 }

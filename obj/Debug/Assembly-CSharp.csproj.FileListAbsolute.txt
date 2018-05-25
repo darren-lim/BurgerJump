@@ -1,0 +1,2 @@
+C:\Users\dartr\OneDrive\Documents\unity\PlatformJumper\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+C:\Users\dartr\OneDrive\Documents\unity\PlatformJumper\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
