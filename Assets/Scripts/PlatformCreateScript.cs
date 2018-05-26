@@ -14,7 +14,7 @@ public class PlatformCreateScript : MonoBehaviour {
     {
         player = GameObject.FindGameObjectWithTag("Player");
         float newX = Random.Range(-15, 15);
-        float newY = Random.Range(player.transform.position.y + 2, player.transform.position.y + 250);
+        float newY = Random.Range(player.transform.position.y + 25, player.transform.position.y + 250);
         float newZ = Random.Range(-15, 15);
 
         transform.position = new Vector3(newX, newY, newZ);
@@ -24,7 +24,7 @@ public class PlatformCreateScript : MonoBehaviour {
     {
         if (player == null) return;
         float newX = Random.Range(-15, 15);
-        float newY = Random.Range(transform.position.y + 80, transform.position.y + 100);
+        float newY = Random.Range(transform.position.y + 100, transform.position.y + 200);
         float newZ = Random.Range(-15, 15);
 
         transform.position = new Vector3(newX, newY, newZ);

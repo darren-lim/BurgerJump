@@ -9,6 +9,9 @@ public class GroundScript : MonoBehaviour {
 
     private BoxCollider box;
 
+    public Material material;
+    private Renderer rend;
+
     private void Awake()
     {
         this.enabled = false;
@@ -17,7 +20,8 @@ public class GroundScript : MonoBehaviour {
     private void OnEnable()
     {
         box = GetComponent<BoxCollider>();
-
+        rend = GetComponent<MeshRenderer>();
+        rend.sharedMaterial = material;
         box.isTrigger = true;
     }
 

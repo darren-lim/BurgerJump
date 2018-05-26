@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  jumpForce: 30
+  jumpForce: 15
   gravity: 30
 --- !u!136 &136877271247426474
 CapsuleCollider:

@@ -19,11 +19,6 @@ public class PlayerMovement : MonoBehaviour {
     {
         Movement();
         checkPlatCollision();
-
-        if (transform.position.y < -10)
-        {
-
-        }
 	}
 
     public void Movement()
