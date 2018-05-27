@@ -15,12 +15,12 @@ public class GroundScript : MonoBehaviour {
     private void Awake()
     {
         this.enabled = false;
+        box = GetComponent<BoxCollider>();
+        rend = GetComponent<MeshRenderer>();
     }
 
     private void OnEnable()
     {
-        box = GetComponent<BoxCollider>();
-        rend = GetComponent<MeshRenderer>();
         rend.sharedMaterial = material;
         box.isTrigger = true;
     }
@@ -40,7 +40,6 @@ public class GroundScript : MonoBehaviour {
         }
         if(collider.gameObject.tag == "Platform")
         {
-            Debug.Log("COLLIDE");
             collider.gameObject.SetActive(false);
         }
     }

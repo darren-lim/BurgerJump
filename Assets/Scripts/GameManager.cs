@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
     private GroundScript groundScript;
     public GameObject[] poolers;
 
-    private bool startClimb = false;
+    //private bool startClimb = false;
     public float heightAchievs;
     //public bool instantiatePlatforms = false;
 
@@ -32,11 +32,11 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        if (startClimb == false && player.position.y > 25)
+        /*
+        if (startClimb == false && player.position.y > 20)
         {
-            player.GetComponent<PlayerMovement>().jumpForce = 30;
             startClimb = true;
-        }
+        }*/
 
         if (player.position.y > maxHeightAchieved)
         {
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour {
             }
             
         }
-        if((player.position.y - ground.transform.position.y) > 150)
+        if((player.position.y - ground.transform.position.y) > 120f)
         {
             poolers[0].GetComponent<ObjectPoolerScript>().willGrow = true;
         }
