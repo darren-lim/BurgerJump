@@ -8,16 +8,20 @@ public class SceneManagerScript: MonoBehaviour
 {
     public GameObject pauseCanvas;
     public GameObject gameOverCanvas;
+    public GameObject onScreenUICanvas;
     //if multiplayer, change this concept
     public GameObject player;
     public Text gameOverScore;
+    public Text highScore;
 
     public bool isPaused = false;
     public bool isGameOver = false;
 
     private void Start()
     {
+        Time.timeScale = 1;
         player = GameObject.FindGameObjectWithTag("Player");
+        highScore.text = PlayerPrefs.GetFloat("HighScore", 0).ToString();
     }
 
     private void Update()
@@ -62,21 +66,32 @@ public class SceneManagerScript: MonoBehaviour
 
     public void Restart()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void GameOver()
     {
         gameOverCanvas.SetActive(true);
+        onScreenUICanvas.SetActive(false);
         isPaused = true;
         cameraPause();
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        float score = gameObject.GetComponent<GameManager>().maxHeightAchieved;
+        float score = gameObject.GetComponent<GameManagerScript>().maxHeightAchieved;
         score = Mathf.Round(score * 100f) / 100f;
         gameOverScore.text = score.ToString();
+
+        if (score > PlayerPrefs.GetFloat("HighScore", 0))
+        {
+            PlayerPrefs.SetFloat("HighScore", score);
+            highScore.text = score.ToString();
+        }
+    }
+
+    public void ResetHighScore()
+    {
+        PlayerPrefs.DeleteKey("HighScore");
     }
 
     private void cameraPause()
@@ -87,5 +102,6 @@ public class SceneManagerScript: MonoBehaviour
             cam.paused = isPaused;
         }
     }
+
 }
 
