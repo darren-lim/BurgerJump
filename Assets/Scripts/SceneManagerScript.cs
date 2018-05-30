@@ -20,8 +20,7 @@ public class SceneManagerScript: MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
-        player = GameObject.FindGameObjectWithTag("Player");
-        highScore.text = PlayerPrefs.GetFloat("HighScore", 0).ToString();
+        player = GameObject.FindGameObjectWithTag("player");
     }
 
     private void Update()
@@ -81,7 +80,7 @@ public class SceneManagerScript: MonoBehaviour
         float score = gameObject.GetComponent<GameManagerScript>().maxHeightAchieved;
         score = Mathf.Round(score * 100f) / 100f;
         gameOverScore.text = score.ToString();
-
+        highScore.text = score.ToString();
         if (score > PlayerPrefs.GetFloat("HighScore", 0))
         {
             PlayerPrefs.SetFloat("HighScore", score);

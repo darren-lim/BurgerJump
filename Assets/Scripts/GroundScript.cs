@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroundScript : MonoBehaviour {
 
-    public float speed = 1f;
+    public float speed = 5f;
     public GameObject gamemanager;
 
     private BoxCollider box;
@@ -33,12 +33,12 @@ public class GroundScript : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collider)
     {
-        if(collider.gameObject.tag == "Player")
+        if(collider.gameObject.tag == "player")
         {
             //animation maybe?
             gamemanager.GetComponent<SceneManagerScript>().GameOver();
         }
-        if(collider.gameObject.tag == "Platform")
+        if(collider.gameObject.tag == "Platform" || collider.gameObject.tag == "SetPlatforms")
         {
             collider.gameObject.SetActive(false);
         }
@@ -47,5 +47,15 @@ public class GroundScript : MonoBehaviour {
     public void addSpeed(float s)
     {
         speed += s;
+    }
+
+    public float getSpeed()
+    {
+        return speed;
+    }
+
+    public void subtractSpeed(float s)
+    {
+        speed -= s;
     }
 }

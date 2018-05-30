@@ -39,10 +39,10 @@ GameObject:
   - component: {fileID: 4183592498912798}
   - component: {fileID: 33137679899711222}
   - component: {fileID: 23432964370542036}
-  - component: {fileID: 136877271247426474}
   - component: {fileID: 143876866906501412}
   - component: {fileID: 114700189280275052}
   - component: {fileID: 114272946153512970}
+  - component: {fileID: 65172062284251648}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -70,7 +70,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1293360250321550}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.082808204, y: 0, z: 0, w: 0.9965655}
   m_LocalPosition: {x: 0, y: 0.445, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -155,6 +155,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361223347701474}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65172062284251648
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1361223347701474}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.4553146, z: 1}
+  m_Center: {x: 0, y: -0.22765732, z: 0}
 --- !u!81 &81380548110904776
 AudioListener:
   m_ObjectHideFlags: 1
@@ -178,8 +190,8 @@ MonoBehaviour:
   maxVert: 90
   sensHorizontal: 5
   sensVertical: 5
-  rotationX: 0
-  paused: 0
+  rotationX: 9.5
+  paused: 1
 --- !u!114 &114272946153512970
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,7 +209,7 @@ MonoBehaviour:
   sensHorizontal: 5
   sensVertical: 5
   rotationX: 0
-  paused: 0
+  paused: 1
 --- !u!114 &114700189280275052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,19 +224,6 @@ MonoBehaviour:
   speed: 12
   jumpForce: 35
   gravity: 30
---- !u!136 &136877271247426474
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1361223347701474}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &143876866906501412
 CharacterController:
   m_ObjectHideFlags: 1

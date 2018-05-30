@@ -57,6 +57,8 @@ MonoBehaviour:
   maxHeightText: {fileID: 0}
   currentHeightText: {fileID: 0}
   distFromGroundText: {fileID: 0}
+  fpsText: {fileID: 0}
+  deltaTime: 0
   ground: {fileID: 0}
   poolers:
   - {fileID: 0}

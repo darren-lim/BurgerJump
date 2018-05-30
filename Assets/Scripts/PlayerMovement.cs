@@ -19,7 +19,16 @@ public class PlayerMovement : MonoBehaviour {
     {
         Movement();
         checkPlatCollision();
-	}
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            jumpForce = 100f;
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            jumpForce = 35f;
+        }
+    }
 
     public void Movement()
     {
@@ -57,6 +66,14 @@ public class PlayerMovement : MonoBehaviour {
         else
         {
             gameObject.layer = 0;
+        }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit collision)
+    {
+        if (collision.gameObject.tag == "Platform")
+        {
+            collision.transform.SendMessage("startFalling", SendMessageOptions.DontRequireReceiver);
         }
     }
 }

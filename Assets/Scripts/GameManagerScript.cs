@@ -12,6 +12,8 @@ public class GameManagerScript : MonoBehaviour {
     public Text maxHeightText;
     public Text currentHeightText;
     public Text distFromGroundText;
+    public Text fpsText;
+    public float deltaTime;
 
     public GameObject ground;
     private GroundScript groundScript;
@@ -29,7 +31,7 @@ public class GameManagerScript : MonoBehaviour {
 	// Use this for initialization
 	void Awake ()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("player").transform;
         heightAchievs = 100f;
         groundScript = ground.GetComponent<GroundScript>();
         platforms = new ObjectPoolerScript[poolers.Length];
@@ -53,6 +55,7 @@ public class GameManagerScript : MonoBehaviour {
         {
             maxHeightAchieved = player.position.y;
         }
+        //UI TEXTS
         maxHeightAchieved = Mathf.Round(maxHeightAchieved * 100f) / 100f;
         currheight = Mathf.Round(player.position.y * 100f) / 100f;
         maxHeightText.text = "Max Height Reached: " + maxHeightAchieved.ToString();
@@ -60,6 +63,10 @@ public class GameManagerScript : MonoBehaviour {
 
         float distFromGround = Mathf.Round(player.position.y - ground.transform.position.y);
         distFromGroundText.text = "Distance From Ground: " + distFromGround.ToString();
+
+        deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+        float fps = 1.0f / deltaTime;
+        fpsText.text = "FPS: " + Mathf.Ceil(fps).ToString();
 
         if (maxHeightAchieved > 25f)
         {
@@ -86,7 +93,7 @@ public class GameManagerScript : MonoBehaviour {
             poolers[0].GetComponent<ObjectPoolerScript>().willGrow = false;
         }
         */
-        if(maxHeightAchieved > heightAchievs && groundScript.speed < 11)
+        if(maxHeightAchieved > heightAchievs && groundScript.speed < 10)
         {
             groundScript.addSpeed(1);
             heightAchievs += 200f;
@@ -122,10 +129,9 @@ public class GameManagerScript : MonoBehaviour {
 
     IEnumerator boostGround()
     {
-        float gspeed = groundScript.speed;
-        groundScript.addSpeed(5);
+        groundScript.addSpeed(8f);
         yield return new WaitForSeconds(3f);
-        groundScript.speed = gspeed;
+        groundScript.subtractSpeed(8f);
         isSped = false;
         yield break;
     }
