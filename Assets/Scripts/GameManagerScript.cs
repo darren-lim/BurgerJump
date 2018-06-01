@@ -43,7 +43,7 @@ public class GameManagerScript : MonoBehaviour {
 
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
         /*
         if (startClimb == false && player.position.y > 20)
@@ -68,7 +68,7 @@ public class GameManagerScript : MonoBehaviour {
         float fps = 1.0f / deltaTime;
         fpsText.text = "FPS: " + Mathf.Ceil(fps).ToString();
 
-        if (maxHeightAchieved > 25f)
+        if (maxHeightAchieved > 50f)
         {
             groundScript.enabled = true;
             //instantiatePlatforms = true;
@@ -99,7 +99,7 @@ public class GameManagerScript : MonoBehaviour {
             heightAchievs += 200f;
         }
 
-        if(distFromGround > 90f && !isSped)
+        if(distFromGround > 100f && !isSped)
         {
             isSped = true;
             StartCoroutine("boostGround");
@@ -129,9 +129,9 @@ public class GameManagerScript : MonoBehaviour {
 
     IEnumerator boostGround()
     {
-        groundScript.addSpeed(8f);
+        groundScript.addSpeed(9f);
         yield return new WaitForSeconds(3f);
-        groundScript.subtractSpeed(8f);
+        groundScript.subtractSpeed(9f);
         isSped = false;
         yield break;
     }

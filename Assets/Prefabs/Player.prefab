@@ -42,10 +42,10 @@ GameObject:
   - component: {fileID: 143876866906501412}
   - component: {fileID: 114700189280275052}
   - component: {fileID: 114272946153512970}
-  - component: {fileID: 65172062284251648}
+  - component: {fileID: 136944401574390472}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,8 +70,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1293360250321550}
-  m_LocalRotation: {x: 0.082808204, y: 0, z: 0, w: 0.9965655}
-  m_LocalPosition: {x: 0, y: 0.445, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4183592498912798}
@@ -155,18 +155,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361223347701474}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65172062284251648
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1361223347701474}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2.4553146, z: 1}
-  m_Center: {x: 0, y: -0.22765732, z: 0}
 --- !u!81 &81380548110904776
 AudioListener:
   m_ObjectHideFlags: 1
@@ -224,6 +212,21 @@ MonoBehaviour:
   speed: 12
   jumpForce: 35
   gravity: 30
+  powerUpCooldown: 0
+  PowerUpText: {fileID: 0}
+--- !u!136 &136944401574390472
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1361223347701474}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &143876866906501412
 CharacterController:
   m_ObjectHideFlags: 1

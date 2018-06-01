@@ -38,7 +38,7 @@ public class GroundScript : MonoBehaviour {
             //animation maybe?
             gamemanager.GetComponent<SceneManagerScript>().GameOver();
         }
-        if(collider.gameObject.tag == "Platform" || collider.gameObject.tag == "SetPlatforms")
+        if(collider.gameObject.tag == "Platform" || collider.gameObject.tag == "SetPlatforms" || collider.gameObject.tag == "PowerUp")
         {
             collider.gameObject.SetActive(false);
         }

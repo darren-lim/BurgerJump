@@ -60,11 +60,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraScript.cs" />
+    <Compile Include="Assets\Scripts\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\GameManagerScript.cs" />
     <Compile Include="Assets\Scripts\GroundScript.cs" />
     <Compile Include="Assets\Scripts\ObjectPoolerScript.cs" />
     <Compile Include="Assets\Scripts\PlatformScript.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\PowerUpScript.cs" />
     <Compile Include="Assets\Scripts\SceneManagerScript.cs" />
     <Compile Include="Assets\Scripts\setPlatformScript.cs" />
     <Reference Include="UnityEditor.StandardEvents">

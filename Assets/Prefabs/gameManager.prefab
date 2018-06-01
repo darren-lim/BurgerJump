@@ -63,6 +63,8 @@ MonoBehaviour:
   poolers:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   platformPos: 10
   heightAchievs: 0
 --- !u!114 &114764554910011890

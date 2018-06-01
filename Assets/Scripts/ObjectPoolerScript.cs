@@ -36,12 +36,13 @@ public class ObjectPoolerScript : MonoBehaviour {
                 return pooledObjects[i];
             }
         }
+        /*
         if (willGrow)
         {
             GameObject obj = (GameObject)Instantiate(pooledObject);
             pooledObjects.Add(obj);
             return obj;
-        }
+        }*/
         return null;
     }
 }

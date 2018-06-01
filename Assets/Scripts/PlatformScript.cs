@@ -22,14 +22,14 @@ public class PlatformScript : MonoBehaviour {
     private void Awake()
     {
         rend = GetComponent<Renderer>();
+        player = GameObject.FindGameObjectWithTag("player");
     }
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("player");
-        float newX = Random.Range(-15, 16);
-        float newY = Random.Range(player.transform.position.y + 5, player.transform.position.y + 301);
-        float newZ = Random.Range(-15, 16);
+        float newX = Random.Range(-20, 20);
+        float newY = Random.Range(player.transform.position.y + 5, player.transform.position.y + 300);
+        float newZ = Random.Range(-20, 20);
 
         transform.position = new Vector3(newX, newY, newZ);
     }
@@ -40,17 +40,17 @@ public class PlatformScript : MonoBehaviour {
         if (fell)
         {
             StopAllCoroutines();
-            float newX = Random.Range(-15, 16);
-            float newY = Random.Range(player.transform.position.y + 100, player.transform.position.y + 151);
-            float newZ = Random.Range(-15, 16);
+            float newX = Random.Range(-20, 20);
+            float newY = Random.Range(player.transform.position.y + 100, player.transform.position.y + 200);
+            float newZ = Random.Range(-20, 20);
 
             transform.position = new Vector3(newX, newY, newZ);
         }
         else
         {
-            float newX = Random.Range(-15, 16);
-            float newY = Random.Range(transform.position.y + 100, transform.position.y + 201);
-            float newZ = Random.Range(-15, 16);
+            float newX = Random.Range(-20, 20);
+            float newY = Random.Range(transform.position.y + 290, transform.position.y + 310);
+            float newZ = Random.Range(-20, 20);
 
             transform.position = new Vector3(newX, newY, newZ);
         }
@@ -61,7 +61,7 @@ public class PlatformScript : MonoBehaviour {
 
     private void OnEnable()
     {
-        float willFall = Random.Range(0, 111);
+        float willFall = Random.Range(0, 110);
         if (transform.position.y > 800f && willFall >= 10) fall = true;
         else if (transform.position.y > 500f && willFall >= 30) fall = true;
         else if (transform.position.y > 300f && willFall >= 60) fall = true;

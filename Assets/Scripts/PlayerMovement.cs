@@ -1,18 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour {
 
-    public float speed = 7f;
-    public float jumpForce= 15f;
-    public float gravity = 20f;
+    public float speed = 12f;
+    public float jumpForce= 35f;
+    private float jumpf;
+    public float gravity = 30f;
     private Vector3 moveDir = Vector3.zero;
     CharacterController controller;
+
+    private bool hasPowerUp = false;
+
+    public float powerUpCooldown = 0f;
+
+    public Text PowerUpText;
 
     void Start ()
     {
         controller = gameObject.GetComponent<CharacterController>();
+        jumpf = jumpForce;
     }
 	
 	void Update ()
@@ -20,13 +29,29 @@ public class PlayerMovement : MonoBehaviour {
         Movement();
         checkPlatCollision();
 
+        if(hasPowerUp && powerUpCooldown > 0f)
+        {
+            powerUpCooldown -= Time.deltaTime;
+            float seconds = powerUpCooldown % 60;
+            PowerUpText.text = "Power Up Time: " + Mathf.RoundToInt(seconds).ToString();
+        }
+        else
+        {
+            jumpForce = jumpf;
+            hasPowerUp = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.T))
         {
-            jumpForce = 100f;
+            hasPowerUp = true;
+            powerUpCooldown = 30f;
+            jumpForce = 60f;
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            jumpForce = 35f;
+            powerUpCooldown = 0f;
+            jumpForce = jumpf;
+            hasPowerUp = false;
         }
     }
 
@@ -66,6 +91,20 @@ public class PlayerMovement : MonoBehaviour {
         else
         {
             gameObject.layer = 0;
+        }
+    }
+
+    public void powerJump(float jump)
+    {
+        if (hasPowerUp)
+        {
+            powerUpCooldown = 10f;
+        }
+        else
+        {
+            jumpForce += jump;
+            powerUpCooldown = 10f;
+            hasPowerUp = true;
         }
     }
 

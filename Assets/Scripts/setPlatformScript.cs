@@ -10,20 +10,13 @@ public class setPlatformScript : MonoBehaviour {
 	void Awake ()
     {
         script = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManagerScript>();
-        /*
-        float newX = Random.Range(-10, 10);
-        float newY = script.platformPos;
-        float newZ = Random.Range(-10, 10);
-
-        transform.position = new Vector3(newX, newY, newZ);
-        script.addPlatformPos(10f);*/
     }
 
     private void OnEnable()
     {
-        float newX = Random.Range(-10, 11);
+        float newX = Random.Range(-15, 15);
         float newY = script.platformPos;
-        float newZ = Random.Range(-10, 11);
+        float newZ = Random.Range(15, 15);
 
         transform.position = new Vector3(newX, newY, newZ);
         script.addPlatformPos(10f);
