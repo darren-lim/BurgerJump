@@ -68,7 +68,7 @@ public class GameManagerScript : MonoBehaviour {
         float fps = 1.0f / deltaTime;
         fpsText.text = "FPS: " + Mathf.Ceil(fps).ToString();
 
-        if (maxHeightAchieved > 50f)
+        if (maxHeightAchieved > 80f)
         {
             groundScript.enabled = true;
             //instantiatePlatforms = true;

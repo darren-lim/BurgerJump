@@ -13,15 +13,17 @@ public class PlayerMovement : MonoBehaviour {
     CharacterController controller;
 
     private bool hasPowerUp = false;
-
     public float powerUpCooldown = 0f;
 
     public Text PowerUpText;
 
+    private AudioSource jumpSound;
+
     void Start ()
     {
-        controller = gameObject.GetComponent<CharacterController>();
+        controller = GetComponent<CharacterController>();
         jumpf = jumpForce;
+        jumpSound = GetComponent<AudioSource>();
     }
 	
 	void Update ()
@@ -66,6 +68,7 @@ public class PlayerMovement : MonoBehaviour {
             if (Input.GetButtonDown("Jump"))
             {
                 moveDir.y = jumpForce;
+                jumpSound.Play();
             }
         }
         else

@@ -23,18 +23,22 @@ public class EnemyScript : MonoBehaviour {
 
         transform.position = new Vector3(newX, newY, newZ);
 
-        randNum = Random.Range(0, 10);
+        randNum = Random.Range(0, 20);
     }
 
     private void Update()
     {
-        if (randNum > 5)
+        if (randNum < 5)
         {
-            transform.position = new Vector3(PingPong(Time.time * 8, -10, 10), transform.position.y, transform.position.z);
+            transform.position = new Vector3(PingPong(Time.time * 8, -15, 15), transform.position.y, transform.position.z);
+        }
+        else if(randNum < 10)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, PingPong(Time.time * 8, -15, 15));
         }
         else
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, PingPong(Time.time * 8, -10, 10));
+            transform.position = new Vector3(PingPong(Time.time * 8, -15, 15), transform.position.y, PingPong(Time.time * 8, -15, 15));
         }
     }
 
