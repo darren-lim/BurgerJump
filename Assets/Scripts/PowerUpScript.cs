@@ -16,7 +16,7 @@ public class PowerUpScript : MonoBehaviour {
     void Start ()
     {
         float newX = Random.Range(-10, 10);
-        float newY = Random.Range(player.transform.position.y + 100, player.transform.position.y + 800);
+        float newY = Random.Range(player.transform.position.y + 300, player.transform.position.y + 800);
         float newZ = Random.Range(-10, 10);
 
         transform.position = new Vector3(newX, newY, newZ);
@@ -25,7 +25,7 @@ public class PowerUpScript : MonoBehaviour {
     private void OnDisable ()
     {
         float newX = Random.Range(-10, 10);
-        float newY = Random.Range(transform.position.y + 400, transform.position.y + 900);
+        float newY = Random.Range(transform.position.y + 700, transform.position.y + 1300);
         float newZ = Random.Range(-10, 10);
 
         transform.position = new Vector3(newX, newY, newZ);

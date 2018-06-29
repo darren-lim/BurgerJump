@@ -8,6 +8,7 @@ TagManager:
   - player
   - SetPlatforms
   - PowerUp
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - 
   - PostProcessing
   - PlatformPass
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -44,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: pictures
+    uniqueID: 2866816191
     locked: 0

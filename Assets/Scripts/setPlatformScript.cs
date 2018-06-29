@@ -14,9 +14,9 @@ public class setPlatformScript : MonoBehaviour {
 
     private void OnEnable()
     {
-        float newX = Random.Range(-15, 15);
+        float newX = Random.Range(-15f, 15f);
         float newY = script.platformPos;
-        float newZ = Random.Range(15, 15);
+        float newZ = Random.Range(15f, 15f);
 
         transform.position = new Vector3(newX, newY, newZ);
         script.addPlatformPos(10f);

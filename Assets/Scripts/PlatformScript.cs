@@ -16,41 +16,45 @@ public class PlatformScript : MonoBehaviour {
 
     public Color startColor = Color.white;
     public Color endColor = Color.red;
-    public float duration = 10f;
+    public float duration = 20f;
     public Renderer rend;
+
+    private AudioSource fallingSound;
 
     private void Awake()
     {
         rend = GetComponent<Renderer>();
         player = GameObject.FindGameObjectWithTag("player");
+        fallingSound = GetComponent<AudioSource>();
     }
 
     private void Start()
     {
-        float newX = Random.Range(-20, 20);
+        float newX = Random.Range(-20f, 20f);
         float newY = Random.Range(player.transform.position.y + 5, player.transform.position.y + 300);
-        float newZ = Random.Range(-20, 20);
+        float newZ = Random.Range(-20f, 20f);
 
         transform.position = new Vector3(newX, newY, newZ);
     }
 
     void OnDisable ()
     {
+        fallingSound.Stop();
         if (player == null) return;
         if (fell)
         {
             StopAllCoroutines();
-            float newX = Random.Range(-20, 20);
+            float newX = Random.Range(-20f, 20f);
             float newY = Random.Range(player.transform.position.y + 100, player.transform.position.y + 200);
-            float newZ = Random.Range(-20, 20);
+            float newZ = Random.Range(-20f, 20f);
 
             transform.position = new Vector3(newX, newY, newZ);
         }
         else
         {
-            float newX = Random.Range(-20, 20);
+            float newX = Random.Range(-20f, 20f);
             float newY = Random.Range(transform.position.y + 290, transform.position.y + 310);
-            float newZ = Random.Range(-20, 20);
+            float newZ = Random.Range(-20f, 20f);
 
             transform.position = new Vector3(newX, newY, newZ);
         }
@@ -62,10 +66,10 @@ public class PlatformScript : MonoBehaviour {
     private void OnEnable()
     {
         float willFall = Random.Range(0, 110);
-        if (transform.position.y > 800f && willFall >= 10) fall = true;
-        else if (transform.position.y > 500f && willFall >= 30) fall = true;
-        else if (transform.position.y > 300f && willFall >= 60) fall = true;
-        else if (transform.position.y > 100f && willFall >= 80) fall = true;
+        if (transform.position.y > 1000f && willFall >= 20) fall = true;
+        else if (transform.position.y > 700f && willFall >= 40) fall = true;
+        else if (transform.position.y > 400f && willFall >= 65) fall = true;
+        else if (transform.position.y > 100f && willFall >= 90) fall = true;
     }
     /*
     private void OnCollisionEnter(Collision collision)
@@ -86,6 +90,7 @@ public class PlatformScript : MonoBehaviour {
     
     IEnumerator ChangeColor()
     {
+        fallingSound.Play();
         for(float i = 0.01f; i < duration; i+=0.1f)
         {
             rend.material.color = Color.Lerp(startColor, endColor, i / duration);
