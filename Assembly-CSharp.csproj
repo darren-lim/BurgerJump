@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\GameManagerScript.cs" />
     <Compile Include="Assets\Scripts\GroundScript.cs" />
     <Compile Include="Assets\Scripts\ObjectPoolerScript.cs" />
+    <Compile Include="Assets\Scripts\OptionsMenu.cs" />
     <Compile Include="Assets\Scripts\PlatformScript.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\PowerUpScript.cs" />

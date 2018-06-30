@@ -33,8 +33,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1276507748902544}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.3264313, y: 1.0800009, z: -3.6313748}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,5 +53,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 1862713280271798, guid: a8d39e01785eb9447a34e34b58a56791,
     type: 2}
-  pooledAmount: 90
+  pooledAmount: 100
   willGrow: 0

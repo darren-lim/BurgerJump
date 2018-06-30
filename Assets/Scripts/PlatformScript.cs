@@ -16,7 +16,7 @@ public class PlatformScript : MonoBehaviour {
 
     public Color startColor = Color.white;
     public Color endColor = Color.red;
-    public float duration = 20f;
+    public float duration = 50f;
     public Renderer rend;
 
     private AudioSource fallingSound;
@@ -31,7 +31,7 @@ public class PlatformScript : MonoBehaviour {
     private void Start()
     {
         float newX = Random.Range(-20f, 20f);
-        float newY = Random.Range(player.transform.position.y + 5, player.transform.position.y + 300);
+        float newY = Random.Range(player.transform.position.y + 5, player.transform.position.y + 350);
         float newZ = Random.Range(-20f, 20f);
 
         transform.position = new Vector3(newX, newY, newZ);
@@ -45,7 +45,7 @@ public class PlatformScript : MonoBehaviour {
         {
             StopAllCoroutines();
             float newX = Random.Range(-20f, 20f);
-            float newY = Random.Range(player.transform.position.y + 100, player.transform.position.y + 200);
+            float newY = Random.Range(player.transform.position.y + 100, player.transform.position.y + 250);
             float newZ = Random.Range(-20f, 20f);
 
             transform.position = new Vector3(newX, newY, newZ);

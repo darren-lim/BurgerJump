@@ -15,8 +15,8 @@ public class CameraScript : MonoBehaviour {
     public float minVert = -50f;
     public float maxVert = 60f;
     //sensitivity
-    public float sensHorizontal = 10f;
-    public float sensVertical = 10f;
+    public float sensHorizontal;
+    public float sensVertical;
 
     public float rotationX = 0;
 
@@ -28,6 +28,8 @@ public class CameraScript : MonoBehaviour {
         //hides cursor and locks it to the center
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        sensHorizontal = PlayerPrefs.GetFloat("sensX", 6);
+        sensVertical = PlayerPrefs.GetFloat("sensY", 6);
     }
 
     // Update is called once per frame
@@ -37,6 +39,11 @@ public class CameraScript : MonoBehaviour {
             return;
         else
         {
+            if (sensHorizontal != PlayerPrefs.GetFloat("sensX"))
+            {
+                sensHorizontal = PlayerPrefs.GetFloat("sensX");
+                sensVertical = PlayerPrefs.GetFloat("sensY");
+            }
             if (axes == RotationAxis.MouseX)
                 transform.Rotate(0, Input.GetAxis("Mouse X") * sensHorizontal, 0);
             else if (axes == RotationAxis.MouseY)

@@ -20,8 +20,6 @@ public class SceneManagerScript: MonoBehaviour
     public AudioSource audioClip;
     public AudioVolumeScript audioScript;
 
-    public Slider fill;
-
     private void Start()
     {
         Time.timeScale = 1;

@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class UISliderFill : MonoBehaviour {
 
-    public Slider slider;
+    public Slider VolumeSlider;
+    public Slider SensSlider;
 
     private void OnEnable()
     {
-        slider.value = PlayerPrefs.GetFloat("Volume", 1);
+        VolumeSlider.value = PlayerPrefs.GetFloat("Volume", 1);
+        SensSlider.value = PlayerPrefs.GetFloat("sensY", 6);
     }
 }
