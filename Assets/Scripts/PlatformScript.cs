@@ -66,7 +66,7 @@ public class PlatformScript : MonoBehaviour {
     private void OnEnable()
     {
         float willFall = Random.Range(0, 110);
-        if (transform.position.y > 1000f && willFall >= 20) fall = true;
+        if (transform.position.y > 1000f && willFall >= 25) fall = true;
         else if (transform.position.y > 700f && willFall >= 40) fall = true;
         else if (transform.position.y > 400f && willFall >= 65) fall = true;
         else if (transform.position.y > 100f && willFall >= 90) fall = true;

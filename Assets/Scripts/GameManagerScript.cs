@@ -108,7 +108,7 @@ public class GameManagerScript : MonoBehaviour {
             StartCoroutine("boostGround");
         }
 
-        if(player.position.y < ground.transform.position.y && gameover)
+        if(player.position.y < ground.transform.position.y && !gameover)
         {
             this.GetComponent<SceneManagerScript>().GameOver();
             gameover = true;

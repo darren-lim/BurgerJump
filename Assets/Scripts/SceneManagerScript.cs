@@ -87,7 +87,7 @@ public class SceneManagerScript: MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         float score = gameObject.GetComponent<GameManagerScript>().maxHeightAchieved;
-        score = Mathf.Round(score * 5);// * 100f)/100f;
+        score = Mathf.Round(score * 6);// * 100f)/100f;
         gameOverScore.text = score.ToString();
         highScore.text = score.ToString();
         if (score > PlayerPrefs.GetFloat("HighScore", 0))
