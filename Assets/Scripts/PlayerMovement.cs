@@ -13,15 +13,19 @@ public class PlayerMovement : MonoBehaviour {
     CharacterController controller;
 
     private bool hasPowerUp = false;
-
     public float powerUpCooldown = 0f;
 
     public Text PowerUpText;
 
+    private AudioSource jumpSound;
+    public AudioSource powerUpSFX;
+
     void Start ()
     {
-        controller = gameObject.GetComponent<CharacterController>();
+        controller = GetComponent<CharacterController>();
         jumpf = jumpForce;
+        jumpSound = GetComponent<AudioSource>();
+        PowerUpText.enabled = false;
     }
 	
 	void Update ()
@@ -33,26 +37,28 @@ public class PlayerMovement : MonoBehaviour {
         {
             powerUpCooldown -= Time.deltaTime;
             float seconds = powerUpCooldown % 60;
-            PowerUpText.text = "Power Up Time: " + Mathf.RoundToInt(seconds).ToString();
+            PowerUpText.text = "Power Jump! \n" + Mathf.RoundToInt(seconds).ToString() + " s";
         }
         else
         {
             jumpForce = jumpf;
             hasPowerUp = false;
+            PowerUpText.enabled = false;
         }
-
+        /*
         if (Input.GetKeyDown(KeyCode.T))
         {
             hasPowerUp = true;
             powerUpCooldown = 30f;
             jumpForce = 60f;
+            PowerUpText.enabled = true;
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
             powerUpCooldown = 0f;
             jumpForce = jumpf;
             hasPowerUp = false;
-        }
+        }*/
     }
 
     public void Movement()
@@ -66,6 +72,7 @@ public class PlayerMovement : MonoBehaviour {
             if (Input.GetButtonDown("Jump"))
             {
                 moveDir.y = jumpForce;
+                jumpSound.Play();
             }
         }
         else
@@ -96,6 +103,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public void powerJump(float jump)
     {
+        powerUpSFX.Play();
         if (hasPowerUp)
         {
             powerUpCooldown = 10f;
@@ -105,6 +113,7 @@ public class PlayerMovement : MonoBehaviour {
             jumpForce += jump;
             powerUpCooldown = 10f;
             hasPowerUp = true;
+            PowerUpText.enabled = true;
         }
     }
 

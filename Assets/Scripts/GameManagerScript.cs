@@ -10,7 +10,7 @@ public class GameManagerScript : MonoBehaviour {
     public float currheight = 0f;
 
     public Text maxHeightText;
-    public Text currentHeightText;
+    //public Text currentHeightText;
     public Text distFromGroundText;
     public Text fpsText;
     public float deltaTime;
@@ -28,11 +28,14 @@ public class GameManagerScript : MonoBehaviour {
 
     private bool isSped = false;
 
+    private bool gameover;
+
 	// Use this for initialization
 	void Awake ()
     {
         player = GameObject.FindGameObjectWithTag("player").transform;
         heightAchievs = 100f;
+        gameover = false;
         groundScript = ground.GetComponent<GroundScript>();
         platforms = new ObjectPoolerScript[poolers.Length];
         for(int i = 0; i < poolers.Length; ++i)
@@ -57,18 +60,18 @@ public class GameManagerScript : MonoBehaviour {
         }
         //UI TEXTS
         maxHeightAchieved = Mathf.Round(maxHeightAchieved * 100f) / 100f;
-        currheight = Mathf.Round(player.position.y * 100f) / 100f;
-        maxHeightText.text = "Max Height Reached: " + maxHeightAchieved.ToString();
-        currentHeightText.text = "Current Height: " + currheight.ToString();
+        //currheight = Mathf.Round(player.position.y * 100f) / 100f;
+        maxHeightText.text = "Score: " + Mathf.Round(maxHeightAchieved*6).ToString();
+        //currentHeightText.text = "Current Height: " + currheight.ToString();
 
-        float distFromGround = Mathf.Round(player.position.y - ground.transform.position.y);
+        float distFromGround = Mathf.Round(player.position.y - ground.transform.position.y -2f);
         distFromGroundText.text = "Distance From Ground: " + distFromGround.ToString();
 
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
         float fps = 1.0f / deltaTime;
         fpsText.text = "FPS: " + Mathf.Ceil(fps).ToString();
 
-        if (maxHeightAchieved > 50f)
+        if (maxHeightAchieved > 90f)
         {
             groundScript.enabled = true;
             //instantiatePlatforms = true;
@@ -96,18 +99,19 @@ public class GameManagerScript : MonoBehaviour {
         if(maxHeightAchieved > heightAchievs && groundScript.speed < 10)
         {
             groundScript.addSpeed(1);
-            heightAchievs += 200f;
+            heightAchievs += 300f;
         }
 
-        if(distFromGround > 100f && !isSped)
+        if(distFromGround > 120f && !isSped)
         {
             isSped = true;
             StartCoroutine("boostGround");
         }
 
-        if(player.position.y < ground.transform.position.y)
+        if(player.position.y < ground.transform.position.y && !gameover)
         {
             this.GetComponent<SceneManagerScript>().GameOver();
+            gameover = true;
         }
         /*
         if (instantiatePlatforms)
@@ -129,9 +133,9 @@ public class GameManagerScript : MonoBehaviour {
 
     IEnumerator boostGround()
     {
-        groundScript.addSpeed(9f);
+        groundScript.addSpeed(6f);
         yield return new WaitForSeconds(3f);
-        groundScript.subtractSpeed(9f);
+        groundScript.subtractSpeed(6f);
         isSped = false;
         yield break;
     }

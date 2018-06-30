@@ -17,6 +17,11 @@ public class SceneManagerScript: MonoBehaviour
     public bool isPaused = false;
     public bool isGameOver = false;
 
+    public AudioSource audioClip;
+    public AudioVolumeScript audioScript;
+
+    public Slider fill;
+
     private void Start()
     {
         Time.timeScale = 1;
@@ -49,6 +54,7 @@ public class SceneManagerScript: MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             isPaused = true;
+            audioScript.pauseMusic();
             //player.GetComponent<CameraScript>().enabled = false;
         }
         else
@@ -57,6 +63,7 @@ public class SceneManagerScript: MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             isPaused = false;
+            audioScript.unpauseMusic();
             //player.GetComponent<CameraScript>().enabled = true;
         }
         pauseCanvas.SetActive(isPaused);
@@ -73,12 +80,14 @@ public class SceneManagerScript: MonoBehaviour
         gameOverCanvas.SetActive(true);
         onScreenUICanvas.SetActive(false);
         isPaused = true;
+        audioScript.stopMusic();
+        audioClip.Play();
         cameraPause();
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         float score = gameObject.GetComponent<GameManagerScript>().maxHeightAchieved;
-        score = Mathf.Round(score * 100f) / 100f;
+        score = Mathf.Round(score * 6);// * 100f)/100f;
         gameOverScore.text = score.ToString();
         highScore.text = score.ToString();
         if (score > PlayerPrefs.GetFloat("HighScore", 0))
