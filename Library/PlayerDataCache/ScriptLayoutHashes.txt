@@ -2,10 +2,9 @@ WindowsStandalone
 PlayerPath?
 C:/Users/dartr/OneDrive/Documents/unity/PlatformJumper/Builds/Builds.exe
 SceneListBegin?
-Assets/Scenes/MainMenu.unity
-Assets/Scenes/GameScene.unity
+Assets/Scenes/NetworkScene.unity
 SceneListEnd?
-fb3272425d413ca116e24d35377661f0 Assembly-CSharp.dll:.SceneManagerScript
+6e141a20be23ba20a838950e149afbd2 Assembly-CSharp.dll:.SceneManagerScript
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 cf455f7a806648c6ed4c7d3e3f8a0e03 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 13bdb7c23815c33a33b37b0ba8dd39be UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -120,8 +119,9 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 677cc1a1775c1fdf6651c7732721d101 Assembly-CSharp.dll:.GameManagerScript
 1a3f4e664fcf4555bff3a9d593f20a67 Assembly-CSharp.dll:.PowerUpScript
-4d5e65da3e1954fb9c4e81fcda16c86c Assembly-CSharp.dll:.UISliderFill
+868f8065234244b5917ea7bf0b567c73 Assembly-CSharp.dll:.UISliderFill
 060d4ba621f93ddf0b3ab38a57e50e6e Assembly-CSharp.dll:.ObjectPoolerScript
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.OptionsMenu
 51370d26583da07dacb7368c2a7c10df Assembly-CSharp.dll:.GroundScript
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -158,3 +158,10 @@ ca17ccc3bdfccb9e92906369d7d57b83 Assembly-CSharp.dll:.AudioVolumeScript
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.setPlatformScript
 84cfb41e2617ff2d82a99bf69242b20f Assembly-CSharp.dll:.CameraScript
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.EnemyScript
+cc864f6d15ea4deccd5cf4df8fa2f01f Assembly-CSharp.dll:.N_CameraScript
+677cc1a1775c1fdf6651c7732721d101 Assembly-CSharp.dll:.N_GameManagerScript
+5657279e8598a6eeff0de16df5049a53 Assembly-CSharp.dll:.N_PlayerMovement
+6e141a20be23ba20a838950e149afbd2 Assembly-CSharp.dll:.N_SceneManagerScript
+51370d26583da07dacb7368c2a7c10df Assembly-CSharp.dll:.N_GroundScript
+7a85ac6da0f41c725300888bfe035ca5 Assembly-CSharp.dll:.N_Player
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.N_PlayerCam

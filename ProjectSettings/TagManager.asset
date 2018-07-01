@@ -9,6 +9,7 @@ TagManager:
   - SetPlatforms
   - PowerUp
   - Enemy
+  - PlayerCamera
   layers:
   - Default
   - TransparentFX
