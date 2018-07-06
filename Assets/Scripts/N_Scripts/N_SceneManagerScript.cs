@@ -65,7 +65,7 @@ public class N_SceneManagerScript: MonoBehaviour
             //player.GetComponent<CameraScript>().enabled = true;
         }
         pauseCanvas.SetActive(isPaused);
-        cameraPause();
+        //cameraPause();
     }
 
     public void Restart()
@@ -80,7 +80,7 @@ public class N_SceneManagerScript: MonoBehaviour
         isPaused = true;
         audioScript.stopMusic();
         audioClip.Play();
-        cameraPause();
+        //cameraPause();
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -99,7 +99,7 @@ public class N_SceneManagerScript: MonoBehaviour
     {
         PlayerPrefs.DeleteKey("HighScore");
     }
-
+    /*
     private void cameraPause()
     {
         CameraScript[] scripts = player.GetComponentsInChildren<CameraScript>();
@@ -107,7 +107,7 @@ public class N_SceneManagerScript: MonoBehaviour
         {
             cam.paused = isPaused;
         }
-    }
+    }*/
 
 }
 

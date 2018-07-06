@@ -19,11 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4123216477008716}
-  - component: {fileID: 114519448745310948}
-  - component: {fileID: 114764554910011890}
   - component: {fileID: 82816721864517174}
   - component: {fileID: 114098416860191168}
   - component: {fileID: 114264428207261144}
+  - component: {fileID: 114120329252143760}
   m_Layer: 0
   m_Name: N_gameManager
   m_TagString: GameController
@@ -146,21 +145,50 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1522094145184838}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ecfaa6d3e908e9e448408e86265fb8b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeightAchieved: 0
-  currheight: 0
-  maxHeightText: {fileID: 0}
-  distFromGroundText: {fileID: 0}
-  fpsText: {fileID: 0}
-  deltaTime: 0
+  groundText: {fileID: 0}
   ground: {fileID: 0}
-  poolers: []
+  poolers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   platformPos: 10
-  heightAchievs: 0
+--- !u!114 &114120329252143760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1522094145184838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 155
+    i1: 134
+    i2: 108
+    i3: 104
+    i4: 52
+    i5: 115
+    i6: 160
+    i7: 52
+    i8: 104
+    i9: 91
+    i10: 34
+    i11: 242
+    i12: 38
+    i13: 212
+    i14: 135
+    i15: 111
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114264428207261144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,50 +209,4 @@ MonoBehaviour:
   isPaused: 0
   isGameOver: 0
   audioClip: {fileID: 0}
-  audioScript: {fileID: 0}
---- !u!114 &114519448745310948
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522094145184838}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28748b55376508446b02512daa8abf43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHeightAchieved: 0
-  currheight: 0
-  maxHeightText: {fileID: 0}
-  distFromGroundText: {fileID: 0}
-  fpsText: {fileID: 0}
-  deltaTime: 0
-  ground: {fileID: 0}
-  poolers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  platformPos: 10
-  heightAchievs: 0
---- !u!114 &114764554910011890
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522094145184838}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 674d6620d0169dd4494aca0f2e196a8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseCanvas: {fileID: 0}
-  gameOverCanvas: {fileID: 0}
-  onScreenUICanvas: {fileID: 0}
-  player: {fileID: 0}
-  gameOverScore: {fileID: 0}
-  highScore: {fileID: 0}
-  isPaused: 0
-  isGameOver: 0
-  audioClip: {fileID: 82816721864517174}
   audioScript: {fileID: 0}

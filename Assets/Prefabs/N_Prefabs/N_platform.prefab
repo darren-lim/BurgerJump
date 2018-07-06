@@ -22,9 +22,11 @@ GameObject:
   - component: {fileID: 33105405868978144}
   - component: {fileID: 23606708497698536}
   - component: {fileID: 65203539984548316}
-  - component: {fileID: 114603036102849578}
   - component: {fileID: 54122291543509386}
   - component: {fileID: 82815410772372928}
+  - component: {fileID: 114705755041079776}
+  - component: {fileID: 114268888682662888}
+  - component: {fileID: 114896073448520920}
   m_Layer: 0
   m_Name: N_platform
   m_TagString: Platform
@@ -210,7 +212,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &114603036102849578
+--- !u!114 &114268888682662888
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -218,12 +220,65 @@ MonoBehaviour:
   m_GameObject: {fileID: 1862713280271798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d6ed4a3da4617842a90efd456846185, type: 3}
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 39
+    i1: 149
+    i2: 128
+    i3: 219
+    i4: 67
+    i5: 171
+    i6: 125
+    i7: 148
+    i8: 43
+    i9: 60
+    i10: 38
+    i11: 251
+    i12: 146
+    i13: 53
+    i14: 196
+    i15: 180
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114705755041079776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1862713280271798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa673848ed90c149bbf1759ac0c4219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fall: 0
   fell: 0
-  startColor: {r: 0.25490198, g: 0.25490198, b: 0.25490198, a: 0.6784314}
+  startColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 0.6784314}
   endColor: {r: 1, g: 0, b: 0, a: 1}
-  duration: 7
+  duration: 30
   rend: {fileID: 23606708497698536}
+--- !u!114 &114896073448520920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1862713280271798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.11111111
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1

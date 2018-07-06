@@ -99,7 +99,7 @@ public class SceneManagerScript: MonoBehaviour
     {
         PlayerPrefs.DeleteKey("HighScore");
     }
-
+    
     private void cameraPause()
     {
         CameraScript[] scripts = player.GetComponentsInChildren<CameraScript>();

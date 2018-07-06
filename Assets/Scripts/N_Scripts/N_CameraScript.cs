@@ -12,9 +12,10 @@ public class N_CameraScript : NetworkBehaviour {
         MouseY = 2
     }
 
-    public RotationAxis axes = RotationAxis.MouseX;
-    public float minVert = -50f;
-    public float maxVert = 60f;
+    public RotationAxis axes1 = RotationAxis.MouseX;
+    public RotationAxis axes2 = RotationAxis.MouseY;
+    public float minVert = -90f;
+    public float maxVert = 90f;
     //sensitivity
     public float sensHorizontal;
     public float sensVertical;
@@ -64,9 +65,9 @@ public class N_CameraScript : NetworkBehaviour {
                     sensHorizontal = PlayerPrefs.GetFloat("localSens",6);
                     sensVertical = PlayerPrefs.GetFloat("localSens",6);
                 }
-                if (axes == RotationAxis.MouseX)
+                if (axes1 == RotationAxis.MouseX)
                     transform.Rotate(0, Input.GetAxis("Mouse X") * sensHorizontal, 0);
-                else if (axes == RotationAxis.MouseY && cam != null)
+                if (axes2 == RotationAxis.MouseY && cam != null)
                 {
                     rotationX -= Input.GetAxis("Mouse Y") * sensVertical;
                     rotationX = Mathf.Clamp(rotationX, minVert, maxVert); //clamps vertical angle within max and min limits

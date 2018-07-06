@@ -12,8 +12,8 @@ public class CameraScript : MonoBehaviour {
     }
 
     public RotationAxis axes = RotationAxis.MouseX;
-    public float minVert = -50f;
-    public float maxVert = 60f;
+    public float minVert = -90f;
+    public float maxVert = 90f;
     //sensitivity
     public float sensHorizontal;
     public float sensVertical;

@@ -10,6 +10,8 @@ TagManager:
   - PowerUp
   - Enemy
   - PlayerCamera
+  - ground
+  - gamecontroller
   layers:
   - Default
   - TransparentFX

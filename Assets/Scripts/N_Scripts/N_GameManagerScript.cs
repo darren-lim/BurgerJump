@@ -2,9 +2,76 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class N_GameManagerScript : MonoBehaviour {
+public class N_GameManagerScript : NetworkBehaviour {
 
+    public Text groundText;
+    [SyncVar]
+    private float groundTime = 10;
+
+    private N_GroundScript groundScript;
+    public GameObject[] poolers;
+    private N_ObjectPoolerScript[] platforms;
+
+    [SyncVar]
+    public float platformPos = 10f;
+
+    private void Awake()
+    {
+        groundScript = GameObject.FindGameObjectWithTag("ground").GetComponent<N_GroundScript>();
+
+        platforms = new N_ObjectPoolerScript[poolers.Length];
+        for (int i = 0; i < poolers.Length; ++i)
+        {
+            platforms[i] = poolers[i].GetComponent<N_ObjectPoolerScript>();
+        }
+        groundText.enabled = false;
+    }
+
+    private void Update()
+    {
+        //if (groundTime > 0f)
+            //StartCoroutine("TimeGround");
+
+        if (isServer)
+        {
+            for (int i = 0; i < platforms.Length; ++i)
+            {
+                GameObject platform = platforms[i].GetPooledObject();
+                if (platform != null)
+                {
+                    platform.SetActive(true);
+                }
+            }
+        }
+    }
+
+
+    public void addPlatformPos(float amount)
+    {
+        platformPos += amount;
+    }
+
+    IEnumerator TimeGround()
+    {
+        groundText.enabled = true;
+        groundTime -= Time.deltaTime;
+        float seconds = groundTime % 60;
+        groundText.text = "Ground starting time: " + Mathf.RoundToInt(seconds).ToString();
+        yield return new WaitForSeconds(10f);
+        RpcStartGround();
+        groundText.enabled = false;
+        yield break;
+    }
+    
+    [ClientRpc]
+    void RpcStartGround()
+    {
+        groundScript.enabled = true;
+    }
+
+    /*
     private Transform player;
     public float maxHeightAchieved = 0f;
     public float currheight = 0f;
@@ -48,11 +115,6 @@ public class N_GameManagerScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (startClimb == false && player.position.y > 20)
-        {
-            startClimb = true;
-        }*/
 
         if (player.position.y > maxHeightAchieved)
         {
@@ -74,7 +136,6 @@ public class N_GameManagerScript : MonoBehaviour {
         if (maxHeightAchieved > 90f)
         {
             groundScript.enabled = true;
-            //instantiatePlatforms = true;
             
             for(int i = 0; i < platforms.Length; ++i)
             {
@@ -86,16 +147,6 @@ public class N_GameManagerScript : MonoBehaviour {
             }
             
         }
-        /*
-        if((player.position.y - ground.transform.position.y) > 120f)
-        {
-            poolers[0].GetComponent<ObjectPoolerScript>().willGrow = true;
-        }
-        else
-        {
-            poolers[0].GetComponent<ObjectPoolerScript>().willGrow = false;
-        }
-        */
         if(maxHeightAchieved > heightAchievs && groundScript.speed < 10)
         {
             groundScript.addSpeed(1);
@@ -113,17 +164,6 @@ public class N_GameManagerScript : MonoBehaviour {
             this.GetComponent<SceneManagerScript>().GameOver();
             gameover = true;
         }
-        /*
-        if (instantiatePlatforms)
-        {
-            //first index is platform pooler
-            GameObject platform = poolers[0].GetComponent<ObjectPoolerScript>().GetPooledObject();
-            if (platform != null)
-            {
-                platform.SetActive(true);
-            }
-
-        }*/
     }
 
     public void addPlatformPos(float amount)
@@ -138,5 +178,5 @@ public class N_GameManagerScript : MonoBehaviour {
         groundScript.subtractSpeed(6f);
         isSped = false;
         yield break;
-    }
+    }*/
 }

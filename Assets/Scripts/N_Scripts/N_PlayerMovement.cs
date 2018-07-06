@@ -16,8 +16,13 @@ public class N_PlayerMovement : NetworkBehaviour {
     private bool hasPowerUp = false;
     public float powerUpCooldown = 0f;
 
+    private float yPos;
+    private bool grounded = true;
+
     [SerializeField]
     Camera cam;
+
+    public GameObject ground;
 
     //public Text PowerUpText;
 
@@ -28,6 +33,7 @@ public class N_PlayerMovement : NetworkBehaviour {
     {
         controller = GetComponent<CharacterController>();
         jumpf = jumpForce;
+        yPos = transform.position.y;
         //jumpSound = GetComponent<AudioSource>();
         //PowerUpText.enabled = false;
     }
@@ -38,7 +44,10 @@ public class N_PlayerMovement : NetworkBehaviour {
         {
             Movement();
             checkPlatCollision();
-
+            if(grounded && transform.position.y < yPos)
+            {
+                grounded = false;
+            }
             if (hasPowerUp && powerUpCooldown > 0f)
             {
                 powerUpCooldown -= Time.deltaTime;
@@ -51,21 +60,27 @@ public class N_PlayerMovement : NetworkBehaviour {
                 hasPowerUp = false;
                 //PowerUpText.enabled = false;
             }
+            if (transform.position.y < ground.transform.position.y)
+            {
+                RpcRespawn();
+            }
         }
     }
 
     public void Movement()
     {
-        if (controller.isGrounded)
+        controller.Move(moveDir * Time.deltaTime);
+        if (grounded)
         {
             moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             moveDir = Vector3.ClampMagnitude(moveDir, 1);
-            moveDir = cam.transform.TransformDirection(moveDir);
-            //moveDir = transform.TransformDirection(moveDir);
+            //moveDir = cam.transform.TransformDirection(moveDir);
+            moveDir = transform.TransformDirection(moveDir);
             moveDir *= speed;
             if (Input.GetButtonDown("Jump"))
             {
                 moveDir.y = jumpForce;
+                grounded = false;
                 //jumpSound.Play();
             }
         }
@@ -78,8 +93,7 @@ public class N_PlayerMovement : NetworkBehaviour {
         }
 
         moveDir.y -= gravity * Time.deltaTime;
-
-        controller.Move(moveDir * Time.deltaTime);
+        //controller.Move(moveDir * Time.deltaTime);
     }
 
     public void checkPlatCollision()
@@ -111,11 +125,36 @@ public class N_PlayerMovement : NetworkBehaviour {
         }
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit collision)
+    [ClientRpc]
+    void RpcRespawn()
     {
-        if (collision.gameObject.tag == "Platform")
+        if (isLocalPlayer)
         {
-            collision.transform.SendMessage("startFalling", SendMessageOptions.DontRequireReceiver);
+            transform.position = new Vector3(0, ground.transform.position.y + 100, 0);
         }
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit collision)
+    {
+        if (collision.gameObject.tag == "Platform" && (collision.gameObject.transform.position.y + 1.2f) < this.transform.position.y)
+        {
+            collision.transform.SendMessage("startFalling", SendMessageOptions.DontRequireReceiver);
+            grounded = true;
+            yPos = transform.position.y;
+        }
+        else if((collision.gameObject.tag == "SetPlatforms" && (collision.gameObject.transform.position.y + 1.2f) < this.transform.position.y) || collision.gameObject.tag == "ground")
+        {
+            grounded = true;
+            yPos = transform.position.y;
+        }
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "ground")
+        {
+            RpcRespawn();
+        }
+    }
+    
 }

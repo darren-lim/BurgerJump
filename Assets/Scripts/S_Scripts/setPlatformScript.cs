@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class setPlatformScript : MonoBehaviour {
 
-    private GameManagerScript script;
+    [SerializeField]
+    private GameManagerScript GameScript;
 
 	// Use this for initialization
 	void Awake ()
     {
-        script = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManagerScript>();
+        GameScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManagerScript>();
     }
 
     private void OnEnable()
     {
         float newX = Random.Range(-15f, 15f);
-        float newY = script.platformPos;
-        float newZ = Random.Range(15f, 15f);
+        float newY = GameScript.platformPos;
+        float newZ = Random.Range(-15f, 15f);
 
         transform.position = new Vector3(newX, newY, newZ);
-        script.addPlatformPos(10f);
+        GameScript.addPlatformPos(10f);
     }
 }

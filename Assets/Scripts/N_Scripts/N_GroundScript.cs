@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+using UnityEditor;
 
-public class N_GroundScript : MonoBehaviour {
+public class N_GroundScript : NetworkBehaviour {
 
+    [SyncVar]
     public float speed = 5f;
     public GameObject gamemanager;
 
@@ -33,10 +36,11 @@ public class N_GroundScript : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collider)
     {
+        
         if(collider.gameObject.tag == "player")
         {
             //animation maybe?
-            gamemanager.GetComponent<SceneManagerScript>().GameOver();
+            //gamemanager.GetComponent<SceneManagerScript>().GameOver();
         }
         if(collider.gameObject.tag == "Platform" || collider.gameObject.tag == "SetPlatforms" || collider.gameObject.tag == "PowerUp" || collider.gameObject.tag == "Enemy")
         {

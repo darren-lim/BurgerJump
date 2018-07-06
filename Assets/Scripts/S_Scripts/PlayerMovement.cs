@@ -20,20 +20,27 @@ public class PlayerMovement : MonoBehaviour {
     private AudioSource jumpSound;
     public AudioSource powerUpSFX;
 
+    private float yPos;
+    private bool grounded = true;
+
     void Start ()
     {
         controller = GetComponent<CharacterController>();
         jumpf = jumpForce;
         jumpSound = GetComponent<AudioSource>();
         PowerUpText.enabled = false;
+        yPos = transform.position.y;
     }
 	
 	void Update ()
     {
         Movement();
         checkPlatCollision();
-
-        if(hasPowerUp && powerUpCooldown > 0f)
+        if (grounded && transform.position.y < yPos)
+        {
+            grounded = false;
+        }
+        if (hasPowerUp && powerUpCooldown > 0f)
         {
             powerUpCooldown -= Time.deltaTime;
             float seconds = powerUpCooldown % 60;
@@ -63,7 +70,8 @@ public class PlayerMovement : MonoBehaviour {
 
     public void Movement()
     {
-        if (controller.isGrounded)
+        controller.Move(moveDir * Time.deltaTime);
+        if (grounded)
         {
             moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             moveDir = Vector3.ClampMagnitude(moveDir, 1);
@@ -72,6 +80,7 @@ public class PlayerMovement : MonoBehaviour {
             if (Input.GetButtonDown("Jump"))
             {
                 moveDir.y = jumpForce;
+                grounded = false;
                 jumpSound.Play();
             }
         }
@@ -84,8 +93,6 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         moveDir.y -= gravity * Time.deltaTime;
-
-        controller.Move(moveDir * Time.deltaTime);
     }
 
     public void checkPlatCollision()
@@ -119,9 +126,17 @@ public class PlayerMovement : MonoBehaviour {
 
     private void OnControllerColliderHit(ControllerColliderHit collision)
     {
-        if (collision.gameObject.tag == "Platform")
+        if (collision.gameObject.tag == "Platform" && (collision.gameObject.transform.position.y + 1.2f) < this.transform.position.y)
         {
             collision.transform.SendMessage("startFalling", SendMessageOptions.DontRequireReceiver);
+            grounded = true;
+            yPos = transform.position.y;
         }
+        else if ((collision.gameObject.tag == "SetPlatforms" && (collision.gameObject.transform.position.y + 1.2f) < this.transform.position.y) || collision.gameObject.tag == "ground")
+        {
+            grounded = true;
+            yPos = transform.position.y;
+        }
+
     }
 }
