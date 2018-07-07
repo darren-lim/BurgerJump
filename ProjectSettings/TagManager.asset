@@ -12,6 +12,7 @@ TagManager:
   - PlayerCamera
   - ground
   - gamecontroller
+  - Spectator
   layers:
   - Default
   - TransparentFX

@@ -8,13 +8,12 @@ public class N_GameManagerScript : NetworkBehaviour {
 
     public Text groundText;
     [SyncVar]
-    private float groundTime = 10;
+    private float groundTime = 20f;
 
     private N_GroundScript groundScript;
     public GameObject[] poolers;
     private N_ObjectPoolerScript[] platforms;
 
-    [SyncVar]
     public float platformPos = 10f;
 
     private void Awake()
@@ -27,6 +26,7 @@ public class N_GameManagerScript : NetworkBehaviour {
             platforms[i] = poolers[i].GetComponent<N_ObjectPoolerScript>();
         }
         groundText.enabled = false;
+        platformPos = 10f;
     }
 
     private void Update()
@@ -53,18 +53,29 @@ public class N_GameManagerScript : NetworkBehaviour {
         platformPos += amount;
     }
 
+    public float getPlatformPos()
+    {
+        return platformPos;
+    }
+
     IEnumerator TimeGround()
     {
         groundText.enabled = true;
         groundTime -= Time.deltaTime;
         float seconds = groundTime % 60;
-        groundText.text = "Ground starting time: " + Mathf.RoundToInt(seconds).ToString();
+        groundText.text = "Ground Rising In /n" + Mathf.RoundToInt(seconds).ToString();
         yield return new WaitForSeconds(10f);
-        RpcStartGround();
+        CmdStartGround();
         groundText.enabled = false;
         yield break;
     }
     
+    [Command]
+    void CmdStartGround()
+    {
+        RpcStartGround();
+    }
+
     [ClientRpc]
     void RpcStartGround()
     {

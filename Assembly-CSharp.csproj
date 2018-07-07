@@ -72,7 +72,6 @@
     <Compile Include="Assets\Scripts\N_Scripts\N_PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_SceneManagerScript.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_setPlatformScript.cs" />
-    <Compile Include="Assets\Scripts\N_Scripts\N_SpawnOnStart.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_SpectateCam.cs" />
     <Compile Include="Assets\Scripts\OptionsMenu.cs" />
     <Compile Include="Assets\Scripts\PowerUpScript.cs" />

@@ -24,6 +24,8 @@ public class N_PlayerMovement : NetworkBehaviour {
 
     public GameObject ground;
 
+    private N_Player playerScript;
+
     //public Text PowerUpText;
 
     //private AudioSource jumpSound;
@@ -31,6 +33,7 @@ public class N_PlayerMovement : NetworkBehaviour {
 
     void Start ()
     {
+        playerScript = GetComponent<N_Player>();
         controller = GetComponent<CharacterController>();
         jumpf = jumpForce;
         yPos = transform.position.y;
@@ -51,18 +54,24 @@ public class N_PlayerMovement : NetworkBehaviour {
             if (hasPowerUp && powerUpCooldown > 0f)
             {
                 powerUpCooldown -= Time.deltaTime;
-                float seconds = powerUpCooldown % 60;
-                //PowerUpText.text = "Power Jump! \n" + Mathf.RoundToInt(seconds).ToString() + " s";
             }
             else
             {
                 jumpForce = jumpf;
                 hasPowerUp = false;
-                //PowerUpText.enabled = false;
             }
             if (transform.position.y < ground.transform.position.y)
             {
-                RpcRespawn();
+                if (isLocalPlayer)
+                {
+                    //transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+                    playerScript.setSpectatingTrue();
+                    if (isServer)
+                        RpcIsSpectator();
+                    else
+                        CmdIsSpectator();
+                    GetComponent<N_SpectateCam>().enabled = true;
+                }
             }
         }
     }
@@ -115,24 +124,17 @@ public class N_PlayerMovement : NetworkBehaviour {
         if (hasPowerUp)
         {
             powerUpCooldown = 10f;
+            playerScript.setPowerUpTime(powerUpCooldown);
         }
         else
         {
             jumpForce += jump;
             powerUpCooldown = 10f;
+            playerScript.setPowerUpTime(powerUpCooldown);
             hasPowerUp = true;
-            //PowerUpText.enabled = true;
         }
     }
 
-    [ClientRpc]
-    void RpcRespawn()
-    {
-        if (isLocalPlayer)
-        {
-            transform.position = new Vector3(0, ground.transform.position.y + 100, 0);
-        }
-    }
 
     private void OnControllerColliderHit(ControllerColliderHit collision)
     {
@@ -153,8 +155,29 @@ public class N_PlayerMovement : NetworkBehaviour {
     {
         if (collider.gameObject.tag == "ground")
         {
-            RpcRespawn();
+            if (isLocalPlayer)
+            {
+                //transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+                playerScript.setSpectatingTrue();
+                if (isServer)
+                    RpcIsSpectator();
+                else
+                    CmdIsSpectator();
+                GetComponent<N_SpectateCam>().enabled = true;
+            }
         }
+    }
+
+    [Command]
+    public void CmdIsSpectator()
+    {
+        RpcIsSpectator();
+    }
+
+    [ClientRpc]
+    void RpcIsSpectator()
+    {
+        this.gameObject.tag = "Spectator";
     }
     
 }

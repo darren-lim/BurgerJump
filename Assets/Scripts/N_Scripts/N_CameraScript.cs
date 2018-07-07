@@ -37,18 +37,6 @@ public class N_CameraScript : NetworkBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         sensHorizontal = PlayerPrefs.GetFloat("localSens", 6);
         sensVertical = PlayerPrefs.GetFloat("localSens", 6);
-        /*
-        if (isLocalPlayer)
-        {
-            sensHorizontal = PlayerPrefs.GetFloat("localSens", 6);
-            sensVertical = PlayerPrefs.GetFloat("localSens", 6);
-        }
-        else if (this.transform.parent.GetComponent<N_Player>().isLocalPlayer)
-        {
-            ischild = true;
-            sensHorizontal = PlayerPrefs.GetFloat("localSens", 6);
-            sensVertical = PlayerPrefs.GetFloat("localSens", 6);
-        }*/
     }
 
     // Update is called once per frame
@@ -56,47 +44,21 @@ public class N_CameraScript : NetworkBehaviour {
     {
         if (isLocalPlayer || ischild)
         {
-            if (paused)
-                return;
-            else
+            if (sensHorizontal != PlayerPrefs.GetFloat("localSens"))
             {
-                if (sensHorizontal != PlayerPrefs.GetFloat("localSens"))
-                {
-                    sensHorizontal = PlayerPrefs.GetFloat("localSens",6);
-                    sensVertical = PlayerPrefs.GetFloat("localSens",6);
-                }
-                if (axes1 == RotationAxis.MouseX)
-                    transform.Rotate(0, Input.GetAxis("Mouse X") * sensHorizontal, 0);
-                if (axes2 == RotationAxis.MouseY && cam != null)
-                {
-                    rotationX -= Input.GetAxis("Mouse Y") * sensVertical;
-                    rotationX = Mathf.Clamp(rotationX, minVert, maxVert); //clamps vertical angle within max and min limits
-
-                    //float rotationY = transform.localEulerAngles.y;
-                    cam.transform.localEulerAngles = new Vector3(rotationX, 0, 0);
-                }
+                sensHorizontal = PlayerPrefs.GetFloat("localSens",6);
+                sensVertical = PlayerPrefs.GetFloat("localSens",6);
             }
-        }
-        /*
-        if (paused)
-            return;
-        else
-        {
-            if (sensHorizontal != PlayerPrefs.GetFloat("sensX"))
-            {
-                sensHorizontal = PlayerPrefs.GetFloat("sensX");
-                sensVertical = PlayerPrefs.GetFloat("sensY");
-            }
-            if (axes == RotationAxis.MouseX)
+            if (axes1 == RotationAxis.MouseX)
                 transform.Rotate(0, Input.GetAxis("Mouse X") * sensHorizontal, 0);
-            else if (axes == RotationAxis.MouseY)
+            if (axes2 == RotationAxis.MouseY && cam != null)
             {
                 rotationX -= Input.GetAxis("Mouse Y") * sensVertical;
-                rotationX = Mathf.Clamp(rotationX, minVert, maxVert); //clamps vertical angle within max and min limits (45 degrees)
+                rotationX = Mathf.Clamp(rotationX, minVert, maxVert); //clamps vertical angle within max and min limits
 
-                float rotationY = transform.localEulerAngles.y;
-                transform.localEulerAngles = new Vector3(rotationX, rotationY, 0);
+                //float rotationY = transform.localEulerAngles.y;
+                cam.transform.localEulerAngles = new Vector3(rotationX, 0, 0);
             }
-        }*/
+        }
 	}
 }

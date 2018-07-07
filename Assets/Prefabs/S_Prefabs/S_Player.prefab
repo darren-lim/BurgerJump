@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e64b7e9e551c5ff40bd553632f96aa57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 1
+  axes: 2
   minVert: -90
   maxVert: 90
   sensHorizontal: 6

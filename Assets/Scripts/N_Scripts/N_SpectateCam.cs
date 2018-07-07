@@ -15,50 +15,41 @@ public class N_SpectateCam : NetworkBehaviour {
     Behaviour[] DisableForSpectate;
     [SerializeField]
     List<Transform> PlayersInGame;
+    [SerializeField]
+    Camera cam;
+    [SerializeField]
+    Camera sceneCamera;
 
     //public Transform camTransform;
-    public float sensHorizontal;
-    public float sensVertical;
+    public float cameraSens;
 
-    public bool isThirdPerson;
-
-    [Header("OnPersonSpectate")]
     private float distance = 10f;
     private float currentX = 0f;
     private float currentY = 0f;
 
     private int playerIndex;
 
-    [Header("OnFreeSpectate")]
-    float camSpeed;
-
     private void Start()
     {
         //camTransform = transform;
         playerIndex = 0;
-        isThirdPerson = true;
+        cameraSens = PlayerPrefs.GetFloat("localSens", 6);
     }
 
     private void OnEnable()
     {
-        sensHorizontal = PlayerPrefs.GetFloat("localSens", 6);
-        sensVertical = PlayerPrefs.GetFloat("localSens", 6);
         if (isLocalPlayer)
         {
-            for (int i = 0; i < DisableForSpectate.Length; i++)
+            if (isServer)
             {
-                DisableForSpectate[i].enabled = false;
-            }
-            getPlayers();
-            if(PlayersInGame.Count > 0)
-            {
-                transform.position = PlayersInGame[0].position;
+                RpcDisableComponents();
             }
             else
             {
-                isThirdPerson = false;
-                //move to free spectate
+                CmdDisableComponents();
             }
+            getPlayers();
+            if (PlayersInGame.Count < 1) return; //go back to lobby
         }
     }
 
@@ -67,39 +58,56 @@ public class N_SpectateCam : NetworkBehaviour {
     {
         if (!isLocalPlayer)
             return;
-        if(PlayersInGame[playerIndex] == null && isThirdPerson)
+        if(PlayersInGame.Count < 1)
+        {
+            //go back to lobby
+            return;
+        }
+        if (PlayersInGame[playerIndex].tag == "Spectator" || PlayersInGame[playerIndex]==null)
         {
             getPlayers();
             RotateThroughPlayers();
         }
-        if (isThirdPerson)
-        {
-            currentX += Input.GetAxis("Mouse X") * sensHorizontal;
-            currentY += Input.GetAxis("Mouse Y") * sensVertical;
 
-            currentY = Mathf.Clamp(currentY, Y_Angle_Min, Y_Angle_Max);
-        }
-        if (Input.GetKeyDown(KeyCode.R) || (Input.GetKeyDown(KeyCode.Space) && !isThirdPerson))
+        //rotate through players
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            isThirdPerson = true;
             RotateThroughPlayers();
         }
-        if (Input.GetKeyDown(KeyCode.Space) && isThirdPerson)
-        {
-            isThirdPerson = false;
-            //Free spectate
-        }
-	}
+
+    }
 
     private void LateUpdate()
     {
-        if (isThirdPerson)
+        if (!isLocalPlayer)
+            return;
+        if (PlayersInGame.Count < 1)
+            return;
+        currentX += Input.GetAxis("Mouse X") * cameraSens;
+        currentY += Input.GetAxis("Mouse Y") * cameraSens;
+
+        currentY = Mathf.Clamp(currentY, Y_Angle_Min, Y_Angle_Max);
+        ThirdPersonPos();
+        cam.transform.localRotation = Quaternion.identity;
+    }
+    
+    [Command]
+    public void CmdDisableComponents()
+    {
+        RpcDisableComponents();
+    }
+
+    [ClientRpc]
+    void RpcDisableComponents()
+    {
+        foreach (Behaviour behaviour in DisableForSpectate)
         {
-            Vector3 dir = new Vector3(0, 0, -distance);
-            Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
-            transform.position = PlayersInGame[playerIndex].position + rotation * dir;
-            transform.LookAt(PlayersInGame[playerIndex].position);
+            behaviour.enabled = false;
         }
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+        GetComponent<CharacterController>().enabled = false;
+        GetComponent<AudioSource>().enabled = false;
     }
 
     //OnPerson
@@ -110,18 +118,34 @@ public class N_SpectateCam : NetworkBehaviour {
         foreach (GameObject player in playerList)
         {
             if(player.GetComponent<MeshRenderer>().enabled)
+            {
                 PlayersInGame.Add(player.transform);
+            }
         }
     }
     //OnPerson
     void RotateThroughPlayers()
     {
-        if (playerIndex < PlayersInGame.Count)
+        if (playerIndex+1 < PlayersInGame.Count)
             playerIndex++;
         else
             playerIndex = 0;
-
     }
 
-    //FreeSpectate
+    void ThirdPersonPos()
+    {
+        Vector3 dir = new Vector3(0, 0, -distance);
+        Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
+        transform.position = PlayersInGame[playerIndex].position + rotation * dir;
+        transform.LookAt(PlayersInGame[playerIndex].position);
+    }
+
+    private void OnDisable()
+    {
+        if (sceneCamera != null)
+        {
+            sceneCamera.gameObject.SetActive(true);
+        }
+    }
+
 }

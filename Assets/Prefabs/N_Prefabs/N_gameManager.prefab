@@ -151,7 +151,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundText: {fileID: 0}
-  ground: {fileID: 0}
   poolers:
   - {fileID: 0}
   - {fileID: 0}

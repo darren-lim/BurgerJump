@@ -19,9 +19,10 @@ public class N_setPlatformScript : NetworkBehaviour {
     }
 
     private void OnEnable()
-    { 
+    {
+        //if (!isServer) return;
         float newX = Random.Range(-15f, 15f);
-        float newY = GameScript.platformPos;
+        float newY = GameScript.getPlatformPos();
         float newZ = Random.Range(-15f, 15f);
 
         transform.position = new Vector3(newX, newY, newZ);
