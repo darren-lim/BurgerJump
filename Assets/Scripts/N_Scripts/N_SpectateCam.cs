@@ -56,6 +56,7 @@ public class N_SpectateCam : NetworkBehaviour {
 
     void Update ()
     {
+        if (N_PauseMenu.isOn) return;
         if (!isLocalPlayer)
             return;
         if(PlayersInGame.Count < 1)
@@ -63,6 +64,10 @@ public class N_SpectateCam : NetworkBehaviour {
             //go back to lobby
             return;
         }
+        currentX += Input.GetAxis("Mouse X") * cameraSens;
+        currentY += Input.GetAxis("Mouse Y") * cameraSens;
+
+        currentY = Mathf.Clamp(currentY, Y_Angle_Min, Y_Angle_Max);
         if (PlayersInGame[playerIndex].tag == "Spectator" || PlayersInGame[playerIndex]==null)
         {
             getPlayers();
@@ -83,10 +88,6 @@ public class N_SpectateCam : NetworkBehaviour {
             return;
         if (PlayersInGame.Count < 1)
             return;
-        currentX += Input.GetAxis("Mouse X") * cameraSens;
-        currentY += Input.GetAxis("Mouse Y") * cameraSens;
-
-        currentY = Mathf.Clamp(currentY, Y_Angle_Min, Y_Angle_Max);
         ThirdPersonPos();
         cam.transform.localRotation = Quaternion.identity;
     }

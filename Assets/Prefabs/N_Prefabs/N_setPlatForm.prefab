@@ -25,7 +25,6 @@ GameObject:
   - component: {fileID: 114295582457996726}
   - component: {fileID: 114427509448073304}
   - component: {fileID: 114594020277582144}
-  - component: {fileID: 54026531279851842}
   m_Layer: 0
   m_Name: N_setPlatForm
   m_TagString: SetPlatforms
@@ -88,21 +87,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1862713280271798}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54026531279851842
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1862713280271798}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!65 &65203539984548316
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -126,8 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d8f64d49587ec24e953a722f5a54150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameScript: {fileID: 114098416860191168, guid: 9b866c683473a034685b22f226d4876f,
-    type: 2}
+  script: {fileID: 114098416860191168, guid: 9b866c683473a034685b22f226d4876f, type: 2}
 --- !u!114 &114427509448073304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 3
+  m_TransformSyncMode: 1
   m_SendInterval: 0.11111111
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0

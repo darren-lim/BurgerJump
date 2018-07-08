@@ -13,11 +13,12 @@ public class N_GameManagerScript : NetworkBehaviour {
     private N_GroundScript groundScript;
     public GameObject[] poolers;
     private N_ObjectPoolerScript[] platforms;
-
-    public float platformPos = 10f;
+    [SerializeField]
+    private float platformPos;
 
     private void Awake()
     {
+        platformPos = 0f;
         groundScript = GameObject.FindGameObjectWithTag("ground").GetComponent<N_GroundScript>();
 
         platforms = new N_ObjectPoolerScript[poolers.Length];
@@ -26,14 +27,13 @@ public class N_GameManagerScript : NetworkBehaviour {
             platforms[i] = poolers[i].GetComponent<N_ObjectPoolerScript>();
         }
         groundText.enabled = false;
-        platformPos = 10f;
     }
+
 
     private void Update()
     {
         //if (groundTime > 0f)
-            //StartCoroutine("TimeGround");
-
+        //StartCoroutine("TimeGround");
         if (isServer)
         {
             for (int i = 0; i < platforms.Length; ++i)
@@ -47,14 +47,10 @@ public class N_GameManagerScript : NetworkBehaviour {
         }
     }
 
-
-    public void addPlatformPos(float amount)
-    {
-        platformPos += amount;
-    }
-
     public float getPlatformPos()
     {
+        platformPos += 10f;
+        Debug.Log(platformPos);
         return platformPos;
     }
 

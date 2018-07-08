@@ -42,6 +42,7 @@ public class N_CameraScript : NetworkBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        if (N_PauseMenu.isOn) return;
         if (isLocalPlayer || ischild)
         {
             if (sensHorizontal != PlayerPrefs.GetFloat("localSens"))

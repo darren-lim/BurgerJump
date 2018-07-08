@@ -79,11 +79,15 @@ public class N_PlayerMovement : NetworkBehaviour {
     public void Movement()
     {
         controller.Move(moveDir * Time.deltaTime);
+        if (N_PauseMenu.isOn)
+        {
+            moveDir.y -= gravity * Time.deltaTime;
+            return;
+        }
         if (grounded)
         {
             moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             moveDir = Vector3.ClampMagnitude(moveDir, 1);
-            //moveDir = cam.transform.TransformDirection(moveDir);
             moveDir = transform.TransformDirection(moveDir);
             moveDir *= speed;
             if (Input.GetButtonDown("Jump"))

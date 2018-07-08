@@ -9,7 +9,7 @@ public class N_ObjectPoolerScript : NetworkBehaviour {
     public GameObject pooledObject;
     public int pooledAmount = 20;
 
-    List<GameObject> pooledObjects;
+    List<GameObject> pooledObjects = new List<GameObject>();
 
     private void Awake()
     {
@@ -20,8 +20,7 @@ public class N_ObjectPoolerScript : NetworkBehaviour {
     {
         if (isServer)
         {
-            pooledObjects = new List<GameObject>();
-            for (int i = 0; i < pooledAmount; ++i)
+            for (int i = 0; i < pooledAmount; i++)
             {
                 GameObject obj = Instantiate(pooledObject);
                 NetworkServer.Spawn(obj);
@@ -56,7 +55,7 @@ public class N_ObjectPoolerScript : NetworkBehaviour {
             pooledObjects.Add(obj);
         }
     }*/
-	
+
     public GameObject GetPooledObject()
     {
         for(int i = 0; i < pooledObjects.Count; ++i)
@@ -66,13 +65,6 @@ public class N_ObjectPoolerScript : NetworkBehaviour {
                 return pooledObjects[i];
             }
         }
-        /*
-        if (willGrow)
-        {
-            GameObject obj = (GameObject)Instantiate(pooledObject);
-            pooledObjects.Add(obj);
-            return obj;
-        }*/
         return null;
     }
 }

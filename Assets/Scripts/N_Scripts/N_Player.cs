@@ -12,6 +12,7 @@ public class N_Player : NetworkBehaviour
     Behaviour[] componentsToDisable;
     [SerializeField]
     Camera sceneCamera;
+    [SerializeField]
     private Transform ground;
 
     [Header("UI")]
@@ -26,10 +27,13 @@ public class N_Player : NetworkBehaviour
     private float powerUpTime;
     private bool isSpectating = false;
 
+    [SerializeField]
+    GameObject pauseMenu;
+
 
     private void Start()
     {
-        ground = GameObject.FindGameObjectWithTag("ground").transform;
+        //ground = GameObject.FindGameObjectWithTag("ground").transform;
         if (!isLocalPlayer)
         {
             for(int i = 0; i<componentsToDisable.Length; i++)
@@ -48,6 +52,7 @@ public class N_Player : NetworkBehaviour
         spectatingText.enabled = false;
         PowerUpText.enabled = false;
         finalScore.enabled = false;
+        N_PauseMenu.isOn = false;
     }
 
     private void Update()
@@ -77,6 +82,11 @@ public class N_Player : NetworkBehaviour
             deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
             float fps = 1.0f / deltaTime;
             fpsText.text = "FPS: " + Mathf.Ceil(fps).ToString();
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                TogglePauseMenu();
+            }
         }
     }
 
@@ -92,6 +102,23 @@ public class N_Player : NetworkBehaviour
     public void setPowerUpTime(float time)
     {
         powerUpTime = time;
+    }
+
+    void TogglePauseMenu()
+    {
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
+        N_PauseMenu.isOn = pauseMenu.activeSelf;
+
+        if (Cursor.visible)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     /*
