@@ -27,7 +27,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4070240641096472
 Transform:
   m_ObjectHideFlags: 1
@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 1940904719897430, guid: b63770d307e6f6d4bade51036a201d6d,
     type: 2}
-  pooledAmount: 10
+  pooledAmount: 25
 --- !u!114 &114920806870273688
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -26,6 +26,9 @@ public class N_PlayerMovement : NetworkBehaviour {
 
     private N_Player playerScript;
 
+    [SerializeField]
+    private N_GameManagerScript gameManager;
+
     //public Text PowerUpText;
 
     //private AudioSource jumpSound;
@@ -45,7 +48,8 @@ public class N_PlayerMovement : NetworkBehaviour {
     {
         if (isLocalPlayer)
         {
-            Movement();
+            if(controller.enabled)
+                Movement();
             checkPlatCollision();
             if(grounded && transform.position.y < yPos)
             {
@@ -64,13 +68,19 @@ public class N_PlayerMovement : NetworkBehaviour {
             {
                 if (isLocalPlayer)
                 {
-                    //transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-                    playerScript.setSpectatingTrue();
-                    if (isServer)
-                        RpcIsSpectator();
+                    if (!gameManager.gameStart)
+                    {
+                        transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+                    }
                     else
-                        CmdIsSpectator();
-                    GetComponent<N_SpectateCam>().enabled = true;
+                    {
+                        playerScript.setSpectatingTrue();
+                        if (isServer)
+                            RpcIsSpectator();
+                        else
+                            CmdIsSpectator();
+                        GetComponent<N_SpectateCam>().enabled = true;
+                    }
                 }
             }
         }
@@ -148,7 +158,7 @@ public class N_PlayerMovement : NetworkBehaviour {
             grounded = true;
             yPos = transform.position.y;
         }
-        else if((collision.gameObject.tag == "SetPlatforms" && (collision.gameObject.transform.position.y + 1.2f) < this.transform.position.y) || collision.gameObject.tag == "ground")
+        else if(((collision.gameObject.tag == "SetPlatforms" || collision.gameObject.tag == "SetPlatforms2") && (collision.gameObject.transform.position.y + 1.2f) < this.transform.position.y) || collision.gameObject.tag == "ground")
         {
             grounded = true;
             yPos = transform.position.y;
@@ -176,6 +186,7 @@ public class N_PlayerMovement : NetworkBehaviour {
     public void CmdIsSpectator()
     {
         RpcIsSpectator();
+        gameManager.deathCount++;
     }
 
     [ClientRpc]

@@ -5,14 +5,45 @@ using UnityEngine.Networking;
 
 public class N_setPlatformScript : NetworkBehaviour {
 
-    [SerializeField]
-    private N_GameManagerScript script;
+    GameObject[] setPlatforms;
 
     private void OnEnable()
     {
-        float newX = Random.Range(-15f, 15f);
-        float newY = script.getPlatformPos();
-        float newZ = Random.Range(-15f, 15f);
-        transform.position = new Vector3(newX, newY, newZ);
+        setNewPosition();
+    }
+
+    public void setNewPosition()
+    {
+        float maxHeight = 0f;
+        if (this.gameObject.tag == "SetPlatforms")
+        {
+            setPlatforms = GameObject.FindGameObjectsWithTag("SetPlatforms");
+            for(int i = 0; i < setPlatforms.Length; i++)
+            {
+                if(maxHeight < setPlatforms[i].transform.position.y)
+                {
+                    maxHeight = setPlatforms[i].transform.position.y;
+                }
+            }
+            float newX = Random.Range(-15f, 15f);
+            float newY = maxHeight + 10;
+            float newZ = Random.Range(-15f, 15f);
+            transform.position = new Vector3(newX, newY, newZ);
+        }
+        else if (this.gameObject.tag == "SetPlatforms2")
+        {
+            setPlatforms = GameObject.FindGameObjectsWithTag("SetPlatforms2");
+            for (int i = 0; i < setPlatforms.Length; i++)
+            {
+                if (maxHeight < setPlatforms[i].transform.position.y)
+                {
+                    maxHeight = setPlatforms[i].transform.position.y;
+                }
+            }
+            float newX = Random.Range(-45f, 45f);
+            float newY = maxHeight + 10;
+            float newZ = Random.Range(-45f, 45f);
+            transform.position = new Vector3(newX, newY, newZ);
+        }
     }
 }

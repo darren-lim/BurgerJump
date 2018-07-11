@@ -7,63 +7,167 @@ using UnityEngine.Networking;
 public class N_GameManagerScript : NetworkBehaviour {
 
     public Text groundText;
+    public Text gameStartText;
+    public Text waitingForPlayersText;
+    public Text pressRtoReadyText;
     [SyncVar]
-    private float groundTime = 20f;
+    private float groundTime;
+    [SyncVar]
+    private float gameStartTime;
+    [SyncVar]
+    private float groundHeightThresh;
+
+    public NetworkManager nManager;
 
     private N_GroundScript groundScript;
     public GameObject[] poolers;
-    private N_ObjectPoolerScript[] platforms;
     [SerializeField]
-    private float platformPos;
+    private N_ObjectPoolerScript[] platforms;
+    [SyncVar]
+    public bool gameStart = false;
+    [SyncVar]
+    public int reqNumPlayers = 2;
+    [SyncVar]
+    public int numPlayersReady;
 
-    private void Awake()
+    [SyncVar]
+    public int deathCount;
+
+    private void Start()
     {
-        platformPos = 0f;
-        groundScript = GameObject.FindGameObjectWithTag("ground").GetComponent<N_GroundScript>();
-
-        platforms = new N_ObjectPoolerScript[poolers.Length];
-        for (int i = 0; i < poolers.Length; ++i)
-        {
-            platforms[i] = poolers[i].GetComponent<N_ObjectPoolerScript>();
-        }
+        numPlayersReady = 0;
+        gameStartTime = 5f;
+        groundTime = 20f;
+        groundHeightThresh = 300f;
         groundText.enabled = false;
+        gameStartText.enabled = false;
+        pressRtoReadyText.enabled = false;
+        nManager = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager>();
+        groundScript = GameObject.FindGameObjectWithTag("ground").GetComponent<N_GroundScript>();
     }
 
+    public override void OnStartServer()
+    {
+        if (isServer)
+        {
+            platforms = new N_ObjectPoolerScript[poolers.Length];
+            for (int i = 0; i < poolers.Length; ++i)
+            {
+                platforms[i] = poolers[i].GetComponent<N_ObjectPoolerScript>();
+            }
+            RpcInitialTextSetup();
+        }
+        base.OnStartServer();
+    }
 
     private void Update()
     {
-        //if (groundTime > 0f)
-        //StartCoroutine("TimeGround");
-        if (isServer)
+        if (groundTime > 0f && gameStart)
         {
-            for (int i = 0; i < platforms.Length; ++i)
+            groundText.enabled = true;
+            StartCoroutine("TimeGround");
+        }
+        if (!gameStart)
+        {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("player");
+            if (players.Length >= reqNumPlayers)
             {
-                GameObject platform = platforms[i].GetPooledObject();
-                if (platform != null)
+                waitingForPlayersText.enabled = false;
+                pressRtoReadyText.enabled = true;
+                if (players.Length == numPlayersReady)
                 {
-                    platform.SetActive(true);
+                    pressRtoReadyText.enabled = false;
+                    gameStartText.enabled = true;
+                    StartCoroutine("GameStartTimer");
                 }
+            }
+        }
+        else
+        {/*
+            if (isServer)
+            {
+                for (int i = 0; i < platforms.Length; ++i)
+                {
+                    GameObject platform = platforms[i].GetPooledObject();
+                    if (platform != null)
+                    {
+                        platform.SetActive(true);
+                    }
+                }
+            }*/
+            if (groundScript.transform.position.y > groundHeightThresh && groundScript.speed < 10)
+            {
+                groundScript.addSpeed(1);
+                groundHeightThresh += 300;
+            }
+            if (deathCount-1 == numPlayersReady)
+            {
+                //show whos winner
+                //end game in a few seconds, restart scene
+                //tell networkmanager to change scene back to original
+                //nManager.ServerChangeScene("NetworkScene");
             }
         }
     }
 
-    public float getPlatformPos()
-    {
-        platformPos += 10f;
-        Debug.Log(platformPos);
-        return platformPos;
-    }
-
     IEnumerator TimeGround()
     {
-        groundText.enabled = true;
-        groundTime -= Time.deltaTime;
-        float seconds = groundTime % 60;
-        groundText.text = "Ground Rising In /n" + Mathf.RoundToInt(seconds).ToString();
-        yield return new WaitForSeconds(10f);
-        CmdStartGround();
-        groundText.enabled = false;
+        while (groundTime > 0f)
+        {
+            groundTime -= Time.deltaTime;
+            float seconds = groundTime % 60;
+            groundText.text = "Ground Rising In " + Mathf.RoundToInt(seconds).ToString() + " s";
+            yield return new WaitForSeconds(20f);
+        }
+        if (groundTime <= 0)
+        {
+            if (isServer)
+            {
+                RpcStartGround();
+                groundScript.enabled = true;
+            }
+            //CmdStartGround();
+            groundText.enabled = false;
+            yield break;
+        }
+    }
+
+    IEnumerator GameStartTimer()
+    {
+        gameStartTime -= Time.deltaTime;
+        float seconds = gameStartTime % 60;
+        gameStartText.text = "Game Starting In " + Mathf.RoundToInt(seconds).ToString() + " s";
+        yield return new WaitForSeconds(5f);
+        gameStartText.enabled = false;
+        if(isServer) activateAllPoolers();
+        gameStart = true;
+
+        gameStartTime = 6f;
+
         yield break;
+    }
+
+    void activateAllPoolers()
+    {
+        for (int i = 0; i < poolers.Length; i++)
+        {
+            poolers[i].SetActive(true);
+        }
+    }
+
+    [Command]
+    void CmdInitialTextSetup()
+    {
+        RpcInitialTextSetup();
+    }
+    [ClientRpc]
+    void RpcInitialTextSetup()
+    {
+        groundText.enabled = false;
+        waitingForPlayersText.enabled = true;
+        gameStartText.enabled = false;
+        pressRtoReadyText.enabled = false;
+        Debug.Log("True");
     }
     
     [Command]
@@ -77,113 +181,4 @@ public class N_GameManagerScript : NetworkBehaviour {
     {
         groundScript.enabled = true;
     }
-
-    /*
-    private Transform player;
-    public float maxHeightAchieved = 0f;
-    public float currheight = 0f;
-
-    public Text maxHeightText;
-    //public Text currentHeightText;
-    public Text distFromGroundText;
-    public Text fpsText;
-    public float deltaTime;
-
-    public GameObject ground;
-    private GroundScript groundScript;
-    public GameObject[] poolers;
-    private ObjectPoolerScript[] platforms;
-
-    public float platformPos = 10f;
-
-    //private bool startClimb = false;
-    public float heightAchievs;
-    //public bool instantiatePlatforms = false;
-
-    private bool isSped = false;
-
-    private bool gameover;
-
-	// Use this for initialization
-	void Awake ()
-    {
-        player = GameObject.FindGameObjectWithTag("player").transform;
-        heightAchievs = 100f;
-        gameover = false;
-        groundScript = ground.GetComponent<GroundScript>();
-        platforms = new ObjectPoolerScript[poolers.Length];
-        for(int i = 0; i < poolers.Length; ++i)
-        {
-            platforms[i] = poolers[i].GetComponent<ObjectPoolerScript>();
-        }
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        if (player.position.y > maxHeightAchieved)
-        {
-            maxHeightAchieved = player.position.y;
-        }
-        //UI TEXTS
-        maxHeightAchieved = Mathf.Round(maxHeightAchieved * 100f) / 100f;
-        //currheight = Mathf.Round(player.position.y * 100f) / 100f;
-        maxHeightText.text = "Score: " + Mathf.Round(maxHeightAchieved*6).ToString();
-        //currentHeightText.text = "Current Height: " + currheight.ToString();
-
-        float distFromGround = Mathf.Round(player.position.y - ground.transform.position.y -2f);
-        distFromGroundText.text = "Distance From Ground: " + distFromGround.ToString();
-
-        deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-        float fps = 1.0f / deltaTime;
-        fpsText.text = "FPS: " + Mathf.Ceil(fps).ToString();
-
-        if (maxHeightAchieved > 90f)
-        {
-            groundScript.enabled = true;
-            
-            for(int i = 0; i < platforms.Length; ++i)
-            {
-                GameObject platform = platforms[i].GetPooledObject();
-                if (platform != null)
-                {
-                    platform.SetActive(true);
-                }
-            }
-            
-        }
-        if(maxHeightAchieved > heightAchievs && groundScript.speed < 10)
-        {
-            groundScript.addSpeed(1);
-            heightAchievs += 300f;
-        }
-
-        if(distFromGround > 120f && !isSped)
-        {
-            isSped = true;
-            StartCoroutine("boostGround");
-        }
-
-        if(player.position.y < ground.transform.position.y && !gameover)
-        {
-            this.GetComponent<SceneManagerScript>().GameOver();
-            gameover = true;
-        }
-    }
-
-    public void addPlatformPos(float amount)
-    {
-        platformPos += amount;
-    }
-
-    IEnumerator boostGround()
-    {
-        groundScript.addSpeed(6f);
-        yield return new WaitForSeconds(3f);
-        groundScript.subtractSpeed(6f);
-        isSped = false;
-        yield break;
-    }*/
 }

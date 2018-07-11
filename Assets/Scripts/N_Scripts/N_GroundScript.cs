@@ -8,7 +8,6 @@ public class N_GroundScript : NetworkBehaviour {
 
     [SyncVar]
     public float speed = 5f;
-    public GameObject gamemanager;
 
     private BoxCollider box;
 
@@ -36,16 +35,20 @@ public class N_GroundScript : NetworkBehaviour {
 
     private void OnTriggerEnter(Collider collider)
     {
+
+        if (collider.gameObject.tag == "Platform") //|| collider.gameObject.tag == "Enemy")
+        {
+            collider.gameObject.GetComponent<N_PlatformScript>().setNewPosition();
+        }
+        else if (collider.gameObject.tag == "SetPlatforms" || collider.gameObject.tag == "SetPlatforms2")
+        {
+            collider.gameObject.GetComponent<N_setPlatformScript>().setNewPosition();
+        }
+        else if (collider.gameObject.tag == "PowerUp")
+        {
+            collider.gameObject.GetComponent<N_PowerUpScript>().setNewPosition();
+        }
         
-        if(collider.gameObject.tag == "player")
-        {
-            //animation maybe?
-            //gamemanager.GetComponent<SceneManagerScript>().GameOver();
-        }
-        if(collider.gameObject.tag == "Platform" || collider.gameObject.tag == "SetPlatforms" || collider.gameObject.tag == "PowerUp" || collider.gameObject.tag == "Enemy")
-        {
-            collider.gameObject.SetActive(false);
-        }
     }
 
     public void addSpeed(float s)

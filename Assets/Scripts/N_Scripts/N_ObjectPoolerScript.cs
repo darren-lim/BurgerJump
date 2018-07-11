@@ -16,17 +16,13 @@ public class N_ObjectPoolerScript : NetworkBehaviour {
         current = this;
     }
 
-    public override void OnStartServer()
+    void OnEnable()
     {
-        if (isServer)
+        for (int i = 0; i < pooledAmount; i++)
         {
-            for (int i = 0; i < pooledAmount; i++)
-            {
-                GameObject obj = Instantiate(pooledObject);
-                NetworkServer.Spawn(obj);
-                obj.SetActive(true);
-                pooledObjects.Add(obj);
-            }
+            GameObject obj = Instantiate(pooledObject);
+            NetworkServer.Spawn(obj);
+            pooledObjects.Add(obj);
         }
     }
     /*

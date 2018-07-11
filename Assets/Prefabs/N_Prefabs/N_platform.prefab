@@ -255,6 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa673848ed90c149bbf1759ac0c4219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ground: {fileID: 1497506739672022, guid: 73f1b90a1c05fd54cbf0376b7cf2a60e, type: 2}
   fall: 0
   fell: 0
   startColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 0.6784314}
@@ -272,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 3
+  m_TransformSyncMode: 1
   m_SendInterval: 0.11111111
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0

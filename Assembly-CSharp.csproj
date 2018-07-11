@@ -78,7 +78,6 @@
     <Compile Include="Assets\SampleScenes\Scripts\NetworkSpaceshipBullet.cs" />
     <Compile Include="Assets\Scripts\AudioVolumeScript.cs" />
     <Compile Include="Assets\Scripts\EnemyScript.cs" />
-    <Compile Include="Assets\Scripts\N_PowerUpScript.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_CameraScript.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_GameManagerScript.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_GroundScript.cs" />
@@ -90,6 +89,7 @@
     <Compile Include="Assets\Scripts\N_Scripts\N_Player.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_PlayerCam.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\N_Scripts\N_PowerUpScript.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_RoomListItem.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_SceneManagerScript.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_setPlatformScript.cs" />

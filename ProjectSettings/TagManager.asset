@@ -13,6 +13,8 @@ TagManager:
   - ground
   - gamecontroller
   - Spectator
+  - NetworkManager
+  - SetPlatforms2
   layers:
   - Default
   - TransparentFX

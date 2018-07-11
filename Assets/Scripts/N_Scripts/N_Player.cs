@@ -14,6 +14,10 @@ public class N_Player : NetworkBehaviour
     Camera sceneCamera;
     [SerializeField]
     private Transform ground;
+    [SerializeField]
+    private N_GameManagerScript gameManager;
+
+    public bool isReady = false;
 
     [Header("UI")]
     public float Score = 0f;
@@ -22,6 +26,7 @@ public class N_Player : NetworkBehaviour
     public Text spectatingText;
     public Text PowerUpText;
     public Text finalScore;
+    public Text readyText;
     private float deltaTime = 0f;
     private float maxHeightAchieved = 0f;
     private float powerUpTime;
@@ -33,7 +38,7 @@ public class N_Player : NetworkBehaviour
 
     private void Start()
     {
-        //ground = GameObject.FindGameObjectWithTag("ground").transform;
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<N_GameManagerScript>();
         if (!isLocalPlayer)
         {
             for(int i = 0; i<componentsToDisable.Length; i++)
@@ -52,7 +57,9 @@ public class N_Player : NetworkBehaviour
         spectatingText.enabled = false;
         PowerUpText.enabled = false;
         finalScore.enabled = false;
+        readyText.enabled = false;
         N_PauseMenu.isOn = false;
+        ScoreText.enabled = false;
     }
 
     private void Update()
@@ -61,6 +68,47 @@ public class N_Player : NetworkBehaviour
         {
             if (!isSpectating)
             {
+                if(!isReady && !gameManager.gameStart)
+                {
+                    if (Input.GetKeyDown(KeyCode.R))
+                    {
+                        isReady = true;
+                        if (isClient) CmdReady(true);
+                        else gameManager.numPlayersReady++;
+                        /*
+                        if (isServer)
+                            RpcReady(true);
+                        else
+                            CmdReady(true);*/
+                        readyText.enabled = true;
+                        //Add a ui text
+                        //restart score UI or disable it
+                    }
+                }
+                else if (isReady && !gameManager.gameStart)
+                {
+                    if (Input.GetKeyDown(KeyCode.R))
+                    {
+                        isReady = false;
+                        if (isClient) CmdReady(false);
+                        else gameManager.numPlayersReady++;
+                        /*
+                        if (isServer)
+                            RpcReady(false);
+                        else
+                            CmdReady(false);*/
+                        readyText.enabled = false;
+                        //Add a ui text
+                        //restart score UI or disable it
+                    }
+                }
+                else if(isReady && gameManager.gameStart)
+                {
+                    isReady = false;
+                    readyText.enabled = false;
+                    ScoreText.enabled = true;
+                    //clear ui cause game started
+                }
                 //UI TEXTS
                 if (transform.position.y > maxHeightAchieved)
                 {
@@ -121,6 +169,15 @@ public class N_Player : NetworkBehaviour
         }
     }
 
+    [Command]
+    void CmdReady(bool ready)
+    {
+        //RpcReady(ready);
+        if(ready)
+            gameManager.numPlayersReady++;
+        else
+            gameManager.numPlayersReady--;
+    }
     /*
     private void OnDisable()
     {

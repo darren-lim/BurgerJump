@@ -34,40 +34,45 @@ public class N_PowerUpScript : NetworkBehaviour {
 
     private void OnEnable ()
     {
+        setNewPosition();
+        //if (isServer) RpcSendPos();
+    }
+
+    public void setNewPosition()
+    {
         if (started)
         {
-            float newX = Random.Range(-10, 10);
+            float newX = Random.Range(-45f, 45f);
             float newY = Random.Range(transform.position.y + 700, transform.position.y + 1300);
-            float newZ = Random.Range(-10, 10);
+            float newZ = Random.Range(-45f, 45f);
 
             transform.position = new Vector3(newX, newY, newZ);
         }
         else
         {
-            float newX = Random.Range(-10, 10);
+            float newX = Random.Range(-45f, 45f);
             float newY = Random.Range(ground.transform.position.y + 100, ground.transform.position.y + 800);
-            float newZ = Random.Range(-10, 10);
+            float newZ = Random.Range(-45f, 45f);
 
             transform.position = new Vector3(newX, newY, newZ);
             started = true;
         }
-        //if (isServer) RpcSendPos();
     }
 
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Platform")
         {
-            float newX = Random.Range(-10, 10);
+            float newX = Random.Range(-45f, 45f);
             float newY = Random.Range(transform.position.y - 10, transform.position.y + 10);
-            float newZ = Random.Range(-10, 10);
+            float newZ = Random.Range(-45f, 45f);
 
             transform.position = new Vector3(newX, newY, newZ);
         }
         if(col.gameObject.tag == "player")
         {
             col.gameObject.GetComponent<N_PlayerMovement>().powerJump(jumpPower);
-            this.gameObject.SetActive(false);
+            setNewPosition();
         }
     }
     /*

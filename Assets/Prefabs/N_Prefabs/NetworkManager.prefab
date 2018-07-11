@@ -21,10 +21,9 @@ GameObject:
   - component: {fileID: 4362952725629814}
   - component: {fileID: 114913856494340612}
   - component: {fileID: 114468344711135548}
-  - component: {fileID: 114835647493272700}
   m_Layer: 0
   m_Name: NetworkManager
-  m_TagString: Untagged
+  m_TagString: NetworkManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +47,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1038459483048116}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 227461547, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
@@ -57,18 +56,6 @@ MonoBehaviour:
   showGUI: 1
   offsetX: 0
   offsetY: 0
---- !u!114 &114835647493272700
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1038459483048116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0acc1f4ed2875b742a63c5b086a48278, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomSize: 6
 --- !u!114 &114913856494340612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,11 +86,10 @@ MonoBehaviour:
   - {fileID: 1862713280271798, guid: 279580db43ab7d942b3c26fb9235c4b4, type: 2}
   - {fileID: 1276507748902544, guid: d14ea349b9ca70b4298cdba74a7256c7, type: 2}
   - {fileID: 1765649552006436, guid: 6faa2c3ba38de664888e5f9530552581, type: 2}
-  - {fileID: 1497506739672022, guid: 73f1b90a1c05fd54cbf0376b7cf2a60e, type: 2}
   - {fileID: 1940904719897430, guid: b63770d307e6f6d4bade51036a201d6d, type: 2}
   - {fileID: 1798398494346776, guid: a2bf1001d84784e4db1f3a1ce4411efc, type: 2}
-  - {fileID: 1522094145184838, guid: 9b866c683473a034685b22f226d4876f, type: 2}
   - {fileID: 1862713280271798, guid: 7ab41b66cbc2ae842806dbf4833cec50, type: 2}
+  - {fileID: 1668089586202936, guid: 9dcf2b45cf7d26845b5bf1b221c10be2, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
