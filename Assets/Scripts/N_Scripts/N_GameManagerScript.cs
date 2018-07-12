@@ -10,10 +10,14 @@ public class N_GameManagerScript : NetworkBehaviour {
     public Text gameStartText;
     public Text waitingForPlayersText;
     public Text pressRtoReadyText;
+    public Text winnerText;
+    public Text restartGameText;
     [SyncVar]
     private float groundTime;
     [SyncVar]
     private float gameStartTime;
+    [SyncVar]
+    private float gameEndTime;
     [SyncVar]
     private float groundHeightThresh;
 
@@ -26,22 +30,24 @@ public class N_GameManagerScript : NetworkBehaviour {
     [SyncVar]
     public bool gameStart = false;
     [SyncVar]
+    public bool countDownStart = false;
+    [SyncVar]
     public int reqNumPlayers = 2;
     [SyncVar]
     public int numPlayersReady;
-
-    [SyncVar]
-    public int deathCount;
 
     private void Start()
     {
         numPlayersReady = 0;
         gameStartTime = 5f;
+        gameEndTime = 5f;
         groundTime = 20f;
         groundHeightThresh = 300f;
         groundText.enabled = false;
         gameStartText.enabled = false;
         pressRtoReadyText.enabled = false;
+        winnerText.enabled = false;
+        restartGameText.enabled = false;
         nManager = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager>();
         groundScript = GameObject.FindGameObjectWithTag("ground").GetComponent<N_GroundScript>();
     }
@@ -100,12 +106,15 @@ public class N_GameManagerScript : NetworkBehaviour {
                 groundScript.addSpeed(1);
                 groundHeightThresh += 300;
             }
-            if (deathCount-1 == numPlayersReady)
+            GameObject[] players = GameObject.FindGameObjectsWithTag("player");
+            if (players.Length == 1)
             {
                 //show whos winner
+                //string winner = GameObject.FindGameObjectWithTag("player").GetComponent<N_Player>().getName();
+                winnerText.enabled = true;
+                winnerText.text = players[0].GetComponent<N_Player>().username + " Wins!";
                 //end game in a few seconds, restart scene
-                //tell networkmanager to change scene back to original
-                //nManager.ServerChangeScene("NetworkScene");
+                StartCoroutine("EndGame");
             }
         }
     }
@@ -134,6 +143,7 @@ public class N_GameManagerScript : NetworkBehaviour {
 
     IEnumerator GameStartTimer()
     {
+        countDownStart = true;
         gameStartTime -= Time.deltaTime;
         float seconds = gameStartTime % 60;
         gameStartText.text = "Game Starting In " + Mathf.RoundToInt(seconds).ToString() + " s";
@@ -143,6 +153,18 @@ public class N_GameManagerScript : NetworkBehaviour {
         gameStart = true;
 
         gameStartTime = 6f;
+
+        yield break;
+    }
+
+    IEnumerator EndGame()
+    {
+        restartGameText.enabled = true;
+        gameEndTime -= Time.deltaTime;
+        float seconds = gameEndTime % 60;
+        restartGameText.text = "Game Ending In " + Mathf.RoundToInt(seconds).ToString() + " s";
+        yield return new WaitForSeconds(5f);
+        nManager.ServerChangeScene("NetworkScene");
 
         yield break;
     }

@@ -43,7 +43,7 @@ public class N_PowerUpScript : NetworkBehaviour {
         if (started)
         {
             float newX = Random.Range(-45f, 45f);
-            float newY = Random.Range(transform.position.y + 700, transform.position.y + 1300);
+            float newY = Random.Range(transform.position.y + 300f, transform.position.y + 1300f);
             float newZ = Random.Range(-45f, 45f);
 
             transform.position = new Vector3(newX, newY, newZ);
@@ -51,7 +51,7 @@ public class N_PowerUpScript : NetworkBehaviour {
         else
         {
             float newX = Random.Range(-45f, 45f);
-            float newY = Random.Range(ground.transform.position.y + 100, ground.transform.position.y + 800);
+            float newY = Random.Range(ground.transform.position.y + 300f, ground.transform.position.y + 1400f);
             float newZ = Random.Range(-45f, 45f);
 
             transform.position = new Vector3(newX, newY, newZ);

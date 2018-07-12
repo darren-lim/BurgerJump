@@ -19,6 +19,9 @@ public class N_Player : NetworkBehaviour
 
     public bool isReady = false;
 
+    [SyncVar]
+    public string username = "Player";
+
     [Header("UI")]
     public float Score = 0f;
     public Text ScoreText;
@@ -27,6 +30,7 @@ public class N_Player : NetworkBehaviour
     public Text PowerUpText;
     public Text finalScore;
     public Text readyText;
+    public Text usernameText;
     private float deltaTime = 0f;
     private float maxHeightAchieved = 0f;
     private float powerUpTime;
@@ -45,6 +49,7 @@ public class N_Player : NetworkBehaviour
             {
                 componentsToDisable[i].enabled = false;
             }
+            usernameText.enabled = true;
         }
         else
         {
@@ -53,6 +58,7 @@ public class N_Player : NetworkBehaviour
             {
                 sceneCamera.gameObject.SetActive(false);
             }
+            usernameText.enabled = false;
         }
         spectatingText.enabled = false;
         PowerUpText.enabled = false;
@@ -60,6 +66,8 @@ public class N_Player : NetworkBehaviour
         readyText.enabled = false;
         N_PauseMenu.isOn = false;
         ScoreText.enabled = false;
+        username = PlayerPrefs.GetString("username", "Player");
+        usernameText.text = PlayerPrefs.GetString("username", "Player");
     }
 
     private void Update()
@@ -89,6 +97,7 @@ public class N_Player : NetworkBehaviour
                 {
                     if (Input.GetKeyDown(KeyCode.R))
                     {
+                        if (gameManager.countDownStart) return;
                         isReady = false;
                         if (isClient) CmdReady(false);
                         else gameManager.numPlayersReady++;
@@ -145,6 +154,7 @@ public class N_Player : NetworkBehaviour
         finalScore.enabled = true;
         finalScore.text = "Final " + ScoreText.text;
         ScoreText.enabled = false;
+        usernameText.enabled = false;
     }
 
     public void setPowerUpTime(float time)

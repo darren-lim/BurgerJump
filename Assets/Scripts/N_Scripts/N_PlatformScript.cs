@@ -49,7 +49,7 @@ public class N_PlatformScript : NetworkBehaviour {
         if (!started)
         {
             float newX = Random.Range(-45f, 45f);
-            float newY = Random.Range(ground.transform.position.y + 10, ground.transform.position.y + 350);
+            float newY = Random.Range(ground.transform.position.y + 10, ground.transform.position.y + 500);
             float newZ = Random.Range(-45f, 45f);
 
             transform.position = new Vector3(newX, newY, newZ);
@@ -61,7 +61,7 @@ public class N_PlatformScript : NetworkBehaviour {
             fallingSound.Stop();
             StopAllCoroutines();
             float newX = Random.Range(-45f, 45f);
-            float newY = Random.Range(ground.transform.position.y + 630, ground.transform.position.y + 660);
+            float newY = Random.Range(ground.transform.position.y + 630, ground.transform.position.y + 960);
             float newZ = Random.Range(-45f, 45f);
 
             transform.position = new Vector3(newX, newY, newZ);
@@ -69,7 +69,7 @@ public class N_PlatformScript : NetworkBehaviour {
         else
         {
             float newX = Random.Range(-45f, 45f);
-            float newY = Random.Range(transform.position.y + 330, transform.position.y + 360);
+            float newY = Random.Range(transform.position.y + 480, transform.position.y + 560);
             float newZ = Random.Range(-45f, 45f);
 
             transform.position = new Vector3(newX, newY, newZ);
@@ -79,10 +79,10 @@ public class N_PlatformScript : NetworkBehaviour {
         fell = false;
 
         float willFall = Random.Range(0, 110);
-        if (transform.position.y > 1500f && willFall >= 25) fall = true;
-        else if (transform.position.y > 900f && willFall >= 40) fall = true;
-        else if (transform.position.y > 500f && willFall >= 65) fall = true;
-        else if (transform.position.y > 100f && willFall >= 90) fall = true;
+        if (transform.position.y > 1700f && willFall >= 25) fall = true;
+        else if (transform.position.y > 1000f && willFall >= 40) fall = true;
+        else if (transform.position.y > 600f && willFall >= 65) fall = true;
+        else if (transform.position.y > 300f && willFall >= 90) fall = true;
     }
     /*
     [ClientRpc]

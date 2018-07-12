@@ -31,8 +31,8 @@ public class N_PlayerMovement : NetworkBehaviour {
 
     //public Text PowerUpText;
 
-    //private AudioSource jumpSound;
-    //public AudioSource powerUpSFX;
+    private AudioSource jumpSound;
+    public AudioSource powerUpSFX;
 
     void Start ()
     {
@@ -40,8 +40,7 @@ public class N_PlayerMovement : NetworkBehaviour {
         controller = GetComponent<CharacterController>();
         jumpf = jumpForce;
         yPos = transform.position.y;
-        //jumpSound = GetComponent<AudioSource>();
-        //PowerUpText.enabled = false;
+        jumpSound = GetComponent<AudioSource>();
     }
 	
 	void Update ()
@@ -104,7 +103,7 @@ public class N_PlayerMovement : NetworkBehaviour {
             {
                 moveDir.y = jumpForce;
                 grounded = false;
-                //jumpSound.Play();
+                jumpSound.Play();
             }
         }
         else
@@ -134,7 +133,7 @@ public class N_PlayerMovement : NetworkBehaviour {
 
     public void powerJump(float jump)
     {
-        //powerUpSFX.Play();
+        powerUpSFX.Play();
         if (hasPowerUp)
         {
             powerUpCooldown = 10f;
@@ -167,11 +166,10 @@ public class N_PlayerMovement : NetworkBehaviour {
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "ground")
+        if (collider.gameObject.tag == "ground" || collider.gameObject.tag == "Enemy")
         {
             if (isLocalPlayer)
             {
-                //transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
                 playerScript.setSpectatingTrue();
                 if (isServer)
                     RpcIsSpectator();
@@ -186,7 +184,6 @@ public class N_PlayerMovement : NetworkBehaviour {
     public void CmdIsSpectator()
     {
         RpcIsSpectator();
-        gameManager.deathCount++;
     }
 
     [ClientRpc]

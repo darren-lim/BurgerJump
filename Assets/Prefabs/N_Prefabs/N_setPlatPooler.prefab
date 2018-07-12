@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 1862713280271798, guid: 7ab41b66cbc2ae842806dbf4833cec50,
     type: 2}
-  pooledAmount: 40
+  pooledAmount: 50
 --- !u!114 &114509204991835462
 MonoBehaviour:
   m_ObjectHideFlags: 1

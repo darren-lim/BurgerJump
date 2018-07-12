@@ -36,7 +36,7 @@ public class N_GroundScript : NetworkBehaviour {
     private void OnTriggerEnter(Collider collider)
     {
 
-        if (collider.gameObject.tag == "Platform") //|| collider.gameObject.tag == "Enemy")
+        if (collider.gameObject.tag == "Platform")
         {
             collider.gameObject.GetComponent<N_PlatformScript>().setNewPosition();
         }
@@ -47,6 +47,10 @@ public class N_GroundScript : NetworkBehaviour {
         else if (collider.gameObject.tag == "PowerUp")
         {
             collider.gameObject.GetComponent<N_PowerUpScript>().setNewPosition();
+        }
+        else if(collider.gameObject.tag == "Enemy")
+        {
+            collider.gameObject.GetComponent<N_EnemyScript>().setNewPosition();
         }
         
     }

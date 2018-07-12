@@ -154,17 +154,20 @@ MonoBehaviour:
   gameStartText: {fileID: 0}
   waitingForPlayersText: {fileID: 0}
   pressRtoReadyText: {fileID: 0}
+  winnerText: {fileID: 0}
+  restartGameText: {fileID: 0}
   nManager: {fileID: 0}
   poolers:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   platforms: []
   gameStart: 0
-  reqNumPlayers: 1
+  countDownStart: 0
+  reqNumPlayers: 2
   numPlayersReady: 0
-  deathCount: 0
 --- !u!114 &114120329252143760
 MonoBehaviour:
   m_ObjectHideFlags: 1
