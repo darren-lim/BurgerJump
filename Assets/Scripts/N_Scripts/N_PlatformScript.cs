@@ -49,7 +49,7 @@ public class N_PlatformScript : NetworkBehaviour {
         if (!started)
         {
             float newX = Random.Range(-45f, 45f);
-            float newY = Random.Range(ground.transform.position.y + 10, ground.transform.position.y + 500);
+            float newY = Random.Range(ground.transform.position.y + 10, ground.transform.position.y + 600);
             float newZ = Random.Range(-45f, 45f);
 
             transform.position = new Vector3(newX, newY, newZ);
@@ -61,7 +61,7 @@ public class N_PlatformScript : NetworkBehaviour {
             fallingSound.Stop();
             StopAllCoroutines();
             float newX = Random.Range(-45f, 45f);
-            float newY = Random.Range(ground.transform.position.y + 630, ground.transform.position.y + 960);
+            float newY = Random.Range(ground.transform.position.y + 730, ground.transform.position.y + 960);
             float newZ = Random.Range(-45f, 45f);
 
             transform.position = new Vector3(newX, newY, newZ);

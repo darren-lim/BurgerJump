@@ -49,7 +49,7 @@ public class N_EnemyScript : NetworkBehaviour {
         if (!started)
         {
             float newX = Random.Range(-35f, 35f);
-            float newY = Random.Range(ground.transform.position.y + 500, ground.transform.position.y + 1000);
+            float newY = Random.Range(ground.transform.position.y + 300, ground.transform.position.y + 1000);
             float newZ = Random.Range(-35f, 35f);
 
             transform.position = new Vector3(newX, newY, newZ);
@@ -60,7 +60,7 @@ public class N_EnemyScript : NetworkBehaviour {
         else
         {
             float newX = Random.Range(-35f, 35f);
-            float newY = Random.Range(transform.position.y + 500, transform.position.y + 1100);
+            float newY = Random.Range(transform.position.y + 400, transform.position.y + 1100);
             float newZ = Random.Range(-35f, 35f);
 
             transform.position = new Vector3(newX, newY, newZ);

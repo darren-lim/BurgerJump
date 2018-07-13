@@ -33,11 +33,13 @@ public class N_JoinGame : MonoBehaviour {
     {
         ClearRoomList();
         networkManager.matchMaker.ListMatches(0, 20, "", true, 0, 0, OnMatchList);
+        if (status.text == null) return;
         status.text = "Loading...";
     }
 
     public void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matchList)
     {
+        if (status.text == null) return;
         status.text = "";
         if(!success || matchList == null)
         {

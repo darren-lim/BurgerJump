@@ -1825,6 +1825,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65db2877b0c869c47875191f33be4c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resDropdown: {fileID: 0}
+  sensSlider: {fileID: 114519241864804860}
 --- !u!222 &222022350576404986
 CanvasRenderer:
   m_ObjectHideFlags: 1

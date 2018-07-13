@@ -109,11 +109,8 @@ public class N_GameManagerScript : NetworkBehaviour {
             GameObject[] players = GameObject.FindGameObjectsWithTag("player");
             if (players.Length == 1)
             {
-                //show whos winner
-                //string winner = GameObject.FindGameObjectWithTag("player").GetComponent<N_Player>().getName();
                 winnerText.enabled = true;
                 winnerText.text = players[0].GetComponent<N_Player>().username + " Wins!";
-                //end game in a few seconds, restart scene
                 StartCoroutine("EndGame");
             }
         }

@@ -140,7 +140,7 @@ public class N_Player : NetworkBehaviour
             float fps = 1.0f / deltaTime;
             fpsText.text = "FPS: " + Mathf.Ceil(fps).ToString();
 
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 TogglePauseMenu();
             }
@@ -162,7 +162,7 @@ public class N_Player : NetworkBehaviour
         powerUpTime = time;
     }
 
-    void TogglePauseMenu()
+    public void TogglePauseMenu()
     {
         pauseMenu.SetActive(!pauseMenu.activeSelf);
         N_PauseMenu.isOn = pauseMenu.activeSelf;
@@ -177,6 +177,11 @@ public class N_Player : NetworkBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+
+    public void changeSens(float num)
+    {
+        PlayerPrefs.SetFloat("localSens", num);
     }
 
     [Command]

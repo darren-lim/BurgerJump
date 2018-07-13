@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class N_SpectateCam : NetworkBehaviour {
 
@@ -28,6 +29,8 @@ public class N_SpectateCam : NetworkBehaviour {
     private float currentY = 0f;
 
     private int playerIndex;
+
+    public Text playerNameText;
 
     private void Start()
     {
@@ -131,6 +134,8 @@ public class N_SpectateCam : NetworkBehaviour {
             playerIndex++;
         else
             playerIndex = 0;
+
+        playerNameText.text = "Spectating " + PlayersInGame[playerIndex].GetComponent<N_Player>().username;
     }
 
     void ThirdPersonPos()

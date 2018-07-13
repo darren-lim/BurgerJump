@@ -14,6 +14,7 @@ public class AudioVolumeScript : MonoBehaviour {
 	void Start ()
     {
         //music.Play();
+        music = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioSource>();
         audioGroup.SetFloat("Master", PlayerPrefs.GetFloat("Volume", 1));
         //slider.value = PlayerPrefs.GetFloat("Volume", 1);
 	}

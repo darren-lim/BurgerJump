@@ -17,7 +17,7 @@ public class N_PlayerMovement : NetworkBehaviour {
     public float powerUpCooldown = 0f;
 
     private float yPos;
-    private bool grounded = true;
+    public bool grounded = true;
 
     [SerializeField]
     Camera cam;
@@ -32,15 +32,16 @@ public class N_PlayerMovement : NetworkBehaviour {
     //public Text PowerUpText;
 
     private AudioSource jumpSound;
-    public AudioSource powerUpSFX;
+    private AudioSource powerUpSFX;
 
-    void Start ()
+    void Start()
     {
         playerScript = GetComponent<N_Player>();
         controller = GetComponent<CharacterController>();
         jumpf = jumpForce;
         yPos = transform.position.y;
         jumpSound = GetComponent<AudioSource>();
+        powerUpSFX = GameObject.FindGameObjectWithTag("PowerUpAudio").GetComponent<AudioSource>();
     }
 	
 	void Update ()
@@ -87,12 +88,13 @@ public class N_PlayerMovement : NetworkBehaviour {
 
     public void Movement()
     {
-        controller.Move(moveDir * Time.deltaTime);
+        //controller.Move(moveDir * Time.deltaTime);
         if (N_PauseMenu.isOn)
         {
             moveDir.y -= gravity * Time.deltaTime;
             return;
         }
+        controller.Move(moveDir * Time.deltaTime);
         if (grounded)
         {
             moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -151,13 +153,13 @@ public class N_PlayerMovement : NetworkBehaviour {
 
     private void OnControllerColliderHit(ControllerColliderHit collision)
     {
-        if (collision.gameObject.tag == "Platform" && (collision.gameObject.transform.position.y + 1.2f) < this.transform.position.y)
+        if (collision.gameObject.tag == "Platform" && (collision.gameObject.transform.position.y + .5f) < this.transform.position.y)
         {
             collision.transform.SendMessage("startFalling", SendMessageOptions.DontRequireReceiver);
             grounded = true;
             yPos = transform.position.y;
         }
-        else if(((collision.gameObject.tag == "SetPlatforms" || collision.gameObject.tag == "SetPlatforms2") && (collision.gameObject.transform.position.y + 1.2f) < this.transform.position.y) || collision.gameObject.tag == "ground")
+        else if(((collision.gameObject.tag == "SetPlatforms" || collision.gameObject.tag == "SetPlatforms2") && (collision.gameObject.transform.position.y + .5f) < this.transform.position.y) || collision.gameObject.tag == "ground")
         {
             grounded = true;
             yPos = transform.position.y;

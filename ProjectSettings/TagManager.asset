@@ -15,6 +15,8 @@ TagManager:
   - Spectator
   - NetworkManager
   - SetPlatforms2
+  - PowerUpAudio
+  - AudioManager
   layers:
   - Default
   - TransparentFX

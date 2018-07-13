@@ -42,17 +42,17 @@ public class N_PowerUpScript : NetworkBehaviour {
     {
         if (started)
         {
-            float newX = Random.Range(-45f, 45f);
-            float newY = Random.Range(transform.position.y + 300f, transform.position.y + 1300f);
-            float newZ = Random.Range(-45f, 45f);
+            float newX = Random.Range(-30f, 30f);
+            float newY = Random.Range(transform.position.y + 300f, transform.position.y + 1000f);
+            float newZ = Random.Range(-30f, 30f);
 
             transform.position = new Vector3(newX, newY, newZ);
         }
         else
         {
-            float newX = Random.Range(-45f, 45f);
-            float newY = Random.Range(ground.transform.position.y + 300f, ground.transform.position.y + 1400f);
-            float newZ = Random.Range(-45f, 45f);
+            float newX = Random.Range(-30f, 30f);
+            float newY = Random.Range(ground.transform.position.y + 300f, ground.transform.position.y + 1100f);
+            float newZ = Random.Range(-30f, 30f);
 
             transform.position = new Vector3(newX, newY, newZ);
             started = true;
@@ -63,9 +63,9 @@ public class N_PowerUpScript : NetworkBehaviour {
     {
         if (col.gameObject.tag == "Platform")
         {
-            float newX = Random.Range(-45f, 45f);
+            float newX = Random.Range(-30f, 30f);
             float newY = Random.Range(transform.position.y - 10, transform.position.y + 10);
-            float newZ = Random.Range(-45f, 45f);
+            float newZ = Random.Range(-30f, 30f);
 
             transform.position = new Vector3(newX, newY, newZ);
         }
