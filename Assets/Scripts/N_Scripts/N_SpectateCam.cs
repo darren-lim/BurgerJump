@@ -31,6 +31,7 @@ public class N_SpectateCam : NetworkBehaviour {
     private int playerIndex;
 
     public Text playerNameText;
+    public Text username;
 
     private void Start()
     {
@@ -112,6 +113,7 @@ public class N_SpectateCam : NetworkBehaviour {
         GetComponent<CapsuleCollider>().enabled = false;
         GetComponent<CharacterController>().enabled = false;
         GetComponent<AudioSource>().enabled = false;
+        username.enabled = false;
     }
 
     //OnPerson

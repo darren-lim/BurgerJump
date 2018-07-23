@@ -31,6 +31,7 @@ public class N_Player : NetworkBehaviour
     public Text finalScore;
     public Text readyText;
     public Text usernameText;
+    public Text rPlayersText;
     private float deltaTime = 0f;
     private float maxHeightAchieved = 0f;
     private float powerUpTime;
@@ -66,8 +67,10 @@ public class N_Player : NetworkBehaviour
         readyText.enabled = false;
         N_PauseMenu.isOn = false;
         ScoreText.enabled = false;
+        rPlayersText.enabled = false;
+
         username = PlayerPrefs.GetString("username", "Player");
-        usernameText.text = PlayerPrefs.GetString("username", "Player");
+        CmdSendName(username);
     }
 
     private void Update()
@@ -83,14 +86,7 @@ public class N_Player : NetworkBehaviour
                         isReady = true;
                         if (isClient) CmdReady(true);
                         else gameManager.numPlayersReady++;
-                        /*
-                        if (isServer)
-                            RpcReady(true);
-                        else
-                            CmdReady(true);*/
                         readyText.enabled = true;
-                        //Add a ui text
-                        //restart score UI or disable it
                     }
                 }
                 else if (isReady && !gameManager.gameStart)
@@ -101,14 +97,7 @@ public class N_Player : NetworkBehaviour
                         isReady = false;
                         if (isClient) CmdReady(false);
                         else gameManager.numPlayersReady++;
-                        /*
-                        if (isServer)
-                            RpcReady(false);
-                        else
-                            CmdReady(false);*/
                         readyText.enabled = false;
-                        //Add a ui text
-                        //restart score UI or disable it
                     }
                 }
                 else if(isReady && gameManager.gameStart)
@@ -145,6 +134,8 @@ public class N_Player : NetworkBehaviour
                 TogglePauseMenu();
             }
         }
+
+        RpcSendName(username);
     }
 
     public void setSpectatingTrue()
@@ -155,6 +146,7 @@ public class N_Player : NetworkBehaviour
         finalScore.text = "Final " + ScoreText.text;
         ScoreText.enabled = false;
         usernameText.enabled = false;
+        rPlayersText.enabled = true;
     }
 
     public void setPowerUpTime(float time)
@@ -193,58 +185,17 @@ public class N_Player : NetworkBehaviour
         else
             gameManager.numPlayersReady--;
     }
-    /*
-    private void OnDisable()
+
+    [Command]
+    void CmdSendName(string name)
     {
-        if (sceneCamera != null)
-        {
-            sceneCamera.gameObject.SetActive(true);
-        }
+        username = name;
+        RpcSendName(name);
     }
 
-
-    
-    [SerializeField] ToggleEvent onToggleShared;
-    [SerializeField] ToggleEvent onToggleLocal;
-    [SerializeField] ToggleEvent onToggleRemote;
-
-    public GameObject mainCamera;
-
-    private void Start()
+    [ClientRpc]
+    void RpcSendName(string name)
     {
-        mainCamera = Camera.main.gameObject;
-
-        EnablePlayer();
+        usernameText.text = name;
     }
-
-    void DisablePlayer()
-    {
-        if (isLocalPlayer)
-        {
-            mainCamera.SetActive(true);
-        }
-
-        onToggleShared.Invoke(false);
-
-        if (isLocalPlayer)
-            onToggleLocal.Invoke(false);
-        else
-            onToggleRemote.Invoke(false);
-    }
-
-    void EnablePlayer()
-    {
-        if (isLocalPlayer)
-        {
-            mainCamera.SetActive(false);// turns off main camera in scene
-        }
-
-        onToggleShared.Invoke(true); //turn on anyhting shared
-
-        if (isLocalPlayer)
-            onToggleLocal.Invoke(true);
-        else
-            onToggleRemote.Invoke(true);
-    }
-    */
 }

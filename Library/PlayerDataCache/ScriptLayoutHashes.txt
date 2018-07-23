@@ -130,7 +130,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 6c31b70ad14305972b8696210bf3b405 Assembly-CSharp.dll:.N_GroundScript
 6e141a20be23ba20a838950e149afbd2 Assembly-CSharp.dll:.N_SceneManagerScript
 677cc1a1775c1fdf6651c7732721d101 Assembly-CSharp.dll:.GameManagerScript
-32e3a806dcb7eaceb2a770a44da4252a Assembly-CSharp.dll:.N_Player
+62b95a017ff01a6a72ea8ab276358e20 Assembly-CSharp.dll:.N_Player
 1a3f4e664fcf4555bff3a9d593f20a67 Assembly-CSharp.dll:.PowerUpScript
 868f8065234244b5917ea7bf0b567c73 Assembly-CSharp.dll:.UISliderFill
 060d4ba621f93ddf0b3ab38a57e50e6e Assembly-CSharp.dll:.ObjectPoolerScript
@@ -151,7 +151,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 3f32f08a64daf40b09ed864d96fe3840 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
-9ca74355d5b21d96b3bd5ba00096720d Assembly-CSharp.dll:.N_SpectateCam
+bfccd91f743523e2e19aaa1d5b1ebf9b Assembly-CSharp.dll:.N_SpectateCam
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 f02726adeff0a3ec5905565234b372da UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender

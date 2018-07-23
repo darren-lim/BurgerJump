@@ -17,6 +17,7 @@ TagManager:
   - SetPlatforms2
   - PowerUpAudio
   - AudioManager
+  - NameObject
   layers:
   - Default
   - TransparentFX

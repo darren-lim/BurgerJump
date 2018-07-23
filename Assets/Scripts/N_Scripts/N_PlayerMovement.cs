@@ -88,13 +88,13 @@ public class N_PlayerMovement : NetworkBehaviour {
 
     public void Movement()
     {
-        //controller.Move(moveDir * Time.deltaTime);
+        controller.Move(moveDir * Time.deltaTime);
         if (N_PauseMenu.isOn)
         {
             moveDir.y -= gravity * Time.deltaTime;
             return;
         }
-        controller.Move(moveDir * Time.deltaTime);
+        //controller.Move(moveDir * Time.deltaTime);
         if (grounded)
         {
             moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
