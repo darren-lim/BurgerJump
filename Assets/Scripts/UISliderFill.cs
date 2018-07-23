@@ -11,6 +11,6 @@ public class UISliderFill : MonoBehaviour {
     private void OnEnable()
     {
         VolumeSlider.value = PlayerPrefs.GetFloat("Volume", 1);
-        SensSlider.value = PlayerPrefs.GetFloat("sensY", 6);
+        SensSlider.value = PlayerPrefs.GetFloat("localSens", 6);
     }
 }

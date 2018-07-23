@@ -9,6 +9,15 @@ TagManager:
   - SetPlatforms
   - PowerUp
   - Enemy
+  - PlayerCamera
+  - ground
+  - gamecontroller
+  - Spectator
+  - NetworkManager
+  - SetPlatforms2
+  - PowerUpAudio
+  - AudioManager
+  - NameObject
   layers:
   - Default
   - TransparentFX
