@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class setPlatformScript : MonoBehaviour {
+public class setPlatformScript : ChangePlatformPosition {
 
     [SerializeField]
     private GameManagerScript GameScript;
@@ -15,11 +15,17 @@ public class setPlatformScript : MonoBehaviour {
 
     private void OnEnable()
     {
-        float newX = Random.Range(-15f, 15f);
-        float newY = GameScript.platformPos;
-        float newZ = Random.Range(-15f, 15f);
-
-        transform.position = new Vector3(newX, newY, newZ);
+        Vector3 Pos = setNewPosition(15f, GameScript.platformPos, GameScript.platformPos);
+        transform.position = Pos;
         GameScript.addPlatformPos(10f);
+    }
+
+    public override Vector3 setNewPosition(float maxXZ, float minY, float maxY)
+    {
+        float newX = Random.Range(-maxXZ, maxXZ);
+        float newY = maxY;
+        float newZ = Random.Range(-maxXZ, maxXZ);
+
+        return new Vector3(newX, newY, newZ);
     }
 }

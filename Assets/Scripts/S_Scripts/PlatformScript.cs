@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformScript : MonoBehaviour {
+public class PlatformScript : ChangePlatformPosition {
 
     //player jumps 10 units. range y is from 5 - 20 units.
     //range on z and x axis is 10 to 10
@@ -27,15 +27,13 @@ public class PlatformScript : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("player");
         fallingSound = GetComponent<AudioSource>();
     }
-    /*
+    
     private void Start()
     {
-        float newX = Random.Range(-20f, 20f);
-        float newY = Random.Range(player.transform.position.y + 5, player.transform.position.y + 350);
-        float newZ = Random.Range(-20f, 20f);
+        Vector3 Pos = setNewPosition(30f, player.transform.position.y + 5, player.transform.position.y + 450);
 
-        transform.position = new Vector3(newX, newY, newZ);
-    }*/
+        transform.position = Pos;
+    }
 
     void OnDisable()
     {
@@ -43,20 +41,16 @@ public class PlatformScript : MonoBehaviour {
         if (player == null) return;
         if (fell)
         {
+            //reset position above the player if the platform fell
             StopAllCoroutines();
-            float newX = Random.Range(-20f, 20f);
-            float newY = Random.Range(player.transform.position.y + 100, player.transform.position.y + 250);
-            float newZ = Random.Range(-20f, 20f);
-
-            transform.position = new Vector3(newX, newY, newZ);
+            Vector3 Pos = setNewPosition(30f, player.transform.position.y + 100, player.transform.position.y + 200);
+            transform.position = Pos;
         }
         else
         {
-            float newX = Random.Range(-20f, 20f);
-            float newY = Random.Range(transform.position.y + 290, transform.position.y + 310);
-            float newZ = Random.Range(-20f, 20f);
-
-            transform.position = new Vector3(newX, newY, newZ);
+            //if platform is disabled, reset position above original position
+            Vector3 Pos = setNewPosition(30f, transform.position.y + 340, transform.position.y + 360);
+            transform.position = Pos;
         }
         rend.material.color = startColor;
         fall = false;
@@ -65,12 +59,15 @@ public class PlatformScript : MonoBehaviour {
 
     private void OnEnable()
     {
+        /*
         float newX = Random.Range(-20f, 20f);
         float newY = Random.Range(player.transform.position.y + 5, player.transform.position.y + 350);
         float newZ = Random.Range(-20f, 20f);
-
+        
         transform.position = new Vector3(newX, newY, newZ);
+        */
 
+        //set new falling chance
         float willFall = Random.Range(0, 110);
         if (transform.position.y > 1000f && willFall >= 25) fall = true;
         else if (transform.position.y > 700f && willFall >= 40) fall = true;
@@ -113,5 +110,14 @@ public class PlatformScript : MonoBehaviour {
             transform.position = new Vector3(transform.position.x, transform.position.y - Time.deltaTime, transform.position.z);
             yield return null;
         }
+    }
+
+    public override Vector3 setNewPosition(float maxXZ, float minY, float maxY)
+    {
+        float newX = Random.Range(-maxXZ, maxXZ);
+        float newY = Random.Range(minY, maxY);
+        float newZ = Random.Range(-maxXZ, maxXZ);
+
+        return new Vector3(newX, newY, newZ);
     }
 }

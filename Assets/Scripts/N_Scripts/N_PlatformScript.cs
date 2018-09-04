@@ -48,6 +48,7 @@ public class N_PlatformScript : NetworkBehaviour {
     {
         if (!started)
         {
+            //set platform position when game starts
             float newX = Random.Range(-45f, 45f);
             float newY = Random.Range(ground.transform.position.y + 10, ground.transform.position.y + 600);
             float newZ = Random.Range(-45f, 45f);
@@ -68,6 +69,7 @@ public class N_PlatformScript : NetworkBehaviour {
         }
         else
         {
+            //set platform position when ground touches platform
             float newX = Random.Range(-45f, 45f);
             float newY = Random.Range(transform.position.y + 480, transform.position.y + 560);
             float newZ = Random.Range(-45f, 45f);
@@ -78,6 +80,7 @@ public class N_PlatformScript : NetworkBehaviour {
         fall = false;
         fell = false;
 
+        //set platform fall chance
         float willFall = Random.Range(0, 110);
         if (transform.position.y > 1700f && willFall >= 25) fall = true;
         else if (transform.position.y > 1000f && willFall >= 40) fall = true;
