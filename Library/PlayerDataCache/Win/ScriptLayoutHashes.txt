@@ -137,7 +137,7 @@ ef6eb30ad429bdd9b5bd1e06dad16cd7 Assembly-CSharp.dll:.N_GroundScript
 96f3ea9f23b6f08e60710ebb4af49174 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 a3a02b7b64f8d303173e8a47b1a79776 Assembly-CSharp.dll:.N_SceneManagerScript
 08c2977a90be801bcd2f40f38b26e3f0 Assembly-CSharp.dll:.GameManagerScript
-7a6c288d2b796352b0315d266446101b Assembly-CSharp.dll:.N_Player
+2cd8668ec0e9ab593558c7260fdf2455 Assembly-CSharp.dll:.N_Player
 da57795a1be7711dbaef7bedf9ce47ed Assembly-CSharp.dll:.PowerUpScript
 8ac8964dacd7ba54df6f80f6a767c4a1 Assembly-CSharp.dll:.UISliderFill
 0cdc3def03a7e7b5f35b6363c3dda330 Assembly-CSharp.dll:.ObjectPoolerScript
@@ -196,5 +196,5 @@ f729c140dd136ec8209072e552c10ae4 Assembly-CSharp.dll:.setPlatformScript
 4fbfc5c50e9b83e44735cfeeb961247a Assembly-CSharp.dll:.CameraScript
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.EnemyScript
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
-486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.N_NameScript
+a8d43182addd0c4f2fc7b24c9222da3d Assembly-CSharp.dll:.N_NameScript
 69013f7c915b09bc00c49d17d4e56757 Assembly-CSharp.dll:.N_RoomListItem

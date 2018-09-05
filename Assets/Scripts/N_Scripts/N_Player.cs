@@ -16,6 +16,8 @@ public class N_Player : NetworkBehaviour
     private Transform ground;
     [SerializeField]
     private N_GameManagerScript gameManager;
+    [SerializeField]
+    private N_NameScript nameScript;
 
     public bool isReady = false;
 
@@ -44,22 +46,27 @@ public class N_Player : NetworkBehaviour
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<N_GameManagerScript>();
-        if (!isLocalPlayer)
+        nameScript = GameObject.FindGameObjectWithTag("NameObject").GetComponent<N_NameScript>();
+        string newName = nameScript.getName();
+
+        if (isLocalPlayer)
         {
-            for(int i = 0; i<componentsToDisable.Length; i++)
-            {
-                componentsToDisable[i].enabled = false;
-            }
-            usernameText.enabled = true;
-        }
-        else
-        {
+            CmdSendName(newName);
+            usernameText.text = username;
             sceneCamera = Camera.main;
             if (sceneCamera != null)
             {
                 sceneCamera.gameObject.SetActive(false);
             }
             usernameText.enabled = false;
+        }
+        else
+        {
+            for (int i = 0; i < componentsToDisable.Length; i++)
+            {
+                componentsToDisable[i].enabled = false;
+            }
+            usernameText.enabled = true;
         }
         spectatingText.enabled = false;
         PowerUpText.enabled = false;
@@ -68,9 +75,6 @@ public class N_Player : NetworkBehaviour
         N_PauseMenu.isOn = false;
         ScoreText.enabled = false;
         rPlayersText.enabled = false;
-
-        username = PlayerPrefs.GetString("username", "Player");
-        CmdSendName(username);
     }
 
     private void Update()
@@ -134,8 +138,9 @@ public class N_Player : NetworkBehaviour
                 TogglePauseMenu();
             }
         }
+        usernameText.text = username;
+        //RpcSendName(username);
 
-        RpcSendName(username);
     }
 
     public void setSpectatingTrue()
@@ -190,12 +195,5 @@ public class N_Player : NetworkBehaviour
     void CmdSendName(string name)
     {
         username = name;
-        RpcSendName(name);
-    }
-
-    [ClientRpc]
-    void RpcSendName(string name)
-    {
-        usernameText.text = name;
     }
 }

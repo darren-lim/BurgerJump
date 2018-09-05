@@ -58,6 +58,7 @@ public class GameManagerScript : MonoBehaviour {
         {
             maxHeightAchieved = player.position.y;
         }
+
         //UI TEXTS
         maxHeightAchieved = Mathf.Round(maxHeightAchieved * 100f) / 100f;
         //currheight = Mathf.Round(player.position.y * 100f) / 100f;
@@ -71,6 +72,7 @@ public class GameManagerScript : MonoBehaviour {
         float fps = 1.0f / deltaTime;
         fpsText.text = "FPS: " + Mathf.Ceil(fps).ToString();
 
+        //starts moving ground
         if (maxHeightAchieved > 90f)
         {
             groundScript.enabled = true;
@@ -86,16 +88,7 @@ public class GameManagerScript : MonoBehaviour {
             }
             
         }
-        /*
-        if((player.position.y - ground.transform.position.y) > 120f)
-        {
-            poolers[0].GetComponent<ObjectPoolerScript>().willGrow = true;
-        }
-        else
-        {
-            poolers[0].GetComponent<ObjectPoolerScript>().willGrow = false;
-        }
-        */
+
         if(maxHeightAchieved > heightAchievs && groundScript.speed < 10)
         {
             groundScript.addSpeed(1);

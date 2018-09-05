@@ -62,7 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AudioVolumeScript.cs" />
-    <Compile Include="Assets\Scripts\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_CameraFacingBillboard.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_CameraScript.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_EnemyScript.cs" />
@@ -86,6 +85,7 @@
     <Compile Include="Assets\Scripts\PowerUpScript.cs" />
     <Compile Include="Assets\Scripts\S_Scripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\S_Scripts\ChangePlatformPosition.cs" />
+    <Compile Include="Assets\Scripts\S_Scripts\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\S_Scripts\GameManagerScript.cs" />
     <Compile Include="Assets\Scripts\S_Scripts\GroundScript.cs" />
     <Compile Include="Assets\Scripts\S_Scripts\ObjectPoolerScript.cs" />
