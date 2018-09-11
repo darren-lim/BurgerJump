@@ -34,7 +34,7 @@ public class N_Player : NetworkBehaviour
     public Text readyText;
     public Text usernameText;
     public Text rPlayersText;
-    private float deltaTime = 0f;
+    //private float deltaTime = 0f;
     private float maxHeightAchieved = 0f;
     private float powerUpTime;
     private bool isSpectating = false;
@@ -45,6 +45,7 @@ public class N_Player : NetworkBehaviour
 
     private void Start()
     {
+        //If the player is not local, then disable the proper scripts and UI.
         gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<N_GameManagerScript>();
         nameScript = GameObject.FindGameObjectWithTag("NameObject").GetComponent<N_NameScript>();
         string newName = nameScript.getName();
@@ -52,6 +53,7 @@ public class N_Player : NetworkBehaviour
         if (isLocalPlayer)
         {
             CmdSendName(newName);
+            username = newName;
             usernameText.text = username;
             sceneCamera = Camera.main;
             if (sceneCamera != null)
@@ -111,6 +113,7 @@ public class N_Player : NetworkBehaviour
                     ScoreText.enabled = true;
                     //clear ui cause game started
                 }
+
                 //UI TEXTS
                 if (transform.position.y > maxHeightAchieved)
                 {
@@ -119,19 +122,11 @@ public class N_Player : NetworkBehaviour
                 Score = Mathf.Round(maxHeightAchieved * 100f) / 100f;
                 ScoreText.text = "Score: " + Mathf.Round(maxHeightAchieved * 6).ToString();
 
-                if (powerUpTime > 0)
-                {
-                    PowerUpText.enabled = true;
-                    powerUpTime -= Time.deltaTime;
-                    float seconds = powerUpTime % 60;
-                    PowerUpText.text = "Power Jump! \n" + Mathf.RoundToInt(seconds).ToString() + " s";
-                }
-                else
-                    PowerUpText.enabled = false;
+                checkPowerUpTime();
             }
-            deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-            float fps = 1.0f / deltaTime;
-            fpsText.text = "FPS: " + Mathf.Ceil(fps).ToString();
+            //deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+            //float fps = 1.0f / deltaTime;
+            //fpsText.text = "FPS: " + Mathf.Ceil(fps).ToString();
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -139,10 +134,9 @@ public class N_Player : NetworkBehaviour
             }
         }
         usernameText.text = username;
-        //RpcSendName(username);
-
     }
 
+    //Sets UI to spectating other players.
     public void setSpectatingTrue()
     {
         isSpectating = true;
@@ -157,6 +151,52 @@ public class N_Player : NetworkBehaviour
     public void setPowerUpTime(float time)
     {
         powerUpTime = time;
+    }
+
+    void checkPowerUpTime()
+    {
+        if (powerUpTime > 0)
+        {
+            PowerUpText.enabled = true;
+            powerUpTime -= Time.deltaTime;
+            float seconds = powerUpTime % 60;
+            PowerUpText.text = "Power Jump! \n" + Mathf.RoundToInt(seconds).ToString() + " s";
+        }
+        else
+            PowerUpText.enabled = false;
+    }
+
+    //checks if the player is ready and if the game started to switch UI and send information.
+    void beforeGameStartChecks()
+    {
+        if (!isReady && !gameManager.gameStart)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                isReady = true;
+                if (isClient) CmdReady(true);
+                else gameManager.numPlayersReady++;
+                readyText.enabled = true;
+            }
+        }
+        else if (isReady && !gameManager.gameStart)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                if (gameManager.countDownStart) return;
+                isReady = false;
+                if (isClient) CmdReady(false);
+                else gameManager.numPlayersReady++;
+                readyText.enabled = false;
+            }
+        }
+        else if (isReady && gameManager.gameStart)
+        {
+            isReady = false;
+            readyText.enabled = false;
+            ScoreText.enabled = true;
+            //clear ui cause game started
+        }
     }
 
     public void TogglePauseMenu()
@@ -184,7 +224,6 @@ public class N_Player : NetworkBehaviour
     [Command]
     void CmdReady(bool ready)
     {
-        //RpcReady(ready);
         if(ready)
             gameManager.numPlayersReady++;
         else

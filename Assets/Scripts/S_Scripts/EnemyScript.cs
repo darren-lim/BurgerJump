@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyScript : MonoBehaviour {
+public class EnemyScript : ChangePlatformPosition {
 
     private GameObject player;
     private Vector3 newPos;
@@ -21,13 +21,10 @@ public class EnemyScript : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        float newX = Random.Range(-10f, 10f);
-        float newY = Random.Range(player.transform.position.y + 100, player.transform.position.y + 600);
-        float newZ = Random.Range(-10f, 10f);
-
-        transform.position = new Vector3(newX, newY, newZ);
-        currX = newX;
-        currZ = newZ;
+        // sets initial positions
+        setNewPosition(15f, player.transform.position.y + 100, player.transform.position.y + 600);
+        currX = transform.position.x;
+        currZ = transform.position.z;
         randNum = Random.Range(0, 21);
         speed = Random.Range(5, 11);
     }
@@ -48,15 +45,13 @@ public class EnemyScript : MonoBehaviour {
         }
     }
 
+    //sets next position
     private void OnDisable()
     {
-        float newX = Random.Range(-10f, 10f);
-        float newY = Random.Range(transform.position.y + 500, transform.position.y + 1100);
-        float newZ = Random.Range(-10f, 10f);
-
-        transform.position = new Vector3(newX, newY, newZ);
-        currX = newX;
-        currZ = newZ;
+        if (player == null) return;
+        setNewPosition(15f, player.transform.position.y + 500, player.transform.position.y + 1100);
+        currX = transform.position.x;
+        currZ = transform.position.z;
         randNum = Random.Range(0, 21);
         speed = Random.Range(5, 11);
     }
@@ -77,8 +72,18 @@ public class EnemyScript : MonoBehaviour {
         }
     }
 
+    //bounces between two points using Mathf.PingPong, but returns middle of the points.
     private float PingPong(float t, float minLength, float maxLength)
     {
         return Mathf.PingPong(t, maxLength - minLength) + minLength;
+    }
+
+    public override void setNewPosition(float maxXZ, float minY, float maxY)
+    {
+        float newX = Random.Range(-maxXZ, maxXZ);
+        float newY = Random.Range(minY, maxY);
+        float newZ = Random.Range(-maxXZ, maxXZ);
+
+        transform.position = new Vector3(newX, newY, newZ);
     }
 }

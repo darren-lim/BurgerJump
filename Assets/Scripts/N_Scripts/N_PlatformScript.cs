@@ -7,8 +7,11 @@ public class N_PlatformScript : NetworkBehaviour {
 
     //[SerializeField]
     public GameObject ground;
+    [SyncVar]
     public bool fall = false; //it will fall
+    [SyncVar]
     public bool fell = false; //it already fell
+    [SyncVar]
     bool started = false;
 
     public Color startColor = Color.gray;
@@ -16,17 +19,12 @@ public class N_PlatformScript : NetworkBehaviour {
     public float duration = 40f;
     public Renderer rend;
 
-    //[SyncVar]
-    //private Vector3 syncPos;
-
     private AudioSource fallingSound;
 
     private void Awake()
     {
         rend = GetComponent<Renderer>();
-        //ground = GameObject.FindGameObjectWithTag("ground");
         fallingSound = GetComponent<AudioSource>();
-        //syncPos = GetComponent<Transform>().position;
     }
     /*
     private void Start()
@@ -55,6 +53,7 @@ public class N_PlatformScript : NetworkBehaviour {
 
             transform.position = new Vector3(newX, newY, newZ);
             started = true;
+            return;
         }
         //if (ground == null) return;
         else if (fell)
@@ -79,20 +78,37 @@ public class N_PlatformScript : NetworkBehaviour {
         rend.material.color = startColor;
         fall = false;
         fell = false;
+        RpcSendFall(false);
+        RpcSendFell(false);
 
+        setFallingChance();
+    }
+
+    void setFallingChance()
+    {
         //set platform fall chance
         float willFall = Random.Range(0, 110);
-        if (transform.position.y > 1700f && willFall >= 25) fall = true;
-        else if (transform.position.y > 1000f && willFall >= 40) fall = true;
-        else if (transform.position.y > 600f && willFall >= 65) fall = true;
-        else if (transform.position.y > 300f && willFall >= 90) fall = true;
+        if (transform.position.y > 1700f && willFall >= 25)
+        {
+            RpcSendFall(true);
+            fall = true;
+        }
+        else if (transform.position.y > 1000f && willFall >= 40)
+        {
+            RpcSendFall(true);
+            fall = true;
+        }
+        else if (transform.position.y > 600f && willFall >= 65)
+        {
+            RpcSendFall(true);
+            fall = true;
+        }
+        else if (transform.position.y > 300f && willFall >= 90)
+        {
+            RpcSendFall(true);
+            fall = true;
+        }
     }
-    /*
-    [ClientRpc]
-    void RpcSendPos()
-    {
-        syncPos = transform.position;
-    }*/
 
     public void startFalling()
     {
@@ -100,6 +116,7 @@ public class N_PlatformScript : NetworkBehaviour {
             StartCoroutine("ChangeColor");
     }
 
+    //changes color to red to indicate the platform will fall
     IEnumerator ChangeColor()
     {
         fallingSound.Play();
@@ -111,13 +128,27 @@ public class N_PlatformScript : NetworkBehaviour {
         StartCoroutine("Fall");
     }
 
+    //Sets platform position to fall
     IEnumerator Fall()
     {
+        RpcSendFell(true);
         fell = true;
         while (transform.position.y > 10f)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y - Time.deltaTime, transform.position.z);
             yield return null;
         }
+    }
+
+    [ClientRpc]
+    void RpcSendFall(bool f)
+    {
+        fall = f;
+    }
+
+    [ClientRpc]
+    void RpcSendFell(bool f)
+    {
+        fell = f;
     }
 }

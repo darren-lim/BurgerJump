@@ -21,6 +21,8 @@ public class PlatformScript : ChangePlatformPosition {
 
     private AudioSource fallingSound;
 
+    private Vector3 scale;
+
     private void Awake()
     {
         rend = GetComponent<Renderer>();
@@ -30,9 +32,8 @@ public class PlatformScript : ChangePlatformPosition {
     
     private void Start()
     {
-        Vector3 Pos = setNewPosition(30f, player.transform.position.y + 5, player.transform.position.y + 450);
-
-        transform.position = Pos;
+        setNewPosition(27f, player.transform.position.y + 5, player.transform.position.y + 450);
+        scale = new Vector3(3.5f, 0.5f, 3.5f);
     }
 
     void OnDisable()
@@ -43,14 +44,12 @@ public class PlatformScript : ChangePlatformPosition {
         {
             //reset position above the player if the platform fell
             StopAllCoroutines();
-            Vector3 Pos = setNewPosition(30f, player.transform.position.y + 100, player.transform.position.y + 200);
-            transform.position = Pos;
+            setNewPosition(27f, player.transform.position.y + 100, player.transform.position.y + 200);
         }
         else
         {
             //if platform is disabled, reset position above original position
-            Vector3 Pos = setNewPosition(30f, transform.position.y + 340, transform.position.y + 360);
-            transform.position = Pos;
+            setNewPosition(27f, transform.position.y + 340, transform.position.y + 360);
         }
         rend.material.color = startColor;
         fall = false;
@@ -59,38 +58,26 @@ public class PlatformScript : ChangePlatformPosition {
 
     private void OnEnable()
     {
-        /*
-        float newX = Random.Range(-20f, 20f);
-        float newY = Random.Range(player.transform.position.y + 5, player.transform.position.y + 350);
-        float newZ = Random.Range(-20f, 20f);
-        
-        transform.position = new Vector3(newX, newY, newZ);
-        */
-
         //set new falling chance
         float willFall = Random.Range(0, 110);
         if (transform.position.y > 1000f && willFall >= 25) fall = true;
         else if (transform.position.y > 700f && willFall >= 40) fall = true;
         else if (transform.position.y > 400f && willFall >= 65) fall = true;
         else if (transform.position.y > 100f && willFall >= 90) fall = true;
-    }
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name == "Player") { Debug.Log("BOOM"); }
-        if (collision.gameObject.name == "Player" && fall == true)
+
+        if(transform.position.y > 1100f && transform.localScale != scale)
         {
-            StartCoroutine("ChangeColor");
-            Debug.Log("FALLING");
+            transform.localScale = scale;
         }
     }
-    */
+
     public void startFalling()
     {
         if (fall == true)
             StartCoroutine("ChangeColor");
     }
 
+    //changes color to red to indicate the platform will fall
     IEnumerator ChangeColor()
     {
         fallingSound.Play();
@@ -102,6 +89,7 @@ public class PlatformScript : ChangePlatformPosition {
         StartCoroutine("Fall");
     }
 
+    //Sets platform position to fall
     IEnumerator Fall()
     {
         fell = true;
@@ -112,12 +100,12 @@ public class PlatformScript : ChangePlatformPosition {
         }
     }
 
-    public override Vector3 setNewPosition(float maxXZ, float minY, float maxY)
+    public override void setNewPosition(float maxXZ, float minY, float maxY)
     {
         float newX = Random.Range(-maxXZ, maxXZ);
         float newY = Random.Range(minY, maxY);
         float newZ = Random.Range(-maxXZ, maxXZ);
 
-        return new Vector3(newX, newY, newZ);
+        transform.position = new Vector3(newX, newY, newZ);
     }
 }

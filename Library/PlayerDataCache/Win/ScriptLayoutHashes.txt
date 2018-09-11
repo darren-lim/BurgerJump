@@ -136,7 +136,7 @@ dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 ef6eb30ad429bdd9b5bd1e06dad16cd7 Assembly-CSharp.dll:.N_GroundScript
 96f3ea9f23b6f08e60710ebb4af49174 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 a3a02b7b64f8d303173e8a47b1a79776 Assembly-CSharp.dll:.N_SceneManagerScript
-08c2977a90be801bcd2f40f38b26e3f0 Assembly-CSharp.dll:.GameManagerScript
+86a0abed7a112ae0214049b706673631 Assembly-CSharp.dll:.GameManagerScript
 2cd8668ec0e9ab593558c7260fdf2455 Assembly-CSharp.dll:.N_Player
 da57795a1be7711dbaef7bedf9ce47ed Assembly-CSharp.dll:.PowerUpScript
 8ac8964dacd7ba54df6f80f6a767c4a1 Assembly-CSharp.dll:.UISliderFill

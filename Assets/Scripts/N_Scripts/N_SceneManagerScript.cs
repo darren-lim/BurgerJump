@@ -73,6 +73,7 @@ public class N_SceneManagerScript: MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    //enables UI for every player that the game is over and who won
     public void GameOver()
     {
         gameOverCanvas.SetActive(true);

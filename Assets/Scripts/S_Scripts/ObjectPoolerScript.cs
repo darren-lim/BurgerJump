@@ -7,7 +7,6 @@ public class ObjectPoolerScript : MonoBehaviour {
     public static ObjectPoolerScript current;
     public GameObject pooledObject;
     public int pooledAmount = 20;
-    public bool willGrow = true; //dynamic pooling expanding based on game. pool doesnt shrink though.
 
     List<GameObject> pooledObjects;
 
@@ -18,6 +17,8 @@ public class ObjectPoolerScript : MonoBehaviour {
 
     void Start ()
     {
+        //Pool the object referenced in the Inspector to pooled amount.
+        //then, add the object to the list to reference it.
         pooledObjects = new List<GameObject>();
         for(int i = 0; i < pooledAmount; ++i)
         {
@@ -27,6 +28,7 @@ public class ObjectPoolerScript : MonoBehaviour {
         }
 	}
 	
+    //gets an object from the list pooledObjects.
     public GameObject GetPooledObject()
     {
         for(int i = 0; i < pooledObjects.Count; ++i)
@@ -36,13 +38,6 @@ public class ObjectPoolerScript : MonoBehaviour {
                 return pooledObjects[i];
             }
         }
-        /*
-        if (willGrow)
-        {
-            GameObject obj = (GameObject)Instantiate(pooledObject);
-            pooledObjects.Add(obj);
-            return obj;
-        }*/
         return null;
     }
 }

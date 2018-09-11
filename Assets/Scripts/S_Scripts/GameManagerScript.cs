@@ -10,9 +10,8 @@ public class GameManagerScript : MonoBehaviour {
     public float currheight = 0f;
 
     public Text maxHeightText;
-    //public Text currentHeightText;
-    public Text distFromGroundText;
     public Text fpsText;
+    public Text GroundRisingText;
     public float deltaTime;
 
     public GameObject ground;
@@ -38,7 +37,8 @@ public class GameManagerScript : MonoBehaviour {
         gameover = false;
         groundScript = ground.GetComponent<GroundScript>();
         platforms = new ObjectPoolerScript[poolers.Length];
-        for(int i = 0; i < poolers.Length; ++i)
+        GroundRisingText.enabled = false;
+        for (int i = 0; i < poolers.Length; ++i)
         {
             platforms[i] = poolers[i].GetComponent<ObjectPoolerScript>();
         }
@@ -48,12 +48,6 @@ public class GameManagerScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (startClimb == false && player.position.y > 20)
-        {
-            startClimb = true;
-        }*/
-
         if (player.position.y > maxHeightAchieved)
         {
             maxHeightAchieved = player.position.y;
@@ -66,15 +60,18 @@ public class GameManagerScript : MonoBehaviour {
         //currentHeightText.text = "Current Height: " + currheight.ToString();
 
         float distFromGround = Mathf.Round(player.position.y - ground.transform.position.y -2f);
-        distFromGroundText.text = "Distance From Ground: " + distFromGround.ToString();
 
-        deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-        float fps = 1.0f / deltaTime;
-        fpsText.text = "FPS: " + Mathf.Ceil(fps).ToString();
+        //deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+        //float fps = 1.0f / deltaTime;
+        //fpsText.text = "FPS: " + Mathf.Ceil(fps).ToString();
 
         //starts moving ground
         if (maxHeightAchieved > 90f)
         {
+            if (groundScript.enabled == false)
+            {
+                StartCoroutine("GroundRising");
+            }
             groundScript.enabled = true;
             //instantiatePlatforms = true;
             
@@ -106,17 +103,6 @@ public class GameManagerScript : MonoBehaviour {
             this.GetComponent<SceneManagerScript>().GameOver();
             gameover = true;
         }
-        /*
-        if (instantiatePlatforms)
-        {
-            //first index is platform pooler
-            GameObject platform = poolers[0].GetComponent<ObjectPoolerScript>().GetPooledObject();
-            if (platform != null)
-            {
-                platform.SetActive(true);
-            }
-
-        }*/
     }
 
     public void addPlatformPos(float amount)
@@ -130,6 +116,14 @@ public class GameManagerScript : MonoBehaviour {
         yield return new WaitForSeconds(3f);
         groundScript.subtractSpeed(6f);
         isSped = false;
+        yield break;
+    }
+
+    IEnumerator GroundRising()
+    {
+        GroundRisingText.enabled = true;
+        yield return new WaitForSeconds(3f);
+        GroundRisingText.enabled = false;
         yield break;
     }
 }

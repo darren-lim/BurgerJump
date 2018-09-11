@@ -75,6 +75,7 @@ public class N_GameManagerScript : NetworkBehaviour {
         }
         if (!gameStart)
         {
+            //if game has not started, then get every player and wait for them to "Ready"
             GameObject[] players = GameObject.FindGameObjectsWithTag("player");
             if (players.Length >= reqNumPlayers)
             {
@@ -89,18 +90,8 @@ public class N_GameManagerScript : NetworkBehaviour {
             }
         }
         else
-        {/*
-            if (isServer)
-            {
-                for (int i = 0; i < platforms.Length; ++i)
-                {
-                    GameObject platform = platforms[i].GetPooledObject();
-                    if (platform != null)
-                    {
-                        platform.SetActive(true);
-                    }
-                }
-            }*/
+        {
+            //Game has started, gradually add speed to the floor and check if players are still alive
             if (groundScript.transform.position.y > groundHeightThresh && groundScript.speed < 10)
             {
                 groundScript.addSpeed(1);
@@ -116,6 +107,7 @@ public class N_GameManagerScript : NetworkBehaviour {
         }
     }
 
+    //starts ground
     IEnumerator TimeGround()
     {
         while (groundTime > 0f)
@@ -138,6 +130,7 @@ public class N_GameManagerScript : NetworkBehaviour {
         }
     }
 
+    //timer for the game to start
     IEnumerator GameStartTimer()
     {
         countDownStart = true;
@@ -154,6 +147,7 @@ public class N_GameManagerScript : NetworkBehaviour {
         yield break;
     }
 
+    //Setsui for end of game
     IEnumerator EndGame()
     {
         restartGameText.enabled = true;

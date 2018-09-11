@@ -441,7 +441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1739655873167284
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +645,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 85
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1172,7 +1172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
-  jumpForce: 37
+  jumpForce: 36
   gravity: 30
   powerUpCooldown: 0
   grounded: 1
@@ -2013,7 +2013,7 @@ CapsuleCollider:
   m_Radius: 1.69
   m_Height: 4.23
   m_Direction: 2
-  m_Center: {x: 0, y: -0.09, z: 0.31}
+  m_Center: {x: 0, y: -0.24, z: 0.31}
 --- !u!143 &143876866906501412
 CharacterController:
   m_ObjectHideFlags: 1
@@ -2024,13 +2024,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2.52
+  m_Height: 3.52
   m_Radius: 1.62
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: -0.02, z: 0.24}
+  m_Center: {x: 0, y: -0.32, z: 0.24}
 --- !u!222 &222036279962472026
 CanvasRenderer:
   m_ObjectHideFlags: 1

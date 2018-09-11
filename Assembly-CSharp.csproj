@@ -82,7 +82,6 @@
     <Compile Include="Assets\Scripts\N_Scripts\N_setPlatformScript.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_SpectateCam.cs" />
     <Compile Include="Assets\Scripts\OptionsMenu.cs" />
-    <Compile Include="Assets\Scripts\PowerUpScript.cs" />
     <Compile Include="Assets\Scripts\S_Scripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\S_Scripts\ChangePlatformPosition.cs" />
     <Compile Include="Assets\Scripts\S_Scripts\EnemyScript.cs" />
@@ -91,10 +90,10 @@
     <Compile Include="Assets\Scripts\S_Scripts\ObjectPoolerScript.cs" />
     <Compile Include="Assets\Scripts\S_Scripts\PlatformScript.cs" />
     <Compile Include="Assets\Scripts\S_Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\S_Scripts\PowerUpScript.cs" />
     <Compile Include="Assets\Scripts\S_Scripts\SceneManagerScript.cs" />
     <Compile Include="Assets\Scripts\S_Scripts\setPlatformScript.cs" />
     <Compile Include="Assets\Scripts\UISliderFill.cs" />
-    <None Include="Assets\SFX\Complete Music Collection FREE Edition\readme.txt" />
     <None Include="Assets\Fonts\OpenSans\License!.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/dartr/OneDrive/Documents/unity/PlatformJumper/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

@@ -43,6 +43,7 @@ public class N_CameraScript : NetworkBehaviour {
     void Update ()
     {
         if (N_PauseMenu.isOn) return;
+        //get sensitivity and allows input to move camera
         if (isLocalPlayer || ischild)
         {
             if (sensHorizontal != PlayerPrefs.GetFloat("localSens"))

@@ -28,7 +28,7 @@ public class SceneManagerScript: MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOver)
+        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOver && pauseCanvas!=null)
         {
             PauseOrResume();
         }
@@ -46,26 +46,33 @@ public class SceneManagerScript: MonoBehaviour
 
     public void PauseOrResume()
     {
-        if (!isPaused)
+        try
         {
-            Time.timeScale = 0;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            isPaused = true;
-            audioScript.pauseMusic();
-            //player.GetComponent<CameraScript>().enabled = false;
+            if (!isPaused)
+            {
+                Time.timeScale = 0;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                isPaused = true;
+                audioScript.pauseMusic();
+                //player.GetComponent<CameraScript>().enabled = false;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                isPaused = false;
+                audioScript.unpauseMusic();
+                //player.GetComponent<CameraScript>().enabled = true;
+            }
+            pauseCanvas.SetActive(isPaused);
+            cameraPause();
         }
-        else
+        catch
         {
-            Time.timeScale = 1;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            isPaused = false;
-            audioScript.unpauseMusic();
-            //player.GetComponent<CameraScript>().enabled = true;
+            Debug.Log("Esc No Work");
         }
-        pauseCanvas.SetActive(isPaused);
-        cameraPause();
     }
 
     public void Restart()
