@@ -1,15 +1,18 @@
-#Platform Hopper
+Platform Hopper
+==============
 by Darren Lim
 
 Thank you for checking out my game!
 
-##Introduction
+Introduction
+--------------
 
 This is my first solo-made game that I finished.
 
 Platform Hopper is a 3D infinite jumping game. The goal of the game is to get as high as you can by jumping on platforms, avoiding enemies, and getting power ups to jump higher. You start on a floor that, when you reach a certain height, starts to climb upwards. The platforms you jump on start to fall the higher you get. That's it! Good Jump Have Fun!
 
-##How to Play
+How to Play
+--------------
 
 This game has been uploaded to itch.io (will update link and directions to play)
 
@@ -17,7 +20,8 @@ To move, use the W A S D keys. To look around, use the mouse. To jump, use space
 
 You can jump through platforms from underneath it! This is vital in being able to jump high.
 
-##Design Decisions of the Game
+Design Decisions
+--------------
 
 Platform Hopper is a very simple game that uses one core mechanic: jumping. I wanted to make a game that my friends and I could have fun with.
 
@@ -29,8 +33,9 @@ Thirdly, I wanted to use Object Pooling to pool each object in game (platforms, 
 
 Lastly, multiplayer has also been implemented because I wanted this game, in the end, to be a game where people could play with friends. However, there still might be bugs. I am still trying to grasp implementation of UNET using Unity's HLAPI in games.
 
-##End Notes
+End Notes
+--------------
 
 I learned a lot by making this game such as learning C#, learning Unity, taking player feedback to improve the game, and researching how to overcome problems encountered during development. I also had a lot of fun and am satisfied by how this game turned out.
 
-This game was made in Unity and coded in C# using Microsoft Visual Studio. Github was used as the main source control. Most of the objects used are simple polygons (cubes, capsule, spheres). Only the multiplayer uses a burger model for the character because my friends like to call this game "Burger Jump". As for sounds/music, most of them are royalty-free and from websites that post them for free use. Only the main menu scene is a clip I created using Bosca Ceoil. Other assets are taken from the Unity Asset Store.
+This game was made in Unity and coded in C# using Microsoft Visual Studio. Github was used as the main source control. Most of the objects used are simple polygons (cubes, capsule, spheres). Only the multiplayer uses a burger model for the character. As for sounds/music, most of them are royalty-free and from websites that post them for free use. Only the main menu scene is a clip I created using Bosca Ceoil. Other assets are taken from the Unity Asset Store.
