@@ -2013,7 +2013,7 @@ CapsuleCollider:
   m_Radius: 1.69
   m_Height: 4.23
   m_Direction: 2
-  m_Center: {x: 0, y: -0.24, z: 0.31}
+  m_Center: {x: 0, y: -0.3, z: 0.31}
 --- !u!143 &143876866906501412
 CharacterController:
   m_ObjectHideFlags: 1
@@ -2030,7 +2030,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: -0.32, z: 0.24}
+  m_Center: {x: 0, y: -0.2, z: 0.24}
 --- !u!222 &222036279962472026
 CanvasRenderer:
   m_ObjectHideFlags: 1
