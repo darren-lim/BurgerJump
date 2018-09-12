@@ -14,11 +14,18 @@ Platform Hopper is a 3D infinite jumping game. The goal of the game is to get as
 How to Play
 --------------
 
-This game has been uploaded to itch.io (will update link and directions to play)
-
 To move, use the W A S D keys. To look around, use the mouse. To jump, use spacebar. To use multiplayer, you either make a room or join one. However, there can only be up to **six** players in one room. Multiplayer requires at least 2 players to start.
 
 You can jump through platforms from underneath it! This is vital in being able to jump high.
+
+/* if you are viewing this readme on github */
+
+This game has been uploaded to itch.io:
+
+https://dartren.itch.io/platform-hopper
+
+To play, download the setup file, setup the game, then you're good to go!
+
 
 Design Decisions
 --------------
