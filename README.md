@@ -36,6 +36,4 @@ Lastly, multiplayer has also been implemented because I wanted this game, in the
 End Notes
 --------------
 
-I learned a lot by making this game such as learning C#, learning Unity, taking player feedback to improve the game, and researching how to overcome problems encountered during development. I also had a lot of fun and am satisfied by how this game turned out.
-
-This game was made in Unity and coded in C# using Microsoft Visual Studio. Github was used as the main source control. Most of the objects used are simple polygons (cubes, capsule, spheres). Only the multiplayer uses a burger model for the character. As for sounds/music, most of them are royalty-free and from websites that post them for free use. Only the main menu scene is a clip I created using Bosca Ceoil. Other assets are taken from the Unity Asset Store.
+This game was made in Unity and coded in C# using Microsoft Visual Studio. Github was used as the main source control. Most of the objects used are simple polygons (cubes, capsule, spheres). Unity's UNET was used for multiplayer, and only the multiplayer uses a burger model for the character. As for sounds/music, most of them are royalty-free and from websites that post them for free use. Only the main menu scene is a clip I created using Bosca Ceoil. Other assets are taken from the Unity Asset Store.
