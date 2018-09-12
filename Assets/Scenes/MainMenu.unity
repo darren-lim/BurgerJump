@@ -637,7 +637,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 947354580}
+      - m_Target: {fileID: 0}
         m_MethodName: stopMusic
         m_Mode: 1
         m_Arguments:
@@ -1607,10 +1607,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1507318757}
   m_HandleRect: {fileID: 887973967}
   m_Direction: 0
-  m_MinValue: -1
-  m_MaxValue: 0
+  m_MinValue: 0.001
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

@@ -8,18 +8,18 @@ public class AudioVolumeScript : MonoBehaviour {
 
     public AudioMixer audioGroup;
     public AudioSource music;
-
-	void Start ()
+    
+    private void Start()
     {
-        music = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioSource>();
-        audioGroup.SetFloat("Master", PlayerPrefs.GetFloat("Volume", 0f));
-	}
+        music = GetComponent<AudioSource>();
+        float initVolume = PlayerPrefs.GetFloat("Volume", 1f);
+        audioGroup.SetFloat("Master", Mathf.Log(initVolume) * 20);
+    }
 
     public void setMasterVolume(float volume)
     {
-        float newVolume = volume * 80;
-        audioGroup.SetFloat("Master", newVolume);
         PlayerPrefs.SetFloat("Volume", volume);
+        audioGroup.SetFloat("Master", Mathf.Log(volume) * 20);
     }
 
     public void playMusic()

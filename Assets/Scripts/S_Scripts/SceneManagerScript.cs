@@ -24,6 +24,7 @@ public class SceneManagerScript: MonoBehaviour
     {
         Time.timeScale = 1;
         player = GameObject.FindGameObjectWithTag("player");
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioVolumeScript>();
     }
 
     private void Update()
@@ -54,7 +55,7 @@ public class SceneManagerScript: MonoBehaviour
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
                 isPaused = true;
-                audioScript.pauseMusic();
+                //audioScript.pauseMusic();
                 //player.GetComponent<CameraScript>().enabled = false;
             }
             else
@@ -63,7 +64,7 @@ public class SceneManagerScript: MonoBehaviour
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 isPaused = false;
-                audioScript.unpauseMusic();
+                //audioScript.unpauseMusic();
                 //player.GetComponent<CameraScript>().enabled = true;
             }
             pauseCanvas.SetActive(isPaused);

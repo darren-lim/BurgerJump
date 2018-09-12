@@ -152,7 +152,6 @@ MonoBehaviour:
   maxHeightAchieved: 0
   currheight: 0
   maxHeightText: {fileID: 0}
-  distFromGroundText: {fileID: 0}
   fpsText: {fileID: 0}
   GroundRisingText: {fileID: 0}
   deltaTime: 0

@@ -601,12 +601,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &548020873 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114849986025725016, guid: 8a0adcf446a248b47b3bb8900b5bd65b,
-    type: 2}
-  m_PrefabInternal: {fileID: 1323081570}
-  m_Script: {fileID: 11500000, guid: ae28f46d9d11cba43895ef0f041d50b1, type: 3}
 --- !u!1001 &557316961
 Prefab:
   m_ObjectHideFlags: 0
@@ -1110,11 +1104,6 @@ Prefab:
       objectReference: {fileID: 2063591766}
     - target: {fileID: 114519448745310948, guid: ea2f872b94a55884389cf556a2342bd1,
         type: 2}
-      propertyPath: distFromGroundText
-      value: 
-      objectReference: {fileID: 469014443}
-    - target: {fileID: 114519448745310948, guid: ea2f872b94a55884389cf556a2342bd1,
-        type: 2}
       propertyPath: fpsText
       value: 
       objectReference: {fileID: 1011609703}
@@ -1182,7 +1171,7 @@ Prefab:
         type: 2}
       propertyPath: audioScript
       value: 
-      objectReference: {fileID: 548020873}
+      objectReference: {fileID: 1323081571}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea2f872b94a55884389cf556a2342bd1, type: 2}
   m_IsPrefabAsset: 0
@@ -1388,10 +1377,15 @@ Prefab:
         type: 2}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 548020873}
+      objectReference: {fileID: 1323081571}
     - target: {fileID: 114124624052693862, guid: 196b4d9c875d2bb4582128de24a61f31,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1663491692}
+    - target: {fileID: 114124624052693862, guid: 196b4d9c875d2bb4582128de24a61f31,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1663491692}
     m_RemovedComponents: []
@@ -1703,9 +1697,20 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114849986025725016, guid: 8a0adcf446a248b47b3bb8900b5bd65b,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a0adcf446a248b47b3bb8900b5bd65b, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &1323081571 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114219076208760586, guid: 8a0adcf446a248b47b3bb8900b5bd65b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1323081570}
+  m_Script: {fileID: 11500000, guid: ae28f46d9d11cba43895ef0f041d50b1, type: 3}
 --- !u!1 &1420919975 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1361223347701474, guid: 1efccb8f23fd1fb4a8290b2af7038206,
