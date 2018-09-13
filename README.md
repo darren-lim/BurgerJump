@@ -22,7 +22,7 @@ You can jump through platforms from underneath it! This is vital in being able t
 
 This game has been uploaded to itch.io:
 
-https://dartren.itch.io/platform-hopper
+https://dartren.itch.io/burger-jump
 
 To play, download the setup file, setup the game, then you're good to go!
 
@@ -43,4 +43,4 @@ Lastly, multiplayer has also been implemented because I wanted this game, in the
 End Notes
 --------------
 
-This game was made in Unity and coded in C# using Microsoft Visual Studio. Github was used as the main source control. Most of the objects used are simple polygons (cubes, capsule, spheres). Unity's UNET was used for multiplayer, and only the multiplayer uses a burger model for the character. As for sounds/music, most of them are royalty-free and from websites that post them for free use. Only the main menu scene is a clip I created using Bosca Ceoil. Other assets are taken from the Unity Asset Store.
+This game was made in Unity and coded in C# using Microsoft Visual Studio. Github was used as the main source control. Most of the objects used are simple polygons (cubes, capsule, spheres) and a burger model for the character. Unity's UNET was used for multiplayer. As for sounds/music, most of them are royalty-free and from websites that post them for free use. Only the main menu scene is a clip I created using Bosca Ceoil. Other assets are taken from the Unity Asset Store.
