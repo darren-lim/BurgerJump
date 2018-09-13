@@ -51,7 +51,7 @@ public class N_PlayerMovement : NetworkBehaviour {
             if(controller.enabled)
                 Movement();
             checkPlatCollision();
-            if(grounded && transform.position.y < yPos)
+            if(grounded && transform.position.y < yPos - 0.01f)
             {
                 grounded = false;
             }
@@ -153,13 +153,13 @@ public class N_PlayerMovement : NetworkBehaviour {
 
     private void OnControllerColliderHit(ControllerColliderHit collision)
     {
-        if (collision.gameObject.tag == "Platform" && (collision.gameObject.transform.position.y + .5f) < this.transform.position.y)
+        if (collision.gameObject.tag == "Platform" && (collision.gameObject.transform.position.y + 1f) < this.transform.position.y)
         {
             collision.transform.SendMessage("startFalling", SendMessageOptions.DontRequireReceiver);
             grounded = true;
             yPos = transform.position.y;
         }
-        else if(((collision.gameObject.tag == "SetPlatforms" || collision.gameObject.tag == "SetPlatforms2") && (collision.gameObject.transform.position.y + .5f) < this.transform.position.y) || collision.gameObject.tag == "ground")
+        else if(((collision.gameObject.tag == "SetPlatforms" || collision.gameObject.tag == "SetPlatforms2") && (collision.gameObject.transform.position.y + 1f) < this.transform.position.y) || collision.gameObject.tag == "ground")
         {
             grounded = true;
             yPos = transform.position.y;

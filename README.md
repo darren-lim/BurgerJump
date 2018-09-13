@@ -1,4 +1,4 @@
-Platform Hopper
+Burger Jump
 ==============
 by Darren Lim
 
@@ -9,12 +9,12 @@ Introduction
 
 This is my first solo-made game that I finished.
 
-Platform Hopper is a 3D infinite jumping game. The goal of the game is to get as high as you can by jumping on platforms, avoiding enemies, and getting power ups to jump higher. You start on a floor that, when you reach a certain height, starts to climb upwards. The platforms you jump on start to fall the higher you get. That's it! Good Jump Have Fun!
+Burger Jump is a 3D infinite jumping game. The goal of the game is to get as high as you can by jumping on platforms, avoiding enemies, and getting power ups to jump higher. You start on a floor that, when you reach a certain height, starts to climb upwards. The platforms you jump on start to fall the higher you get. That's it! Good Jump Have Fun!
 
 How to Play
 --------------
 
-To move, use the W A S D keys. To look around, use the mouse. To jump, use spacebar. To use multiplayer, you either make a room or join one. However, there can only be up to **six** players in one room. Multiplayer requires at least 2 players to start.
+To move, use the W A S D keys. To look around, use the mouse. To jump, use spacebar. To use multiplayer, you either make a room or join one. However, there can only be up to **six** players in one room. Multiplayer requires at least 2 players to start. The goal of multiplayer is to be the last one jumping.
 
 You can jump through platforms from underneath it! This is vital in being able to jump high.
 
@@ -30,7 +30,7 @@ To play, download the setup file, setup the game, then you're good to go!
 Design Decisions
 --------------
 
-Platform Hopper is a very simple game that uses one core mechanic: jumping. I wanted to make a game that my friends and I could have fun with.
+Burger Jump is a very simple game that uses one core mechanic: jumping. I wanted to make a game that my friends and I could have fun with.
 
 Firstly, jumping through platforms from under it is a crucial part of the game. This allows players to jump on to platforms that are right above without maneuvering, making it easier to traverse the game.
 

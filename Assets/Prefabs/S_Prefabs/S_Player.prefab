@@ -57,9 +57,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361223347701474}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -7}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4589838973186704}
   m_Father: {fileID: 0}
@@ -71,13 +71,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1293360250321550}
-  m_LocalRotation: {x: -0.17364825, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.17, z: 1.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4183592498912798}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -20, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20098384837210522
 Camera:
   m_ObjectHideFlags: 1
@@ -100,7 +100,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 90
+  field of view: 105
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -133,7 +133,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: efeb6638f901f5d4fbdef047fb2dd87f, type: 2}
+  - {fileID: 2100000, guid: 82704855181647442a6da9b597d5411c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -159,7 +159,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361223347701474}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: effcec74887fb2b48905898ff915032f, type: 2}
 --- !u!81 &81380548110904776
 AudioListener:
   m_ObjectHideFlags: 1
@@ -187,7 +187,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1.001683
+  MinDistance: 0.7688713
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -277,10 +277,10 @@ MonoBehaviour:
   axes: 2
   minVert: -90
   maxVert: 90
-  sensHorizontal: 6
-  sensVertical: 6
+  sensHorizontal: 2.6698303
+  sensVertical: 2.6698303
   rotationX: 0
-  paused: 0
+  paused: 1
 --- !u!114 &114272946153512970
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -295,10 +295,10 @@ MonoBehaviour:
   axes: 1
   minVert: -90
   maxVert: 90
-  sensHorizontal: 0
-  sensVertical: 0
+  sensHorizontal: 2.6698303
+  sensVertical: 2.6698303
   rotationX: 0
-  paused: 0
+  paused: 1
 --- !u!114 &114700189280275052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -316,6 +316,7 @@ MonoBehaviour:
   powerUpCooldown: 0
   PowerUpText: {fileID: 0}
   powerUpSFX: {fileID: 0}
+  grounded: 0
 --- !u!136 &136944401574390472
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -325,10 +326,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.7992445
+  m_Height: 4.4651957
+  m_Direction: 2
+  m_Center: {x: 5.966593e-10, y: -0.21557152, z: 0.19240211}
 --- !u!143 &143876866906501412
 CharacterController:
   m_ObjectHideFlags: 1
@@ -339,10 +340,10 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 3.52
+  m_Radius: 1.62
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.05
+  m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.2, z: 0.24}

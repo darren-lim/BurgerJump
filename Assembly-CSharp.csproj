@@ -74,7 +74,6 @@
     <Compile Include="Assets\Scripts\N_Scripts\N_PauseMenu.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_PlatformScript.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_Player.cs" />
-    <Compile Include="Assets\Scripts\N_Scripts\N_PlayerCam.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_PowerUpScript.cs" />
     <Compile Include="Assets\Scripts\N_Scripts\N_RoomListItem.cs" />
