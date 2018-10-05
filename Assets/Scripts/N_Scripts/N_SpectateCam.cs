@@ -28,7 +28,7 @@ public class N_SpectateCam : NetworkBehaviour {
     private float currentX = 0f;
     private float currentY = 0f;
 
-    private int playerIndex;
+    private int playerIndex = 0;
 
     public Text playerNameText;
     public Text username;
@@ -36,7 +36,7 @@ public class N_SpectateCam : NetworkBehaviour {
     private void Start()
     {
         //camTransform = transform;
-        playerIndex = 0;
+        //playerIndex = 0;
         cameraSens = PlayerPrefs.GetFloat("localSens", 6);
     }
 
@@ -60,9 +60,9 @@ public class N_SpectateCam : NetworkBehaviour {
 
     void Update ()
     {
-        if (N_PauseMenu.isOn) return;
         if (!isLocalPlayer)
             return;
+        if (N_PauseMenu.isOn) return;
         if(PlayersInGame.Count < 1)
         {
             //go back to lobby
@@ -119,8 +119,10 @@ public class N_SpectateCam : NetworkBehaviour {
     //OnPerson
     public void getPlayers()
     {
+        //clear current list of players
         PlayersInGame.Clear();
         GameObject[] playerList = GameObject.FindGameObjectsWithTag("player");
+        //find every player in game and add them to the list
         foreach (GameObject player in playerList)
         {
             if(player.GetComponent<MeshRenderer>().enabled)

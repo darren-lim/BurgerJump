@@ -39,10 +39,10 @@ public class CameraScript : MonoBehaviour {
             return;
         else
         {
-            if (sensHorizontal != PlayerPrefs.GetFloat("localSens"))
+            if (sensHorizontal != PlayerPrefs.GetFloat("localSens", 6))
             {
-                sensHorizontal = PlayerPrefs.GetFloat("localSens");
-                sensVertical = PlayerPrefs.GetFloat("localSens");
+                sensHorizontal = PlayerPrefs.GetFloat("localSens", 6);
+                sensVertical = PlayerPrefs.GetFloat("localSens", 6);
             }
             if (axes == RotationAxis.MouseX)
                 transform.Rotate(0, Input.GetAxis("Mouse X") * sensHorizontal, 0);
