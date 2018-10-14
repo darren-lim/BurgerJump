@@ -32,11 +32,13 @@ Design Decisions
 
 Burger Jump is a very simple game that uses one core mechanic: jumping. I wanted to make a game that my friends and I could have fun with.
 
-Firstly, jumping through platforms from under it is a crucial part of the game. This allows players to jump on to platforms that are right above without maneuvering, making it easier to traverse the game.
+First, jumping through platforms from under it is a crucial part of the game. This allows players to jump on to platforms that are right above without maneuvering, making it easier to traverse the game.
 
-Secondly, I didn't want the game to be just jumping. There are difficulties added to make the game harder as the player jumps higher. Inspiration for some mechanics were taken from Doodle Jump (mobile game). As the player progresses higher, the floor climbs faster and platforms have a higher chance of falling. Power ups are also somewhat difficult to attain because they are usually in the empty spaces between platforms.
+Second, I didn't want the game to be just jumping. There are difficulties added to make the game harder as the player jumps higher. Inspiration for some mechanics were taken from Doodle Jump (mobile game). As the player progresses higher, the floor climbs faster and platforms have a higher chance of falling. Power ups are also somewhat difficult to attain because they are usually in the empty spaces between platforms.
 
-Thirdly, I wanted to use Object Pooling to pool each object in game (platforms, enemies, and power ups) and reuse each initialized object by disabling and reenabling them. However, when I was thinking of optimazations, I realized I could have just repositioned each initialized object instead of pooling them and going through the list to reenable them.
+Third, from a level design point of view, randomly generating platforms over a certain distance can lead them to be too far apart for the player to jump to, so I have implemented platforms that are a set distance apart. Players will be able to reach at least one platform from their position.
+
+Fourth, I wanted to use Object Pooling to pool each object in game (platforms, enemies, and power ups) and reuse each initialized object by disabling and reenabling them. However, when I was thinking of optimazations, I realized I could have just repositioned each initialized object instead of pooling them and going through the list to reenable them.
 
 Lastly, multiplayer has also been implemented because I wanted this game, in the end, to be a game where people could play with friends. However, there still might be bugs. I am still trying to grasp implementation of UNET using Unity's HLAPI in games.
 
