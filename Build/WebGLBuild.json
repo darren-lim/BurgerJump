@@ -1,0 +1,17 @@
+{
+"companyName": "DARREN",
+"productName": "Burger Jump",
+"productVersion": "1",
+"dataUrl": "WebGLBuild.data.unityweb",
+"asmCodeUrl": "WebGLBuild.asm.code.unityweb",
+"asmMemoryUrl": "WebGLBuild.asm.memory.unityweb",
+"asmFrameworkUrl": "WebGLBuild.asm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Light",
+"backgroundColor": "#808080",
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.3.7f1"
+}
