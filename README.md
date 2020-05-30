@@ -25,7 +25,10 @@ This game has been uploaded to itch.io:
 https://dartren.itch.io/burger-jump
 
 To play, download the setup file, setup the game, then you're good to go!
-
+  
+Or play in the browser:  
+  
+https://dartren01.github.io/BurgerJump/  
 
 Design Decisions
 --------------
