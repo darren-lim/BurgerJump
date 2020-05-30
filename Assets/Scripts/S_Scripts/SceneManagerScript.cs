@@ -115,6 +115,7 @@ public class SceneManagerScript: MonoBehaviour
         {
             cam.paused = isPaused;
         }
+        player.GetComponentInChildren<ThirdPersonCam>().paused = isPaused;
     }
 
 }
