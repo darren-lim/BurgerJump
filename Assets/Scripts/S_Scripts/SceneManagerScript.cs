@@ -60,9 +60,9 @@ public class SceneManagerScript: MonoBehaviour
             }
             else
             {
-                Time.timeScale = 1;
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
+                Time.timeScale = 1;
                 isPaused = false;
                 //audioScript.unpauseMusic();
                 //player.GetComponent<CameraScript>().enabled = true;

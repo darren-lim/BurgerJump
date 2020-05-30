@@ -45,6 +45,8 @@ public class ThirdPersonCam : MonoBehaviour
         currentY -= Input.GetAxis("Mouse Y") * sensVertical;
 
         currentY = Mathf.Clamp(currentY, Y_Angle_Min, Y_Angle_Max);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void LateUpdate()

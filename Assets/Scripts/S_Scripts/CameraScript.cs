@@ -55,6 +55,8 @@ public class CameraScript : MonoBehaviour {
                 float rotationY = transform.localEulerAngles.y;
                 transform.localEulerAngles = new Vector3(rotationX, rotationY, 0);
             }
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 	}
 }
